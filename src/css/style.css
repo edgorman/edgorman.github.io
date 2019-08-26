@@ -1,3 +1,85 @@
+html{
+	scroll-behavior: smooth;
+}
+
 body {
-	background-color: red;
+	font-family: monospace !important;
+}
+
+.section .bg-light.left{
+	box-shadow: 0px 0px #f8f9fa inset, 0px 0px #f8f9fa inset, -20px 0px 20px -20px #6f6f6f inset;
+}
+.section .bg-light.right{
+	box-shadow: 0px 0px #f8f9fa inset, 0px 0px #f8f9fa inset, 20px 0px 20px -20px #6f6f6f inset;
+}
+.section .bg-dark.left{
+	box-shadow: 0px 0px #343a40 inset, 0px 0px #343a40 inset, -20px 0px 20px -20px #212121 inset;
+}
+.section .bg-dark.right{
+	box-shadow: 0px 0px #343a40 inset, 0px 0px #343a40 inset, 20px 0px 20px -20px #212121 inset
+}
+
+.section div, .section div.row div{
+	height: 100vh;
+}
+
+.carousel-inner .carousel-item{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.carousel-cover{
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #343a407a;
+}
+
+.carousel-info{
+	position: absolute;
+	top: 30%;
+	left: 50px;
+}
+
+.carousel-info .carousel-profile{
+	width: 250px;
+	height: 250px;
+	background-color: #343a40;
+	border-radius: 50%;
+}
+
+.carousel-profile img{
+	height: 90%;
+	width: 90%;
+	margin-top: 5%;
+	margin-left: 5%;
+	opacity: 0.8;
+	
+	border-radius: 50%;
+	cursor: pointer;
+	-webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.carousel-profile img:hover{
+	height: 95%;
+	width: 95%;
+	margin-top: 2.5%;
+	margin-left: 2.5%;
+	opacity: 0.9;
+}
+
+.carousel-info .carousel-mesage{
+	height: 60px;
+	background-color: #343a40;
+	margin-top: 15px;
+	
+	color: white;
+	font-size: 16px;
+	padding: 5px 10px 5px 15px;
 }

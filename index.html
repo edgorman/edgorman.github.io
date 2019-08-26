@@ -21,30 +21,127 @@
 		<title>Edward Gorman | Personal Website</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
-			<a class="navbar-brand" href="">Edward Gorman</a>
+		<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark justify-content-between">
+			<a class="navbar-brand" href="#top">Edward Gorman</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"> </span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mr-auto"> </ul>
+				<ul class="navbar-nav mr-auto"></ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="#">About</a>
+						<a class="nav-link" href="#about">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Links</a>
+						<a class="nav-link" href="#links">Links</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Contact</a>
+						<a class="nav-link" href="#contact">Contact</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
-		<div class="container-fluid">
-			<p style="height: 200vh;">
-				content below
-			</p>
+		<div class="section" id="top">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="5"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="6"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="7"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="8"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="9"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="10"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="11"> </li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="12"> </li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item w-100 active" style="background-image: url('src/img/about-1.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-2.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-3.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-4.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-5.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-6.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-7.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-8.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-9.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-10.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-11.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-12.jpg')"> </div>
+					<div class="carousel-item w-100" style="background-image: url('src/img/about-13.jpg')"> </div>
+				</div>
+				<div class="carousel-cover"> </div>
+				<div class="carousel-info">
+					<div class="carousel-profile">
+						<a href="#about">
+							<img src="src/img/profile-picture.jpg" />
+						</a>
+					</div>
+					<div class="carousel-mesage">
+						Computer Scientist (3rd Yr)
+						<br>
+						<span style="font-size: 12px; color: #CCC">
+							University of Southampton
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="about">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-4 bg-dark left" style="padding: 80px 20px;">
+						left
+					</div>
+					<div class="col-lg-8 bg-light right" style="padding: 80px 20px;">
+						<h3>
+							About me.
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="links">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-7 bg-light left" style="padding: 80px 20px;">
+						<h3>
+							Where to find me.
+						</h3>
+					</div>
+					<div class="col-lg-5 bg-dark right" style="padding: 80px 20px;">
+						right
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="contact">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-4 bg-dark left" style="padding: 80px 20px;">
+						left
+					</div>
+					<div class="col-lg-8 bg-light right" style="padding: 80px 20px;">
+						<h3>
+							Get in touch.
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container-fluid">
+				<div class="row bg-dark">
+					footer
+					<br>
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>
 		</div>
 
 		<!-- JS -->
