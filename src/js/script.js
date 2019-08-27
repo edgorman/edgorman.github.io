@@ -43,4 +43,10 @@ function sendEmail(form){
 	console.log(document.getElementById('contact-email').value);
 	console.log(document.getElementById('contact-type').value);
 	console.log(document.getElementById('contact-msg').value);
+	
+	$('#emailSuccess').removeClass("hide");
+	$('#emailSuccess').addClass("show");
+	setTimeout(function (){
+		$('#emailSuccess').fadeOut();
+	}, 5000); 	//delay until message has been read
 }
