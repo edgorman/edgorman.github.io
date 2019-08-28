@@ -115,6 +115,9 @@ body {
 	-o-transition: all 1s linear;
 	transition: all 1s linear;
 }
+.timeline .blip{
+	z-index: 1000;
+}
 .timeline.email.progres{
 	background-image: linear-gradient(rgb(62, 134, 78), rgb(221, 221, 221));
 }
