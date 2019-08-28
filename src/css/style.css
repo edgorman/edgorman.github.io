@@ -108,6 +108,34 @@ body {
 	opacity: 0.7;
 }
 
+
+.timeline, .timeline *{
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+}
+.timeline.email.progres{
+	background-image: linear-gradient(rgb(62, 134, 78), rgb(221, 221, 221));
+}
+.timeline.email.success{
+	background-image: none;
+	background-color: #3e864e !important;
+}
+.timeline.email.success .blip{
+	background-color: #73ce88 !important;
+}
+.timeline.email.success span{
+	color: #28a745 !important;
+}
+
+.email-form{
+	display: none;
+}
+.email-form.active{
+	display: block;
+}
+
 .carousel-inner .carousel-item {
 	background-position: center;
 	background-repeat: no-repeat;
