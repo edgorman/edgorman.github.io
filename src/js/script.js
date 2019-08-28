@@ -2,8 +2,11 @@
  * @author edgor
  */
 
-document.onkeydown = checkKey;
+$(function () {
+	$('[data-toggle="popover"]').popover();
+})
 
+document.onkeydown = checkKey;
 function checkKey(e) {
     e = e || window.event;
 	
@@ -19,7 +22,9 @@ function checkKey(e) {
     	
     	for (i = sections.length - 1; i >= 0; i--){
     		var top = sections[i].getBoundingClientRect().top;
-    		if(top < 0){
+    		console.log(top);
+    		if(top < -1){
+    			console.log("made it");
     			window.scrollBy(0, top);
     			break;
     		}
@@ -31,7 +36,8 @@ function checkKey(e) {
     	
     	for (i = 0; i < sections.length; i++){
     		var top = sections[i].getBoundingClientRect().top;
-    		if(top > 0){
+    		console.log(top);
+    		if(top > 1){
     			window.scrollBy(0, top);
     			break;
     		}

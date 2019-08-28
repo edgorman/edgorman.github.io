@@ -77,7 +77,19 @@
 				<div class="row">
 					<div class="col-lg-4 section-height bg-dark left d-none d-lg-block">
 						<!-- moon -->
-						<span class="section-graphic" style="height: 150px; width: 150px; background-color: #eee; border-radius: 50%; position: absolute; top: 10vh; left: 5vh;"> <span style="height: 30px; width: 30px; background-color: #ddd; border-radius: 50%; position: absolute; top: 40px; left: 25px;"> </span> </span>
+						<span class="moon" style="height: 150px; width: 150px; background-color: #eee; border-radius: 50%; position: absolute; top: 10vh; left: 5vh;"> 
+							<span style="height: 30px; width: 30px; background-color: #ddd; border-radius: 50%; position: absolute; top: 40px; left: 25px; cursor: pointer;" onclick="$('.moon').toggleClass('active'); return false;"> </span> 
+						</span>
+						<!-- falcon 9 stage 1 -->
+						<span class="rocket" style="height: 40px; width: 5px; transform: rotate(45deg); background-color: #fff; position: absolute; top: 50vh; left: 20vw; ">
+							<span class="second" style="width: 5px; height: 10px; background-color: #fff; border-top: 1px solid black; position: absolute; top: 30px; left: 0;">
+								<span style="height: 5px; width: 5px; background-color: #222; position: absolute; top: 0; left: 0;"> </span>
+								<span style="border-bottom: 5px solid #fb6f6f; border-right: 2.5px solid transparent; border-left: 2.5px solid transparent; position: absolute; top: -5px; left: 0;"> </span>
+							</span> 
+							<span style="height: 5px; width: 5px; background-color: #222; position: absolute; top: 0; left: 0;"> </span>
+							<span style="border-bottom: 5px solid #fb6f6f; border-right: 2.5px solid transparent; border-left: 2.5px solid transparent; position: absolute; top: -5px; left: 0;"> </span>
+						</span>
+						
 						<!-- bottom right -->
 						<span style="border-bottom: 90vh solid #587ea669;border-right: 0px solid transparent;border-left: 25vw solid transparent;position: absolute;bottom: 0;right: 0;"> </span>
 						<span style="border-bottom: 70vh solid #6ab3ff85;border-right: 0px solid transparent;border-left: 19vw solid transparent;position: absolute;bottom: 0;right: 0;"> </span>
@@ -94,13 +106,19 @@
 						<h3> Education. </h3>
 						<p>
 							<b>University of Southampton - 2017-2020</b>
+							<!--<button type="button" class="btn btn-dark" style="font-size: 10px; padding: 1px 10px;" data-toggle="popover" data-trigger="focus" data-content="Averaged a 2:1 over second year modules. For full list see LinkedIn page.">
+								Grades
+							</button>-->
 							<br>
 							Studying Computer Science.
 						</p>
 						<p>
 							<b>Bartholomew School Sixth Form - 2015-2017</b>
+							<!--<button type="button" class="btn btn-dark" style="font-size: 10px; padding: 1px 10px;" data-toggle="popover" data-trigger="focus" data-content="Physics (A), Maths Mechanics (A), Geography (B), EPQ (A)">
+								Grades
+							</button>-->
 							<br>
-							Studying Computer Science.
+							Studied Maths, Physics and Geography.
 						</p>
 						<br>
 						<h3> Experience. </h3>
@@ -134,21 +152,68 @@
 		<div class="section" id="links">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-7 section-height bg-light left" >
-						<h3> Where to find me. </h3>
+					<div class="col-lg-7 section-height bg-light left">
+						<h3>
+							Where to find me.
+						</h3>
 						<br>
-						<!-- linkedin -->
-						<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-						<div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="edward-john-gorman">
-							<a class="LI-simple-link" href='https://uk.linkedin.com/in/edward-john-gorman?trk=profile-badge'>Edward Gorman</a>
+						<div class="row">
+							<div class="col-xl-6">
+								<p>
+									<b>Github</b>
+									<br>
+									My Github hasn't been used much in the past but I intend to upload old projects or coursework that I was enthusiastic about there.
+								</p>
+								<br>
+								<div class="github-card" data-github="gormane" data-width="330" data-height="200" data-theme="medium"></div>
+								<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+								<br><br>
+							</div>
+							<div class="col-xl-6">
+								<p>
+									<b>LinkedIn</b>
+									<br>
+									My LinkedIn page linked below is my professional online presence, containing my most up to date information while this website may fall behind.
+								</p>
+								<br>
+								<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+								<div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="edward-john-gorman"><a class="LI-simple-link" href='https://uk.linkedin.com/in/edward-john-gorman?trk=profile-badge'>Edward Gorman</a></div>
+								<br>
+							</div>
 						</div>
-						<!-- spotify -->
-						<!--<iframe src="https://open.spotify.com/follow/1/?uri=spotify:user:ed-gorman&size=detail&theme=light" width="400" height="74" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>-->
-						<!--<br>-->
-						<!-- twitter -->
-						<!--<a href="https://twitter.com/edgygorman?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="false">Follow @edgygorman</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+						<br>
+						<h3>
+							Non-work links.
+						</h3>
+						<br>
+						<p>
+							I also have a <a href="https://www.polarsteps.com/EdwardGorman" target="_blank">Polarsteps</a> account for my various trips (not all are public),
+							a <a href="https://www.twitter.com/edgygorman" target="_blank">Twitter</a> account - though it is extremely inactive, and
+							a <a href="https://open.spotify.com/user/ed-gorman?si=t6M_ZyI8R4Cu2D-UuxB3Rg" target="_blank">Spotify</a> account for music I'm currently listening to.
+						</p>
 					</div>
-					<div class="col-lg-5 section-height bg-dark right d-none d-lg-block" ></div>
+					<div class="col-lg-5 section-height bg-dark right d-none d-lg-block" >
+						<!-- Python -->
+						<span class="language" style="color: #ccc; position: absolute; top: 20vh; left: 7vw; transform: rotate(-15deg);" onclick="$(this).toggleClass('active'); return false;">
+							<i class="fab fa-python primary"> </i>
+							<i class="fas fa-project-diagram secondary" style="position: absolute; top: -5px; left: -15px; color: red;"> </i>
+							<i class="fas fa-subscript secondary" style="position: absolute; top: 70px; right: -45px; color: green;"> </i>
+							<i class="fas fa-folder secondary" style="position: absolute; bottom: 15px; left: -15px; color: steelblue; transform: rotate(25deg);"> </i>
+						</span>
+						<!-- JS -->
+						<span class="language" style="color: #ccc; position: absolute; top: 35vh; right: 5vw; transform: rotate(25deg);" onclick="$(this).toggleClass('active'); return false;">
+							<i class="fab fa-js-square primary"></i>
+							<i class="fab fa-chrome secondary" style="position: absolute; top: 25px; left: -55px; color: orange;"> </i>
+							<i class="fas fa-server secondary" style="position: absolute; bottom: -35px; left: -5px; color: blueviolet; transform: rotate(-45deg);"> </i>
+						</span>
+						<!-- Java -->
+						<span class="language" style="color: #ccc; position: absolute; top: 60vh; left: 10vw; transform: rotate(5deg);" onclick="$(this).toggleClass('active'); return false;">
+							<i class="fab fa-java primary"></i>
+							<i class="fas fa-lock secondary" style="position: absolute; top: 25px; left: -25px; color: aquamarine; transform: rotate(-20deg);"> </i>
+							<i class="fas fa-id-card secondary" style="position: absolute; top: 45px; right: -35px; color: pink;"> </i>
+							<i class="fas fa-microchip secondary" style="position: absolute; bottom: -35px; left: -15px; color: yellow; transform: rotate(-20deg);"></i>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
