@@ -18,5 +18,7 @@ your/repo/directory/edgorman.github.io/index.html
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+The project page [jobs](https://github.com/edgorman/edgorman.github.io/projects/1) is where I've listed items to do, and show which are being worked on already.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
