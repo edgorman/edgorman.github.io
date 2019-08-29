@@ -4,7 +4,7 @@
 
 $(function () {
 	$('[data-toggle="popover"]').popover();
-})
+});
 
 document.onkeydown = checkKey;
 function checkKey(e) {
