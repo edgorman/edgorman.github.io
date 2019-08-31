@@ -221,3 +221,14 @@ body {
 	font-size: 16px;
 	padding: 5px 10px 5px 15px;
 }
+
+.hell{
+	min-height: 100vh;
+	color: white;
+	background-image: linear-gradient(rgb(52,58,64), rgb(200,0,19));
+	text-align: center;
+}
+
+.hell .section{
+	width: 100%;
+}

@@ -98,3 +98,13 @@ function sendEmail(form){
 		}, 5000); 	//delay until message has been read
 	}
 }
+
+function toggleHell(){
+	if($('#contact-type')[0].length == 2){
+		$('#contact-type').append($('<option>', { value: 'Website Suggsetion', text: 'Website Suggestion' }));
+	}
+	
+	if(!$('.hell').hasClass('show')){
+		setTimeout(function(){window.scrollTo(0, document.getElementById('collapseHell').offsetTop);}, 50);
+	}
+}

@@ -203,7 +203,6 @@
 						<span class="timeline email" style="width: 5px; position: absolute; top: 24%; height: 30%; left: 45%; background-color: #ddd;"> <span class="blip" style="width: 15px; height: 15px; position: absolute; bottom: 0; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; left: -120px;">Send an email</span> </span> </span>
 
 						<span class="timeline" style="width: 5px; position: absolute; top: 53%; height: 30%; left: 45%; background-color: #ddd;"> <span class="blip" style="width: 15px; height: 15px; position: absolute; top: 70%; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; right: -40px;">???</span> </span> <span class="blip" style="width: 15px; height: 15px; position: absolute; top: 100%; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; left: -75px;">Profit!</span> </span> </span>
-						-->
 					</div>
 					<div class="col-lg-8 section-height bg-light right bottom" >
 						<h3> Get in touch. </h3>
@@ -217,7 +216,7 @@
 								<label for="contact-type">Purpose of communication *</label>
 								<select name="type" class="form-control" id="contact-type" onclick="$('.email').addClass('progres');">
 									<option>General</option>
-									<option>Work</option>
+									<option>Work Enquiry</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -366,7 +365,7 @@
 												<a href="#top">Scroll to top</a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="#">Scroll to hell</a>
+												<a data-toggle="collapse" href="#collapseHell" role="button" aria-expanded="false" aria-controls="collapseHell" onclick="toggleHell();">Scroll to hell</a>
 											</li>
 										</ol>
 									</nav>
@@ -376,47 +375,69 @@
 						<br>
 					</div>
 				</div>
-			</div>
-		</div>
+				<div class="collapse row hell" id="collapseHell">
+					<div class="section">
+						<div class="container-fluid">
+							<div class="row section-height justify-content-center">
+								<div class="col-lg-6 align-self-center">
+									<h3>
+										Congratulations!
+									</h3>
+									<br>
+									<p>
+										You've discovered another easter egg!
+										<br><br>
+										There is one per section on this web page.
+										<br><br><br>
+										I couldn't think of anything to hide down here...
+										<br><br> 
+										.. but if you have any ideas the contact me form now has a website option!
+										<br><br><br>
+										Send me your ideas and I'll credit you here! :)
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
-		<div id="emailSuccess" class="alert alert-success alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-			<strong>Congratulations</strong> your email was sent!
-			<button type="button" class="close" onclick="$('#emailSuccess').addClass('hide'); $('#emailSuccess').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
+					<div id="emailSuccess" class="alert alert-success alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
+						<strong>Congratulations</strong> your email was sent!
+						<button type="button" class="close" onclick="$('#emailSuccess').addClass('hide'); $('#emailSuccess').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
-		<div id="emailError" class="alert alert-warning alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-			<strong>Oops</strong> your email wasn't sent!
-			<br>
-			<br>
-			Make sure to check:
-			<br>
-			<ul id="emailErrorReason"></ul>
-			<button type="button" class="close" onclick="$('#emailError').addClass('hide'); $('#emailError').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
+					<div id="emailError" class="alert alert-warning alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
+						<strong>Oops</strong> your email wasn't sent!
+						<br>
+						<br>
+						Make sure to check:
+						<br>
+						<ul id="emailErrorReason"></ul>
+						<button type="button" class="close" onclick="$('#emailError').addClass('hide'); $('#emailError').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
-		<div id="howToUse" class="alert alert-light alert-dismissible fade show" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-			Use <i class="fas fa-arrow-up" style="font-size: 10px;"></i> and <i class="fas fa-arrow-down" style="font-size: 10px;"></i> to scroll between sections.
-			<br>
-			Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
+					<div id="howToUse" class="alert alert-light alert-dismissible fade show" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
+						Use <i class="fas fa-arrow-up" style="font-size: 10px;"></i> and <i class="fas fa-arrow-down" style="font-size: 10px;"></i> to scroll between sections.
+						<br>
+						Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding: .60rem 1.25rem !important;">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 
-		<!-- JS -->
-		<script src="src/js/jquery-3.3.1.min.js"></script>
-		<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="src/js/script.js"></script>
+					<!-- JS -->
+					<script src="src/js/jquery-3.3.1.min.js"></script>
+					<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
+					<script src="src/js/script.js"></script>
 
-		<script>
-			setTimeout(function() {
-				$('#howToUse').fadeOut();
-			}, 5000);
-			//delay until page has fully "loaded"
-		</script>
+					<script>
+						setTimeout(function() {
+							$('#howToUse').fadeOut();
+						}, 5000);
+						//delay until page has fully "loaded"
+					</script>
 	</body>
 </html>
