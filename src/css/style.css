@@ -6,6 +6,24 @@ body {
 	font-family: monospace !important;
 }
 
+.section#footer a{
+	color: #aaa;
+	text-decoration: none;
+}
+
+.section#footer li.active a{
+	color: #fff;
+} 
+
+.section#footer .breadcrumb{
+	padding-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+.section#footer .right{
+	float: right;
+}
+
 .section .bg-light.left {
 	box-shadow: 0px 0px #f8f9fa inset, 0px 0px #f8f9fa inset, -20px 0px 20px -20px #6f6f6f inset;
 }
@@ -20,6 +38,10 @@ body {
 }
 
 @media (max-width: 991px) {
+	.section#footer .right{
+		float: left;
+	}
+
 	.section .bg-light.right, .section .bg-light.left, .section .bg-dark.left, .section .bg-dark.right{
 		box-shadow: 0px 0px 0px 0px #6f6f6f inset;
 	}
