@@ -1,9 +1,13 @@
 /**
- * @author edgor
+ * @author edgorman
  */
 
 $(function () {
 	$('[data-toggle="popover"]').popover();
+});
+
+$('.carousel').carousel({
+	touch: true
 });
 
 document.onkeydown = checkKey;
