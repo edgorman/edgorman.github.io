@@ -1,3 +1,8 @@
+/**
+ * @author edgorman
+ */
+
+/* GENEREAL */
 html {
 	scroll-behavior: smooth;
 }
@@ -13,22 +18,14 @@ body {
 	z-index: 1100;
 }
 
-.section#footer a{
-	color: #aaa;
-	text-decoration: none;
-}
 
-.section#footer li.active a{
-	color: #fff;
-} 
-
-.section#footer .breadcrumb{
-	padding-top: 0 !important;
-	margin-bottom: 0 !important;
-}
-
-.section#footer .right{
-	float: right;
+/* SECTIONS */
+.section-height {
+	min-height: 100vh !important;
+	padding-top: 80px;
+	padding-right: 20px !important;
+	padding-bottom: 80px;
+	padding-left: 20px !important;
 }
 
 .section .bg-light.left {
@@ -45,129 +42,44 @@ body {
 }
 
 @media (max-width: 991px) {
-	.section#footer .right{
-		float: left;
-	}
-
-	.section .bg-light.right, .section .bg-light.left, .section .bg-dark.left, .section .bg-dark.right{
-		box-shadow: 0px 0px 0px 0px #6f6f6f inset;
-	}
-	
 	.section-height {
 		padding-top: 80px !important;
 		padding-bottom: 0px !important;
 	}
-}
-
-.section-height {
-	min-height: 100vh !important;
-	padding-top: 80px;
-	padding-right: 20px !important;
-	padding-bottom: 80px;
-	padding-left: 20px !important;
-}
-
-.popover{
-	font-size: 12px !important;
-}
-
-.moon{
-	opacity: 0.8;
-	z-index: 1000;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-}
-.moon:hover{
-	opacity: 1;
-}
-
-.rocket{
-	z-index: 1000;
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
-}
-.rocket .second{
-	opacity: 0;
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	transition: all 1s ease;
-}
-.moon:hover + .rocket, .moon.active + .rocket{
-	top: 55vh !important;
-	left: 17vw !important;
-}
-.moon:hover + .rocket .second, .moon.active + .rocket .second{
-	opacity: 1;
-	top: 60px !important;
-}
-.moon.active + .rocket .second{
-	transform: rotate(-10deg);
-	top: 200px !important;
-}
-
-.language{
-	opacity: 0.8;
-	cursor: pointer;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-}
-.language:hover{ 
-	opacity: 1;
-}
-.language .primary{
-	font-size: 150px;
-	opacity: 1;
-}
-.language .secondary{
-	font-size: 20px;
-	opacity: 0;
-	-webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-}
-.language:hover .secondary, .language.active .secondary{
-	opacity: 0.7;
+	
+	.section .bg-light.right, .section .bg-light.left, .section .bg-dark.left, .section .bg-dark.right{
+		box-shadow: 0px 0px 0px 0px #6f6f6f inset;
+	}
 }
 
 
-.timeline, .timeline *{
-	-webkit-transition: all 1s linear;
-	-moz-transition: all 1s linear;
-	-o-transition: all 1s linear;
-	transition: all 1s linear;
-}
-.timeline .blip{
-	z-index: 1000;
-}
-.timeline.email.progres{
-	background-image: linear-gradient(rgb(62, 134, 78), rgb(221, 221, 221));
-}
-.timeline.email.success{
-	background-image: none;
-	background-color: #3e864e !important;
-}
-.timeline.email.success .blip{
-	background-color: #73ce88 !important;
-}
-.timeline.email.success span{
-	color: #28a745 !important;
+/* FOOTER */
+#footer a{
+	color: #aaa;
+	text-decoration: none;
 }
 
-.email-form{
-	display: none;
-}
-.email-form.active{
-	display: block;
+#footer li.active a{
+	color: #fff;
+} 
+
+#footer .breadcrumb{
+	padding-top: 0 !important;
+	margin-bottom: 0 !important;
 }
 
+#footer .right{
+	float: right;
+}
+
+@media (max-width: 991px) {
+	.section#footer .right{
+		float: left;
+	}
+}
+
+
+/* CAROUSEL */
 .carousel-inner .carousel-item {
 	background-position: center;
 	background-repeat: no-repeat;
@@ -229,6 +141,103 @@ body {
 	padding: 5px 10px 5px 15px;
 }
 
+
+/* ABOUT - LEFT */
+.moon{
+	opacity: 0.8;
+	z-index: 1000;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+.moon:hover{
+	opacity: 1;
+}
+
+.rocket{
+	z-index: 1000;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.rocket .second{
+	opacity: 0;
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+.moon:hover + .rocket, .moon.active + .rocket{
+	top: 55vh !important;
+	left: 17vw !important;
+}
+.moon:hover + .rocket .second, .moon.active + .rocket .second{
+	opacity: 1;
+	top: 60px !important;
+}
+.moon.active + .rocket .second{
+	transform: rotate(-10deg);
+	top: 200px !important;
+}
+
+
+/* LINKS - RIGHT */
+.language{
+	opacity: 0.8;
+	cursor: pointer;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+.language:hover{ 
+	opacity: 1;
+}
+.language .primary{
+	font-size: 150px;
+	opacity: 1;
+}
+.language .secondary{
+	font-size: 20px;
+	opacity: 0;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+.language:hover .secondary, .language.active .secondary{
+	opacity: 0.7;
+}
+
+
+/* CONTACT - LEFT */
+.timeline, .timeline *{
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+}
+.timeline .blip{
+	z-index: 1000;
+}
+.timeline.email.progres{
+	background-image: linear-gradient(rgb(62, 134, 78), rgb(221, 221, 221));
+}
+.timeline.email.success{
+	background-image: none;
+	background-color: #3e864e !important;
+}
+.timeline.email.success .blip{
+	background-color: #73ce88 !important;
+}
+.timeline.email.success span{
+	color: #28a745 !important;
+}
+
+
+/* HELL - ??? */
 .hell{
 	min-height: 100vh;
 	color: white;

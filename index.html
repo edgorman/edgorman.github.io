@@ -1,3 +1,7 @@
+<!-- 
+   @author edgorman
+--> 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,14 +10,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- FILL THIS IN YOURSELF -->
-		<meta name="description" content="A personal website.">
-		<meta name="keywords" content="personal, website, computer, science">
+		<meta name="description" content="A personal website to tell you about myself and show you what I'm made of. Come take a look!">
+		<meta name="keywords" content="personal, website, computer, science, cyber, security, data, science">
 		<meta name="author" content="Edward Gorman">
 
 		<!-- STYLESHEETS -->
 		<link rel="icon" href="src/img/icon.png">
 		<link rel="stylesheet" type="text/css" href="src/css/style.css"/>
-
 		<link rel="stylesheet" type="text/css" href="src/bootstrap/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="src/css/fontawesome-all.min.css">
 
@@ -21,6 +24,7 @@
 		<title>Edward Gorman | Personal Website</title>
 	</head>
 	<body data-spy="scroll" data-target="#navbar" data-offset="0">
+		<!-- NAVBAR -->
 		<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark justify-content-between" id="navbar">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#top">Edward Gorman</a>
@@ -42,6 +46,7 @@
 				</div>
 			</div>
 		</nav>
+		<!-- CAROUSEL -->
 		<div class="section" id="top">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -73,6 +78,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- ABOUT -->
 		<div class="section" id="about">
 			<div class="container-fluid">
 				<div class="row">
@@ -98,17 +104,11 @@
 						<h3> Education. </h3>
 						<p>
 							<b>University of Southampton - 2017-2020</b>
-							<!--<button type="button" class="btn btn-dark" style="font-size: 10px; padding: 1px 10px;" data-toggle="popover" data-trigger="focus" data-content="Averaged a 2:1 over second year modules. For full list see LinkedIn page.">
-							Grades
-							</button>-->
 							<br>
 							Studying Computer Science.
 						</p>
 						<p>
 							<b>Bartholomew School Sixth Form - 2015-2017</b>
-							<!--<button type="button" class="btn btn-dark" style="font-size: 10px; padding: 1px 10px;" data-toggle="popover" data-trigger="focus" data-content="Physics (A), Maths Mechanics (A), Geography (B), EPQ (A)">
-							Grades
-							</button>-->
 							<br>
 							Studied Maths, Physics and Geography.
 						</p>
@@ -141,6 +141,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- LINKS -->
 		<div class="section" id="links">
 			<div class="container-fluid">
 				<div class="row">
@@ -194,6 +195,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- CONTACT -->
 		<div class="section" id="contact">
 			<div class="container-fluid">
 				<div class="row">
@@ -208,7 +210,7 @@
 					<div class="col-lg-8 section-height bg-light right bottom" >
 						<h3> Get in touch. </h3>
 						<br>
-						<form class="email-form active" accept-charset="UTF-8" action="https://usebasin.com/f/441f945eb655" enctype="multipart/form-data" method="POST" target="_blank">
+						<form accept-charset="UTF-8" action="https://usebasin.com/f/441f945eb655" enctype="multipart/form-data" method="POST" target="_blank">
 							<div class="form-group">
 								<label for="contact-email">Your email address *</label>
 								<input name="email" type="email" class="form-control" id="contact-email" placeholder="name@example.com" onkeydown="$('.email').addClass('progres');" required>
@@ -241,13 +243,16 @@
 				</div>
 			</div>
 		</div>
+		<!-- FOOTER -->
 		<div class="section" id="footer">
 			<div class="container-fluid">
 				<div class="row bg-dark justify-content-center" style="color: white;">
 					<div class="col-lg-11 col-sm-10">
 						<br>
 						<br>
-						<h5> Edward Gorman </h5>
+						<h5> 
+							Edward Gorman 
+						</h5>
 						<br>
 						<div class="row">
 							<div class="col-lg-3">
@@ -366,6 +371,7 @@
 						<br>
 					</div>
 				</div>
+				<!-- HELL? -->
 				<div class="row collapse hell" id="hell">
 					<div class="section">
 						<div class="container-fluid">
@@ -398,9 +404,10 @@
 			</div>
 		</div>
 		
-		<!-- Notifications -->
+		<!-- NOTIFICATIONS -->
 		<div class="notification">
-			<div class="toast info" id="howToUse" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+			<!-- HOW TO USE -->
+			<div class="toast hide" id="howToUse" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
       			<div class="toast-header">
 					<strong class="mr-auto">How to use:</strong>
 					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -413,8 +420,8 @@
 					Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
 				</div>
 			</div>
-			
-			<div class="toast" id="emailError" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+			<!-- EMAIL ERROR -->
+			<div class="toast hide" id="emailError" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
       			<div class="toast-header bg-danger" style="color: white;">
 					<strong class="mr-auto">Oops your email wasn't sent!</strong>
 					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -427,8 +434,8 @@
 					</ul>
 				</div>
 			</div>
-			
-			<div class="toast" id="emailSuccess" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+			<!-- EMAIL SUCCESS -->
+			<div class="toast hide" id="emailSuccess" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
       			<div class="toast-header bg-success" style="color: white;">
 					<strong class="mr-auto">Congratulations!</strong>
 					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -438,7 +445,7 @@
 				<div class="toast-body">
 					Your email has successfully been sent!
 					<br><br>
-					I'll make sure to get back to you as so0n as I can. :)
+					I'll make sure to get back to you as soon as I can. :)
 				</div>
 			</div>
 		</div>
@@ -448,7 +455,7 @@
 		<script src="src/js/jquery-3.3.1.min.js"></script>
 		<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="src/js/script.js"></script>
-
+		<!-- JS ON LOAD -->
 		<script>
 			$('.carousel').carousel({touch: true});
 			//start carousel
