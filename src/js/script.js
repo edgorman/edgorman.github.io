@@ -6,13 +6,13 @@ document.onkeydown = checkKey;
 function checkKey(e) {
     e = e || window.event;
 	
-    if (e.keyCode == '37') {
+    if (e.keyCode == '37') {				// left arrow key
         $('.carousel').carousel('prev');
     }
-    else if (e.keyCode == '39') {
+    else if (e.keyCode == '39') {			// right arrow key	
         $('.carousel').carousel('next');
     }
-    else if (e.keyCode == '38') {
+    else if (e.keyCode == '38') {			// down arrow key
     	e.preventDefault();
     	sections = $('.section');
     	
@@ -24,7 +24,7 @@ function checkKey(e) {
     		}
     	}
     }
-    else if (e.keyCode == '40') {
+    else if (e.keyCode == '40') {			//up arrow key
     	e.preventDefault();
     	sections = $('.section');
     	
