@@ -230,23 +230,13 @@
 							<p>
 								All fields marked with * should be completed before sending
 							</p>
-							<button type="submit" class="btn btn-dark" onclick="sendEmail();">
+							<button type="submit" class="btn btn-dark" id="contact-submit" onclick="sendEmail();">
 								Send Email
 							</button>
 							<br>
 							<br>
 							<br>
 						</form>
-						<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-						<div class="email-form">
-							<i class="fas fa-circle-notch fa-spin"></i>
-						</div>
-						<div class="email-form">
-							<b>Congrats</b> your email has successfully been sent!
-							<br>
-							<br>
-							I'll make sure to get back to you as soon as I can.
-						</div>
 					</div>
 				</div>
 			</div>
@@ -361,12 +351,12 @@
 							<div class="col-lg-6">
 								<div class="right">
 									<nav aria-label="breadcrumb">
-										<ol class="breadcrumb bg-dark" style="font-size: 12px; padding-left: 0 !important;">
+										<ol class="breadcrumb bg-dark" style="font-size: 12px;">
 											<li class="breadcrumb-item">
 												<a href="#top">Scroll to top</a>
 											</li>
 											<li class="breadcrumb-item">
-												<a data-toggle="collapse" href="#collapseHell" role="button" aria-expanded="false" aria-controls="collapseHell" onclick="toggleHell();">Scroll to hell</a>
+												<a data-toggle="collapse" href="#hell" role="button" aria-expanded="false" aria-controls="collapseHell" onclick="toggleHell();">Scroll to hell</a>
 											</li>
 										</ol>
 									</nav>
@@ -376,7 +366,7 @@
 						<br>
 					</div>
 				</div>
-				<div class="collapse row hell" id="collapseHell">
+				<div class="row collapse hell" id="hell">
 					<div class="section">
 						<div class="container-fluid">
 							<div class="row section-height justify-content-center">
@@ -404,48 +394,67 @@
 							</div>
 						</div>
 					</div>
-
-					<div id="emailSuccess" class="alert alert-success alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-						<strong>Congratulations</strong> your email was sent!
-						<button type="button" class="close" onclick="$('#emailSuccess').addClass('hide'); $('#emailSuccess').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-
-					<div id="emailError" class="alert alert-warning alert-dismissible fade hide" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-						<strong>Oops</strong> your email wasn't sent!
-						<br>
-						<br>
-						Make sure to check:
-						<br>
-						<ul id="emailErrorReason"></ul>
-						<button type="button" class="close" onclick="$('#emailError').addClass('hide'); $('#emailError').removeClass('show');" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-
-					<div id="howToUse" class="alert alert-light alert-dismissible fade show" style="position: fixed; top: 65px; right: 15px; max-width: 350px; padding-right: 40px; "role="alert">
-						Use <i class="fas fa-arrow-up" style="font-size: 10px;"></i> and <i class="fas fa-arrow-down" style="font-size: 10px;"></i> to scroll between sections.
-						<br>
-						Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding: .60rem 1.25rem !important;">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-
-					<!-- JS -->
-					<script src="src/js/jquery-3.3.1.min.js"></script>
-					<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
-					<script src="src/js/script.js"></script>
-
-					<script>
-						setTimeout(function() {
-							$('#howToUse').fadeOut();
-						}, 5000);
-						//delay until page has fully "loaded"
-					</script>
 				</div>
 			</div>
 		</div>
+		
+		<!-- Notifications -->
+		<div class="notification">
+			<div class="toast info" id="howToUse" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+      			<div class="toast-header">
+					<strong class="mr-auto">How to use:</strong>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="toast-body">
+					Use <i class="fas fa-arrow-up" style="font-size: 10px;"></i> and <i class="fas fa-arrow-down" style="font-size: 10px;"></i> to scroll between sections.
+					<br>
+					Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
+				</div>
+			</div>
+			
+			<div class="toast" id="emailError" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+      			<div class="toast-header bg-danger" style="color: white;">
+					<strong class="mr-auto">Oops your email wasn't sent!</strong>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+						<span aria-hidden="true" style="color: white;">&times;</span>
+					</button>
+				</div>
+				<div class="toast-body">
+					<ul id="emailErrorReason" style="margin-bottom: 0 !important;">
+							
+					</ul>
+				</div>
+			</div>
+			
+			<div class="toast" id="emailSuccess" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+      			<div class="toast-header bg-success" style="color: white;">
+					<strong class="mr-auto">Congratulations!</strong>
+					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+						<span aria-hidden="true" style="color: white;">&times;</span>
+					</button>
+				</div>
+				<div class="toast-body">
+					Your email has successfully been sent!
+					<br><br>
+					I'll make sure to get back to you as so0n as I can. :)
+				</div>
+			</div>
+		</div>
+		
+		<!-- JS -->
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="src/js/jquery-3.3.1.min.js"></script>
+		<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="src/js/script.js"></script>
+
+		<script>
+			$('.carousel').carousel({touch: true});
+			//start carousel
+			
+			$('#howToUse').toast('show');
+			//show how to use notification
+		</script>
 	</body>
 </html>
