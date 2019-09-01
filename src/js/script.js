@@ -2,14 +2,6 @@
  * @author edgorman
  */
 
-$(function () {
-	$('[data-toggle="popover"]').popover();
-});
-
-$('.carousel').carousel({
-	touch: true
-});
-
 document.onkeydown = checkKey;
 function checkKey(e) {
     e = e || window.event;
@@ -75,18 +67,13 @@ function sendEmail(form){
 		$('.email').removeClass("progres");
 		$('.email').addClass("success");
 		
-		$('.email-form').removeClass("active");
-		$('.email-form:eq(1)').addClass("active");
+		$('#contact-email').prop('disabled', true);
+		$('#contact-type').prop('disabled', true);
+		$('#contact-msg').prop('disabled', true);
+		$('#contact-submit').prop('disabled', true);
 		
-		$('.email-form').removeClass("active");
-		$('.email-form:eq(2)').addClass("active");
-		
-		$('#emailSuccess').removeClass("hide");
-		$('#emailSuccess').addClass("show");
-		setTimeout(function (){
-			$('#emailSuccess').addClass("hide");
-			$('#emailSuccess').removeClass("show");
-		}, 5000); 	//delay until message has been read
+		$('#emailSuccess').toast('show');
+		//show success notification
 	}
 	else{
 		errorMsg = "";
@@ -94,12 +81,8 @@ function sendEmail(form){
 			errorMsg += "<li>" + errorReasons[i] + "</li>";
 		$('#emailErrorReason').html(errorMsg);
 		
-		$('#emailError').removeClass("hide");
-		$('#emailError').addClass("show");
-		setTimeout(function (){
-			$('#emailError').addClass("hide");
-			$('#emailError').removeClass("show");
-		}, 5000); 	//delay until message has been read
+		$('#emailError').toast('show');
+		//show error notification
 	}
 }
 
@@ -109,6 +92,9 @@ function toggleHell(){
 	}
 	
 	if(!$('.hell').hasClass('show')){
-		setTimeout(function(){window.scrollTo(0, document.getElementById('collapseHell').offsetTop);}, 50);
+		setTimeout(function(){window.scrollTo(0, document.getElementById('hell').offsetTop);}, 50);
+	}
+	else{
+		window.scrollTo(0, document.getElementById('hell').offsetTop - window.innerHeight);
 	}
 }

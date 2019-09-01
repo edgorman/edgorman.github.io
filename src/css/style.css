@@ -6,6 +6,13 @@ body {
 	font-family: monospace !important;
 }
 
+.notification{
+	position: fixed;
+	top: 70px;
+	right: 15px;
+	z-index: 1100;
+}
+
 .section#footer a{
 	color: #aaa;
 	text-decoration: none;
