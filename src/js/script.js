@@ -12,7 +12,7 @@ function checkKey(e) {
     else if (e.keyCode == '39') {			// right arrow key	
         $('.carousel').carousel('next');
     }
-    else if (e.keyCode == '38') {			// down arrow key
+    else if (e.keyCode == '38') {			// up arrow key
     	e.preventDefault();
     	sections = $('.section');
     	
@@ -24,17 +24,22 @@ function checkKey(e) {
     		}
     	}
     }
-    else if (e.keyCode == '40') {			//up arrow key
+    else if (e.keyCode == '40') {			// down arrow key
     	e.preventDefault();
     	sections = $('.section');
     	
-    	for (i = 0; i < sections.length; i++){
+    	for(i = 0; i < sections.length; i++){
     		var top = sections[i].getBoundingClientRect().top;
     		if(top > 1){
-    			window.scrollBy(0, top);
+    			var bottom = sections[i - 1].getBoundingClientRect().bottom;
+    			
+    			if(top > window.innerHeight) window.scrollBy(0, bottom - window.innerHeight);
+    			else window.scrollBy(0, top);
+    			
     			break;
     		}
     	}
+    	
     }
 }
 
