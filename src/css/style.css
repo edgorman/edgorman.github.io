@@ -183,6 +183,28 @@ body {
 }
 
 
+/* LINKS - LEFT */
+.cv{
+	border: 1px solid #7b7b7b36;
+	border-radius: 5px;
+	background-color: white;
+	color: black;
+	padding: 15px;
+	font-size: 50px; 
+	margin: 0 30px 0 20px;
+}
+
+.social{
+	border: 1px solid #7b7b7b36;
+	border-radius: 5px;
+	background-color: white;
+	text-align: center;
+	padding: 20px 15px 15px 15px;
+}
+.social i{
+	font-size: 30px;
+}
+
 /* LINKS - RIGHT */
 .language{
 	opacity: 0.8;
