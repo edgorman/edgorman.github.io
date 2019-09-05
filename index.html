@@ -67,7 +67,7 @@
 				</div>
 				<div class="carousel-cover"></div>
 				<div class="carousel-info">
-					<div class="carousel-profile" onclick="$(this).toggleClass('active');">
+					<div class="carousel-profile">
 						<div class="carousel-profile-inner">
 							<div class="carousel-profile-front">
 								<img src="src/img/profile-picture.jpg" />
@@ -268,29 +268,29 @@
 					<div class="col-lg-8 section-height bg-light right bottom" >
 						<h3> Get in touch. </h3>
 						<br>
-						<form accept-charset="UTF-8" action="https://usebasin.com/f/441f945eb655" enctype="multipart/form-data" method="POST" target="_blank">
-							<div class="form-group">
+						<form accept-charset="UTF-8" action="https://usebasin.com/f/441f945eb655" enctype="multipart/form-data" method="POST" target="_blank" onsubmit="return sendEmail();" onkeydown="$('.email').addClass('progres');">
+							<div class="form-group" id="contact-email" onmousedown="$('#contact-email label').css('color', 'black');">
 								<label for="contact-email">Your email address *</label>
-								<input name="email" type="email" class="form-control" id="contact-email" placeholder="name@example.com" onkeydown="$('.email').addClass('progres');" required>
+								<input name="email" type="text" class="form-control" placeholder="name@example.com">
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="contact-type" onmousedown="$('#contact-type label').css('color', 'black');">
 								<label for="contact-type">Purpose of communication *</label>
-								<select name="type" class="form-control" id="contact-type" onclick="$('.email').addClass('progres');">
+								<select name="type" class="form-control">
 									<option>General</option>
 									<option>Work Enquiry</option>
 								</select>
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="contact-msg" onmousedown="$('#contact-msg label').css('color', 'black');">
 								<label for="contact-msg">Enter your message here *</label>
-								<textarea name="message" class="form-control" id="contact-msg" rows="5" onkeydown="$('.email').addClass('progres');" required></textarea>
+								<textarea name="message" class="form-control" rows="5"></textarea>
 							</div>
 							<br>
-							<div class="g-recaptcha" data-sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"></div>
+							<div class="g-recaptcha" data-sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"> </div>
 							<br>
 							<p>
 								All fields marked with * should be completed before sending
 							</p>
-							<button type="submit" class="btn btn-dark" id="contact-submit" onclick="sendEmail();">
+							<button type="submit" class="btn btn-dark" id="contact-submit">
 								Send Email
 							</button>
 							<br>
@@ -487,7 +487,7 @@
 					</button>
 				</div>
 				<div class="toast-body">
-					<ul id="emailErrorReason" style="margin-bottom: 0 !important;">
+					<ul id="emailErrorReason" style="margin-bottom: 0 !important; padding-left: 20px !important">
 							
 					</ul>
 				</div>

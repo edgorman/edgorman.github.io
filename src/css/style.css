@@ -121,7 +121,7 @@ body {
 	transition: transform 0.5s;
 	transform-style: preserve-3d;
 }
-.carousel-profile:hover .carousel-profile-inner, .carousel-profile.active .carousel-profile-inner{
+.carousel-profile:hover .carousel-profile-inner, .carousel-profile:active .carousel-profile-inner{
 	transform: rotateY(180deg);
 }
 
