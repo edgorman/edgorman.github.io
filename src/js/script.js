@@ -48,37 +48,44 @@ function sendEmail(form){
 	var validEmail = true;
 	var errorReasons = [];
 	
-	var emailInput = document.getElementById('contact-email').value;
-	var emailType = document.getElementById('contact-type').value;
-	var emailMsg = document.getElementById('contact-msg').value;
+	var emailInput = document.getElementById('contact-email').childNodes;
+	var emailType = document.getElementById('contact-type').childNodes;
+	var emailMsg = document.getElementById('contact-msg').childNodes;
 	
 	//check email address
-	if(emailInput.length == 0){
+	if(emailInput[3].value.length == 0){
 		validEmail = false;
+		emailInput[1].style.color = "red";
 		errorReasons.push("No email address entered.");
 	}
-	else if(!emailInput.includes("@")){
+	else if(!emailInput[3].value.includes("@")){
 		validEmail = false;
+		emailInput[1].style.color = "red";
 		errorReasons.push("Not a valid email address.");
 	}
 	
 	//check email message
-	if(emailMsg.length == 0){
+	if(emailMsg[3].value.length == 0){
 		validEmail = false;
-		errorReasons.push("No message for email entered.");
+		emailMsg[1].style.color = "red";
+		errorReasons.push("No message entered.");
 	}
 	
 	if(validEmail){
 		$('.email').removeClass("progres");
 		$('.email').addClass("success");
 		
-		$('#contact-email').prop('disabled', true);
-		$('#contact-type').prop('disabled', true);
-		$('#contact-msg').prop('disabled', true);
+		$('#contact-email input').prop('disabled', true);
+		$('#contact-type select').prop('disabled', true);
+		$('#contact-msg textarea').prop('disabled', true);
+		
+		$('#contact-submit').removeClass('btn-dark');
+		$('#contact-submit').addClass('btn-success');
+		$('#contact-submit').html("Email Sent!");
 		$('#contact-submit').prop('disabled', true);
 		
 		$('#emailSuccess').toast('show');
-		//show success notification
+		return true;
 	}
 	else{
 		errorMsg = "";
@@ -87,7 +94,7 @@ function sendEmail(form){
 		$('#emailErrorReason').html(errorMsg);
 		
 		$('#emailError').toast('show');
-		//show error notification
+		return false;
 	}
 }
 
