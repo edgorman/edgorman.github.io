@@ -99,8 +99,8 @@ function sendEmail(form){
 }
 
 function toggleHell(){
-	if($('#contact-type')[0].length == 2){
-		$('#contact-type').append($('<option>', { value: 'Website Suggsetion', text: 'Website Suggestion' }));
+	if($('#contact-type select')[0].length == 2){
+		$('#contact-type select').append($('<option>', { text: 'Website Suggestion' }));
 	}
 	
 	if(!$('.hell').hasClass('show')){
