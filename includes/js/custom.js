@@ -3,6 +3,11 @@ $('.modal-image').each(function(i, obj) {
 });
 
 function load_project(path){
+  if (path.includes("index.html")){
+    path = path.substring(0, path.length-10);
+  }
+  path = path.substring(1, path.length-1);
+
   var json_data;
 
   // Load config file
