@@ -101,13 +101,13 @@
 					this.echo('Here is a list of the [[b;;]available commands]\n');
 
 					// 		 		 command		description
-					this.echo('[[b;;]cd] \t\t\t Change the current directory to the specified directory');
+					this.echo('[[b;;]cd] \t\t\t Change the directory');
 					this.echo('[[b;;]clear] \t\t Clears the screen of all text');
-					this.echo('[[b;;]echo] \t\t Displays a string (in quotes) or file (with .txt extension)');
-					this.echo('[[b;;]exit] \t\t Returns the user to the normal website')
-					this.echo('[[b;;]ls] \t\t\t Displays the files in the current directory');
+					this.echo('[[b;;]echo] \t\t Displays text or file');
+					this.echo('[[b;;]exit] \t\t Reloads the terminal')
+					this.echo('[[b;;]ls] \t\t\t Displays files in directory');
 					this.echo('\t\t\t [[b;;]-l] \t Use a long listing format')
-					this.echo('[[b;;]run] \t\t Executes a file (with .exe or .html extension)');
+					this.echo('[[b;;]run] \t\t Executes a file (.exe or .html)');
 
 					this.echo('\nYou can also use [[b;;]tab completion] to autocomplete file names\n')
 				},
@@ -370,7 +370,7 @@
 				mobileDelete : true,
 				checkArity : false,
 				prompt : start_directory + ">",
-				greetings : 'Copyright (c) 2020 Edward Gorman <https://github.com/edgorman> \nTo start enter the command [[b;;]"help"]\n'
+				greetings : 'Copyright (c) 2020 Edward Gorman\n<https://github.com/edgorman>\n\nTo start enter the command [[b;;]"help"]\n'
 			});
 		</script>
 	</body>
