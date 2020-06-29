@@ -5,8 +5,8 @@ shopt -s dotglob
 recursivemap() {
   # for each file in current directory
   for file in *; do
-    # ignore empty directory
-    if [[ $file = "*" ]] || [[ $file = "_"* ]]; then
+    # ignore empty directory and includes and .git folder
+    if [[ $file = "*" ]] || [[ $file = "_"* ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]]; then
       continue
     fi
 
@@ -23,11 +23,6 @@ recursivemap() {
       echo "${result::-1}},"
     # else is file
     else
-      # ignore index.html
-      # if [[ $file = *".html"* ]]; then
-        # continue
-      # fi
-
       # if is executable
       if [[ $file = *".exe"* ]]; then
         echo "\"$file\":{\"_name\": \"${file::-4}\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"exe\", \"_parent\": \"$1\"},"
