@@ -6,7 +6,7 @@ recursivemap() {
   # for each file in current directory
   for file in *; do
     # ignore empty directory and includes and .git folder
-    if [[ $file = "*" ]] || [[ $file = "_"* ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]]; then
+    if [[ $file = "*" ]] || [[ $file = "_"* ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]] || [[ $file = "config.json" ]]; then
       continue
     fi
 
@@ -47,4 +47,4 @@ output="$output $(cd "$PWD/"; recursivemap "edgorman")"
 output="${output::-1}}}}"
 
 # output to config.json
-echo $output > _config.json
+echo $output > config.json
