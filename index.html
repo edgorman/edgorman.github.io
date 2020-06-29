@@ -1,540 +1,377 @@
-<!-- 
-   @author edgorman
---> 
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- META -->
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- FILL THIS IN YOURSELF -->
-		<meta name="description" content="A personal website to tell you about myself and show you what I'm made of. Come take a look!">
-		<meta name="keywords" content="personal, website, computer, science, cyber, security, data, science">
-		<meta name="author" content="Edward Gorman">
-
-		<!-- STYLESHEETS -->
-		<link rel="icon" href="src/img/icon.png">
-		<link rel="stylesheet" type="text/css" href="src/css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="src/bootstrap/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="src/css/fontawesome-all.min.css">
-
-		<!-- TITLE -->
-		<title>Edward Gorman | Personal Website</title>
-	</head>
-	<body data-spy="scroll" data-target="#navbar" data-offset="0">
-		<!-- NAVBAR -->
-		<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark justify-content-between" id="navbar">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#top">Edward Gorman</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"> </span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="#about">About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#links">Links</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#contact">Contact</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- CAROUSEL -->
-		<div class="section" id="top">
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="carousel-item active" style="background-image: url('src/img/final-1.jpg')"></div>
-					<div class="carousel-item" style="background-image: url('src/img/final-2.jpg')"></div>
-					<div class="carousel-item" style="background-image: url('src/img/final-3.jpg')"></div>
-					<div class="carousel-item" style="background-image: url('src/img/final-4.jpg')"></div>
-					<div class="carousel-item" style="background-image: url('src/img/final-5.jpg')"></div>
-					<div class="carousel-item" style="background-image: url('src/img/final-6.jpg')"></div>
-				</div>
-				<div class="carousel-cover"></div>
-				<div class="carousel-info">
-					<div class="carousel-profile">
-						<div class="carousel-profile-inner">
-							<div class="carousel-profile-front">
-								<img src="src/img/profile-picture.jpg" />
-							</div>
-							<div class="carousel-profile-back">
-								<div class="row h-100 justify-content-center">
-									<div class="col-10 my-auto">
-										There are many easter eggs to be found! 
-										<br><br>
-										Go find them :)
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-mesage">
-						Computer Scientist (Final Yr)
-						<br>
-						<span style="font-size: 12px; color: #CCC"> University of Southampton </span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- ABOUT -->
-		<div class="section" id="about">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-4 section-height bg-dark left d-none d-lg-block">
-						<!-- moon -->
-						<span class="moon" style="height: 150px; width: 150px; background-color: #eee; border-radius: 50%; position: absolute; top: 10vh; left: 5vh;"> <span style="height: 30px; width: 30px; background-color: #ddd; border-radius: 50%; position: absolute; top: 40px; left: 25px; cursor: pointer;" onclick="$('.moon').toggleClass('active'); return false;"> </span> </span>
-						<!-- falcon 9 stage 1 -->
-						<span class="rocket" style="height: 40px; width: 5px; transform: rotate(45deg); background-color: #fff; position: absolute; top: 50vh; left: 20vw; "> <span class="second" style="width: 5px; height: 10px; background-color: #fff; border-top: 1px solid black; position: absolute; top: 30px; left: 0;"> <span style="height: 5px; width: 5px; background-color: #222; position: absolute; top: 0; left: 0;"> </span> <span style="border-bottom: 5px solid #fb6f6f; border-right: 2.5px solid transparent; border-left: 2.5px solid transparent; position: absolute; top: -5px; left: 0;"> </span> </span> <span style="height: 5px; width: 5px; background-color: #222; position: absolute; top: 0; left: 0;"> </span> <span style="border-bottom: 5px solid #fb6f6f; border-right: 2.5px solid transparent; border-left: 2.5px solid transparent; position: absolute; top: -5px; left: 0;"> </span> </span>
-
-						<!-- bottom right -->
-						<span style="border-bottom: 90vh solid #587ea669;border-right: 0px solid transparent;border-left: 25vw solid transparent;position: absolute;bottom: 0;right: 0;"> </span>
-						<span style="border-bottom: 70vh solid #6ab3ff85;border-right: 0px solid transparent;border-left: 19vw solid transparent;position: absolute;bottom: 0;right: 0;"> </span>
-						<span style="border-bottom: 50vh solid #1b863c;border-right: 0px solid transparent;border-left: 12vw solid transparent;position: absolute;bottom: 0;right: 0;"> </span>
-					</div>
-					<div class="col-lg-8 section-height bg-light right top">
-						<h3> About me. </h3>
-						<p>
-							I'm a student at the University of Southampton studying Computer Science who's interested in developing software for cyber security and data science related fields.
-							I'm familiar with both back and front end development using agile methodologies, and have considerable experience with web development.
-							I enjoy working in teams and am comfortable in leadership positions.
-						</p>
-						<br id="timeline">
-						<h3> My timeline. </h3>
-						<div class="row">
-							<div class="col-12">
-								<ul class="aboutline">
-									<li>
-										<b>Started Programming.</b>
-										<span class="float-right font-weight-bold">12/12</span>
-										<p>
-											I first started programming after my oldest sibling returned from university after his first term studying the language C, wherein he taught me using his university lecture notes.
-											<br>
-											<span class="badge badge-dark">General</span>
-										</p>
-									</li>
-									<!--<li>
-										<b>Siemens - Work Placement</b>
-										<span class="float-right">04/2016</span>
-										<p>
-											Designed an internal corporate help webpage using XML and front-end web languages. Assisted in resolving internal help desk tickets. 
-											<br> 
-											<span class="badge badge-primary">Work</span>
-										</p>
-									</li>-->
-									<li>
-										<b>Notetones - Systems Manager</b>
-										<span class="float-right font-weight-bold">07/14 - 06/16</span>
-										<p>
-											My first part-time job involved producing all aspects of the company’s website using front/back-end languages including HTML, CSS, JavaScript, PHP and SQL (company now dissolved).
-											<br> 
-											<span class="badge badge-primary">Work</span>
-										</p>
-									</li>
-									<li>
-										<b>Wolfram Research - Summer Intern</b>
-										<span class="float-right font-weight-bold">08/16</span>
-										<p>
-											Responsible for testing and enhancing the software's maths and physics learning modules. Worked closely with the development team using Mathematica and the GIT version control system.
-											<br>
-											<span class="badge badge-primary">Work</span> 
-										</p>
-									</li>
-									<li>
-										<b>Uni of Southampton - Student</b>
-										<span class="float-right font-weight-bold">09/19 - Now</span>
-										<p>
-											Studying BSc Computer Science and anticipated to graduate in 2020 with a 2:1. For my final year I'm taking optional modules including Machine Learning Technologies, Computer Vision and Cybersecurity.
-											<br>
-											<span class="badge badge-danger">University</span>
-										</p>
-									</li>
-									<li>
-										<b>Roke - Summer Intern</b>
-										<span class="float-right font-weight-bold">07/19 - 08/19</span>
-										<p>
-											Designed a piece of analytical software capable of understanding and summarising text conversations using statistical analysis, neural networks and natural language processing techniques.
-											<br>
-											<span class="badge badge-primary">Work</span> 
-										</p>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- LINKS -->
-		<div class="section" id="links">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-7 section-height bg-light left">
-						<h3> Where to find me. </h3>
-						<br>
-						<div class="row">
-							<div class="col-md-8">
-								<b>Curriculum vitae</b>
-								<br>
-								My CV is stored locally on this site, and has been updated as of September 2019. It contains information on my education, professional experiences and other personal information about me.
-								<br><br>
-							</div>
-							<div class="col-md-4">
-								<a href="src/files/Edward Gorman CV 030919.pdf" target="_blank" title="Edward Gorman CV (2019)" class="text-decoration-none">
-									<div class="social" style="color: #afafaf;">
-										<i class="fa fa-file"> </i>
-										<br><br>
-										<b style="color: #333;">CV</b>
-									</div>
-								</a>
-								<br>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xl-6 col-lg-12 col-md-6">
-								<p>
-									<b>LinkedIn</b>
-									<br>
-									My LinkedIn page linked below is my professional online presence, containing my most up to date information while this website may fall behind.
-								</p>
-								<br>
-								<div style="margin-left: 2%;">
-								<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-									<div class="LI-profile-badge d-inline-block"  data-version="v1" data-size="large" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="edward-john-gorman" style="background-color: white; border-radius: 5px; width: 95%;">
-										<a class="LI-simple-link" href='https://uk.linkedin.com/in/edward-john-gorman?trk=profile-badge' style="width: 100%;">Edward Gorman</a>
-									</div>
-								</div>
-								<br><br>
-							</div>
-							<div class="col-xl-6 col-lg-12 col-md-6">
-								<p>
-									<b>Github</b>
-									<br>
-									My Github page is fast becoming my main store of projects I'm working on or want to show off, so give me a follow to make sure you don't miss anything!
-								</p>
-								<br>
-								<div style="margin-left: 2%;">
-									<div class="github-card" data-github="edgorman" data-width="95%" data-height="200" data-theme="default" data-target="blank"></div>
-									<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-								</div>
-							</div>
-						</div>
-						<b id="non-work">Non-work links</b>
-						<br><br>
-						<div class="row">
-							<div class="col-md-4">
-								<a href="https://www.twitter.com/edgygorman" target="_blank" class="text-decoration-none">
-									<div class="social" style="color: #1ea1f4;">
-										<i class="fab fa-twitter"></i>
-										<br><br>
-										<b>Twitter</b>
-									</div>
-								</a>
-								<br>
-							</div>
-							<div class="col-md-4">
-								<a href="https://open.spotify.com/user/ed-gorman?si=t6M_ZyI8R4Cu2D-UuxB3Rg" target="_blank" class="text-decoration-none">
-									<div class="social" style="color: #1DB954;">
-										<i class="fab fa-spotify"></i>
-										<br><br>
-										<b>Spotify</b>
-									</div>
-								</a>
-								<br>
-							</div>
-							<div class="col-md-4">
-								 <a href="https://www.polarsteps.com/EdwardGorman" target="_blank" class="text-decoration-none">
-									<div class="social" style="color: #de2b52;">
-										<i class="far fa-compass fa-flip-vertical"></i>
-										<br><br>
-										<b>Polarsteps</b>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-5 section-height bg-dark right d-none d-lg-block" >
-						<!-- Python -->
-						<span class="language" style="color: #ccc; position: absolute; top: 20vh; left: 7vw; transform: rotate(-15deg);" onclick="$(this).toggleClass('active'); return false;"> <i class="fab fa-python primary"> </i> <i class="fas fa-project-diagram secondary" style="position: absolute; top: -5px; left: -15px; color: red;"> </i> <i class="fas fa-subscript secondary" style="position: absolute; top: 70px; right: -45px; color: green;"> </i> <i class="fas fa-folder secondary" style="position: absolute; bottom: 15px; left: -15px; color: steelblue; transform: rotate(25deg);"> </i> </span>
-						<!-- JS -->
-						<span class="language" style="color: #ccc; position: absolute; top: 35vh; right: 5vw; transform: rotate(25deg);" onclick="$(this).toggleClass('active'); return false;"> <i class="fab fa-js-square primary"></i> <i class="fab fa-chrome secondary" style="position: absolute; top: 25px; left: -55px; color: orange;"> </i> <i class="fas fa-server secondary" style="position: absolute; bottom: -35px; left: -5px; color: blueviolet; transform: rotate(-45deg);"> </i> </span>
-						<!-- Java -->
-						<span class="language" style="color: #ccc; position: absolute; top: 60vh; left: 10vw; transform: rotate(5deg);" onclick="$(this).toggleClass('active'); return false;"> <i class="fab fa-java primary"></i> <i class="fas fa-lock secondary" style="position: absolute; top: 25px; left: -25px; color: aquamarine; transform: rotate(-20deg);"> </i> <i class="fas fa-id-card secondary" style="position: absolute; top: 45px; right: -35px; color: pink;"> </i> <i class="fas fa-microchip secondary" style="position: absolute; bottom: -35px; left: -15px; color: yellow; transform: rotate(-20deg);"></i> </span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- CONTACT -->
-		<div class="section" id="contact">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-4 section-height bg-dark left d-none d-lg-block">
-						<!-- timeline -->
-						<span class="timeline" style="width: 5px; position: absolute; top: 15%; height: 10%; left: 45%; background-color: #3e864e;"> <span class="blip" style="width: 15px; height: 15px; position: absolute; top: 0; left: -5px; background-color: #73ce88; border-radius: 50%;"> <span style="color: #28a745; font-weight: bold; font-size: 14px; position: absolute; top: -3px; left: -120px;">Find website!</span> </span> <span class="blip" style="width: 15px; height: 15px; position: absolute; bottom: 0; left: -5px; background-color: #73ce88; border-radius: 50%;"> <span style="color: #28a745; font-weight: bold; font-size: 14px; position: absolute; top: -3px; right: -150px;">Like what you see</span> </span> </span>
-
-						<span class="timeline email" style="width: 5px; position: absolute; top: 24%; height: 30%; left: 45%; background-color: #ddd;"> <span class="blip" style="width: 15px; height: 15px; position: absolute; bottom: 0; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; left: -120px;">Send an email</span> </span> </span>
-
-						<span class="timeline" style="width: 5px; position: absolute; top: 53%; height: 30%; left: 45%; background-color: #ddd;"> <span class="blip" style="width: 15px; height: 15px; position: absolute; top: 70%; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; right: -40px;">???</span> </span> <span class="blip" style="width: 15px; height: 15px; position: absolute; top: 100%; left: -5px; background-color: #fff; border-radius: 50%;"> <span style="color: #ddd; font-weight: bold; font-size: 14px; position: absolute; top: -3px; left: -75px;">Profit!</span> </span> </span>
-					</div>
-					<div class="col-lg-8 section-height bg-light right bottom" >
-						<h3> Get in touch. </h3>
-						<br>
-						<form accept-charset="UTF-8" action="https://usebasin.com/f/441f945eb655" enctype="multipart/form-data" method="POST" target="_blank" onsubmit="return sendEmail();" onkeydown="$('.email').addClass('progres');">
-							<div class="form-group" id="contact-email" onmousedown="$('#contact-email label').css('color', 'black');">
-								<label for="contact-email">Your email address *</label>
-								<input name="email" type="text" class="form-control" placeholder="name@example.com">
-							</div>
-							<div class="form-group" id="contact-type" onmousedown="$('#contact-type label').css('color', 'black');">
-								<label for="contact-type">Purpose of communication *</label>
-								<select name="type" class="form-control">
-									<option>General</option>
-									<option>Work Enquiry</option>
-								</select>
-							</div>
-							<div class="form-group" id="contact-msg" onmousedown="$('#contact-msg label').css('color', 'black');">
-								<label for="contact-msg">Enter your message here *</label>
-								<textarea name="message" class="form-control" rows="5"></textarea>
-							</div>
-							<br>
-							<div class="g-recaptcha" data-sitekey="6Lew3SMUAAAAAJ82QoS7gqOTkRI_dhYrFy1f7Sqy"> </div>
-							<br>
-							<p>
-								All fields marked with * should be completed before sending
-							</p>
-							<button type="submit" class="btn btn-dark" id="contact-submit">
-								Send Email
-							</button>
-							<br>
-							<br>
-							<br>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- FOOTER -->
-		<div class="section" id="footer">
-			<div class="container-fluid">
-				<div class="row bg-dark justify-content-center" style="color: white;">
-					<div class="col-lg-11 col-sm-10">
-						<br>
-						<br>
-						<h5> 
-							Edward Gorman 
-						</h5>
-						<br>
-						<div class="row">
-							<div class="col-lg-3">
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item active">
-											<a href="#about">About</a>
-										</li>
-									</ol>
-								</nav>
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item">
-											<a href="#about">About</a>
-										</li>
-										<li class="breadcrumb-item active">
-											<a href="#about">About Me</a>
-										</li>
-									</ol>
-								</nav>
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item">
-											<a href="#timeline">About</a>
-										</li>
-										<li class="breadcrumb-item active">
-											<a href="#timeline">Timeline</a>
-										</li>
-									</ol>
-								</nav>
-								<br>
-							</div>
-							<div class="col-lg-3">
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item active">
-											<a href="#links">Links</a>
-										</li>
-									</ol>
-								</nav>
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item">
-											<a href="#links">Links</a>
-										</li>
-										<li class="breadcrumb-item active">
-											<a href="#links">Work</a>
-										</li>
-									</ol>
-								</nav>
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item">
-											<a href="#non-work">Links</a>
-										</li>
-										<li class="breadcrumb-item active">
-											<a href="#non-work">Non-Work</a>
-										</li>
-									</ol>
-								</nav>
-								<br>
-							</div>
-							<div class="col-lg-4">
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item active">
-											<a href="#contact">Contact</a>
-										</li>
-									</ol>
-								</nav>
-								<nav aria-label="breadcrumb">
-									<ol class="breadcrumb bg-dark">
-										<li class="breadcrumb-item">
-											<a href="#contact">Contact</a>
-										</li>
-										<li class="breadcrumb-item active">
-											<a href="#contact">Email</a>
-										</li>
-									</ol>
-								</nav>
-								<br>
-							</div>
-						</div>
-						<br>
-						<div class="row justify-content-between">
-							<div class="col-lg-6">
-								Edward Gorman &copy; 2019
-								<br>
-								<br>
-							</div>
-							<div class="col-lg-6">
-								<div class="right">
-									<nav aria-label="breadcrumb">
-										<ol class="breadcrumb bg-dark" style="font-size: 12px;">
-											<li class="breadcrumb-item">
-												<a href="#top">Scroll to top</a>
-											</li>
-											<li class="breadcrumb-item">
-												<a data-toggle="collapse" href="#hell" role="button" aria-expanded="false" aria-controls="collapseHell" onclick="toggleHell();">Scroll to hell</a>
-											</li>
-										</ol>
-									</nav>
-								</div>
-							</div>
-						</div>
-						<br>
-					</div>
-				</div>
-				<!-- HELL? -->
-				<div class="row collapse hell" id="hell">
-					<div class="section">
-						<div class="container-fluid">
-							<div class="row section-height justify-content-center">
-								<div class="col-lg-6 align-self-center">
-									<h3> Congratulations! </h3>
-									<br>
-									<p>
-										You've discovered another easter egg!
-										<br>
-										<br>
-										There is one per section on this web page.
-										<br>
-										<br>
-										<br>
-										I couldn't think of anything to hide down here...
-										<br>
-										<br>
-										.. but if you have any ideas the contact me form now has a website option!
-										<br>
-										<br>
-										<br>
-										Send me your ideas and I'll credit you here! :)
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- NOTIFICATIONS -->
-		<div class="notification">
-			<!-- HOW TO USE -->
-			<div class="toast hide" id="howToUse" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
-      			<div class="toast-header">
-					<strong class="mr-auto">How to use:</strong>
-					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="toast-body">
-					Use <i class="fas fa-arrow-up" style="font-size: 10px;"></i> and <i class="fas fa-arrow-down" style="font-size: 10px;"></i> to scroll between sections.
-					<br>
-					Use <i class="fas fa-arrow-left" style="font-size: 10px;"></i> and <i class="fas fa-arrow-right" style="font-size: 10px;"></i> to switch between pictures.
-				</div>
-			</div>
-			<!-- EMAIL ERROR -->
-			<div class="toast hide" id="emailError" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
-      			<div class="toast-header bg-danger" style="color: white;">
-					<strong class="mr-auto">Oops your email wasn't sent!</strong>
-					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-						<span aria-hidden="true" style="color: white;">&times;</span>
-					</button>
-				</div>
-				<div class="toast-body">
-					<ul id="emailErrorReason" style="margin-bottom: 0 !important; padding-left: 20px !important">
-							
-					</ul>
-				</div>
-			</div>
-			<!-- EMAIL SUCCESS -->
-			<div class="toast hide" id="emailSuccess" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
-      			<div class="toast-header bg-success" style="color: white;">
-					<strong class="mr-auto">Congratulations!</strong>
-					<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-						<span aria-hidden="true" style="color: white;">&times;</span>
-					</button>
-				</div>
-				<div class="toast-body">
-					Your email has successfully been sent!
-					<br><br>
-					I'll make sure to get back to you as soon as I can. :)
-				</div>
-			</div>
-		</div>
-		
-		<!-- JS -->
-		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-		<script src="src/js/jquery-3.3.1.min.js"></script>
-		<script src="src/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="src/js/script.js"></script>
-		<!-- JS ON LOAD -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="_includes/js/jquery-3.3.1.min.js"></script>
+		<script src="_includes/js/jquery.terminal.min.js"></script>
+		<link rel="stylesheet" href="_includes/css/jquery.terminal.min.css"/>
+		<link rel="icon" type="image/png" href="_includes/img/favicon.png">
+		<title>edgorman</title>
 		<script>
-			$('.carousel').carousel({touch: true});
-			//start carousel
-			
-			$('#howToUse').toast('show');
-			//show how to use notification
+			var json_data;
+
+			$.ajax({
+				url: "_config.json",
+				cache: false,
+				async: false,
+				// if request successful
+				success:function(json) {
+					json_data = json;
+				}
+				// if request failed
+				}).fail(function() {
+					alert("Error: Failed to retrieve config.json");
+					window.stop();
+				}
+			);
+
+			const file_system = json_data['directory'];
+			var terminal;
+			var start_directory = "edgorman";
+			var curr_directory = file_system[start_directory]
+			document.title = start_directory;
+
+			function path_exists(path, from_dir, file_flag){
+				if (path == undefined){
+					return false;
+				}
+
+				let segments = path.split(/[\\/]/);
+				let temp_directory = from_dir;
+
+				// for each segment
+				for (let i=0; i < segments.length; i++){
+					var seg = segments[i];
+
+					if (seg == "" || seg == "."){									// self
+						continue;
+					}
+					else if (seg == '..'){												// parent dir
+						if (temp_directory["_parent"] != ""){
+							temp_directory = path_exists(temp_directory["_parent"], file_system, file_flag);
+						}
+					}
+					else if (temp_directory[seg] != null){				// child
+						if (temp_directory[seg]["_type"] == "dir" || file_flag){
+							temp_directory = temp_directory[seg];
+						}
+						else{
+							return false;
+						}
+					}
+					else{																					// n/a
+						return false;
+					}
+				}
+				return temp_directory;
+			}
+
+			function ask_question(question, format, callback){
+				terminal.push(function(input){
+					if (new RegExp(format).test(input)){
+						terminal.pop();
+						callback(input);
+					}
+				}, {
+            prompt: question + ' '
+        });
+			}
+
+			function send_email(result){
+				if (result["confirm"] == "y"){
+					$.ajax({
+					  url: "https://usebasin.com/f/441f945eb655.json",
+					  method: "POST",
+					  data: {message: result["message"], email: result["email"]},
+					  dataType: "json",
+						success: function(){
+							alert("Email sent successfully.");
+						}
+					}).fail(function() {
+						alert("Error: Email not sent.")
+					});
+				}
+		  }
+		</script>
+	</head>
+	<body>
+		<script>
+			terminal = $('body').terminal({
+				help : function() {
+					this.echo('Here is a list of the [[b;;]available commands]\n');
+
+					// 		 		 command		description
+					this.echo('[[b;;]cd] \t\t\t Change the current directory to the specified directory');
+					this.echo('[[b;;]clear] \t\t Clears the screen of all text');
+					this.echo('[[b;;]echo] \t\t Displays a string (in quotes) or file (with .txt extension)');
+					this.echo('[[b;;]exit] \t\t Returns the user to the normal website')
+					this.echo('[[b;;]ls] \t\t\t Displays the files in the current directory');
+					this.echo('\t\t\t [[b;;]-l] \t Use a long listing format')
+					this.echo('[[b;;]run] \t\t Executes a file (with .exe or .html extension)');
+
+					this.echo('\nYou can also use [[b;;]tab completion] to autocomplete file names\n')
+				},
+				cd : function(path) {
+					if (path == "/" || path == "\\"){
+						curr_directory = path_exists(start_directory, file_system, false)
+					}
+					if (path_exists(path, curr_directory, false)){
+						if (path_exists(path, curr_directory, false)["_type"] == "dir"){
+							curr_directory = path_exists(path, curr_directory, false);
+							if (curr_directory["_parent"] == ""){
+								this.set_prompt(curr_directory['_name'] + ">");
+								document.title = curr_directory['_name'];
+							}
+							else{
+								this.set_prompt(curr_directory['_parent'].replace(/\//g, "\\") + "\\" + curr_directory['_name'] + ">");
+								document.title = curr_directory['_parent'] + "/" + curr_directory['_name'];
+							}
+						}
+						else{
+							this.echo("The directory name is invalid.");
+						}
+					}
+					else{
+						this.echo("The system cannot find the path specified.");
+					}
+					this.echo();
+				},
+				echo : function(msg) {
+					// if is text
+					if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "txt"){
+						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
+						if (url.startsWith("/edgorman/")){
+							url = url.substring(10);
+						}
+						else if (url.startsWith("edgorman/")){
+							url = url.substring(9);
+						}
+						// ajax request to get file
+						$.ajax({
+							url: url,
+							cache: false,
+							// if request successful
+							success:function(text) {
+								 terminal.echo(text);
+							}
+							// if request failed
+							}).fail(function() {
+								terminal.echo("No such file or directory.\n")
+							}
+						);
+					}
+					// else if image
+					else if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "pic"){
+						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
+						if (url.startsWith("/edgorman/")){
+							url = url.substring(10);
+						}
+						else if (url.startsWith("edgorman/")){
+							url = url.substring(9);
+						}
+
+						this.echo("<img style='width: 50%;' src=\"" + url + "\"/>\n", {raw: true});
+					}
+					// else is normal message
+					else{
+						if (msg == "hello there"){
+							this.echo("general kenobi\n");
+						}
+						else{
+							this.echo(msg + "\n");
+						}
+					}
+				},
+				exit : function() {
+					window.location = "/";
+				},
+				ls : function(...args) {
+					var options = $.terminal.parse_options(args);
+
+					// for each file in the directory
+					var field_count = 0;
+					for (field in curr_directory){
+						field_count++;
+
+						// if field begins with _
+						if (field.startsWith("_")){
+							continue;
+						}
+
+						var file = curr_directory[field];
+						var output = "";
+
+						// if l flag is true
+						if (options.l){
+							output += file['_date'] + "\t" + file['_time'] + "\t";
+							if (file["_type"] == "dir"){
+								output += "<dir>\t\t";
+							}
+							else{
+								output += "\t\t\t";
+							}
+						}
+
+						if (file["_type"] == "dir"){
+							output += "[[b;#4545ff;]" + file['_name'] + "]";
+						}
+						else if (file["_type"] == "pic"){
+							output += "[[b;#a6a600;]" + file['_name'] + "]";
+						}
+						else if (file["_type"] == "exe" || file["_type"] == "html"){
+							output += "[[b;green;]" + file['_name'] + "]";
+						}
+						else if (file["_type"] == "txt"){
+							output += "[[b;;]" + file['_name'] + "]";
+						}
+						else{
+							output += "[[;;]" + file['_name'] + "]";
+						}
+
+						this.echo(output);
+					}
+					this.echo();
+				},
+				run : function(path) {
+					// check path exists
+					if (path_exists(path, curr_directory, true)){
+						if (path_exists(path, curr_directory, true)["_type"] == "html"){
+							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
+							if (url.startsWith("/edgorman/")){
+								url = url.substring(10);
+							}
+							else if (url.startsWith("edgorman/")){
+								url = url.substring(9);
+							}
+
+							window.open(url);
+							this.echo();
+						}
+					}
+					else if (path_exists(path+".txt", curr_directory, true)){
+						path += ".txt";
+						if (path_exists(path, curr_directory, true)["_type"] == "exe"){
+
+							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
+							if (url.startsWith("/edgorman/")){
+								url = url.substring(10);
+							}
+							else if (url.startsWith("edgorman/")){
+								url = url.substring(9);
+							}
+							// ajax request to get file
+							$.ajax({
+								url: url,
+								cache: false,
+								// if request successful
+								success:function(text) {
+									// commit each command per line
+									var textLines = text.split("\n");
+									var result = {};
+									var i = 0;
+
+									var question_loop = function(textLines){
+										// extract instructions
+										var command = textLines[i].split("~")[0];
+										var name = textLines[i].split("~")[1];
+										var message = textLines[i].split("~")[2];
+										var format = textLines[i].split("~")[3];
+
+										// echo command
+										if (command == 'echo'){
+											terminal.echo(message);
+											i++;
+
+											// if questions left, loop
+											if (i < textLines.length-1){
+												question_loop(textLines);
+											}
+										}
+										// prompt command
+										else if (command == 'prompt'){
+											// asks question and returns to anon function when complete
+											ask_question(message, format, function(res){
+												i++;
+												result[name] = res;
+
+												// if questions left, loop
+												if (i < textLines.length-1){
+													question_loop(textLines);
+												}
+											});
+										}
+										// execute commands
+										else if (command == 'execute'){
+											// preset commands
+											switch (name) {
+											 case 'email':
+											 	 if (result["confirm"] == "y"){
+													 $.ajax({
+													 	 url: "https://usebasin.com/f/441f945eb655.json",
+														 method: "POST",
+														 data: {message: result["message"], email: result["email"]},
+														 dataType: "json",
+														 success: function(){
+															 alert("Email sent successfully.");
+														 }
+													 }).fail(function() {
+														 alert("Error: Email not sent.")
+													 });
+												 }
+												 break;
+											 case 'redirect':
+											 	 window.open(message);
+											 default:
+											}
+										}
+									}
+
+									// call question loop
+									question_loop(textLines);
+								}
+								// if request fails
+							}).fail(function() {
+								terminal.echo("No such file or directory.\n");
+							});
+
+						}
+						else{
+							this.echo("File is not an executable.\n");
+						}
+					}
+					else{
+						this.echo("No such file or directory.\n");
+					}
+				}
+			}, {
+				name : 'edgorman.github.io terminal',
+				keymap : {
+						'CTRL+R': function(e, original) {
+								 location.reload();
+						}
+				},
+				completion : function(){
+					var commands=[];
+					// var commands = ["cat", "cd", "clear", "echo", "ls", "help"];
+					for (field in curr_directory){
+						// if field begins with _
+						if (field.startsWith("_")){
+							continue;
+						}
+						else{
+							commands.push(curr_directory[field]["_name"]);
+						}
+					}
+					return commands;
+				},
+				exceptionHandler : function(exception){
+					alert(exception);
+				},
+				mobileDelete : true,
+				checkArity : false,
+				prompt : start_directory + ">",
+				greetings : 'Copyright (c) 2020 Edward Gorman <https://github.com/edgorman> \nTo start enter the command [[b;;]"help"]\n'
+			});
 		</script>
 	</body>
 </html>

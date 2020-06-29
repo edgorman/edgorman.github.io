@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="/_includes/js/jquery-3.3.1.min.js"></script>
+    <script src="/_includes/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/_includes/css/bootstrap.min.css"/>
+		<script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="/_includes/css/custom.css"/>
+		<link rel="icon" type="image/png" href="/_includes/img/favicon.png"/>
+		<title>edgorman</title>
+  </head>
+  <body>
+		<div class="container-fluid">
+			<div class="row">
+				<!-- header -->
+				<!--<div class="col px-0">
+					<img src="https://place-hold.it/1300x450/?text=1300x450&fontsize=33" class='img-fluid w-100'/>
+					<div class="header-cover"></div>
+				</div>-->
+				<!-- header -->
+			</div>
+  		<div class="row">
+				<div class="col-xl-3 col-lg-2 col-md-1 d-none d-md-block side">	</div>
+				<div class="col centre">
+					<!-- info -->
+					<div class="mt-3">
+						<h6>
+							<p style="float: left;"><a href="/">Home</a></p>
+							<p style="float: right;"><a onclick="$('body').toggleClass('dark');" style="cursor: pointer;"><i class="fas fa-moon"></i></a></p>
+							<div style="clear: both;"></div>
+						</h6>
+						<h1 class="thin text-center">EdGorman Personal Website</h1>
+						<br>
+						<div class="media">
+						  <img src="/_includes/img/generic_photo.jpg" style="height: 64px; width: 64px;" class="mr-3">
+						  <div class="media-body mt-2">
+						    <h5 class="mb-1">Edward Gorman</h5>
+								<h6 class="thin" id="dateandtime"></h6>
+						  </div>
+							<div class="mt-2 text-right">
+								<span id="pagetype" class="badge badge-secondary mb-1"></span>
+								<br>
+								<h5>
+									<a id="twitter" href=""><i class="fab fa-twitter-square"></i></a>
+									<a id="linkedin" href=""><i class="fab fa-linkedin"></i></a>
+									<a id="email" href=""><i class="fas fa-envelope-square"></i></a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<!-- info -->
+					<!-- content -->
+					<div class="mt-5">
+						<p>
+							Welcome to my post about my personal website (the one you're viewing right now!) where I discuss the inspiration behind it and how I went about implementing the various designs. This is the first style of post I am writing for this site, so if you have any feedback please get in touch.
+						</p>
+						<b>Inspiration</b>
+						<p>
+							I have experience with about a dozen websites previously so I know which aspects I enjoy designing and which I do not. Normally I revel in designing a user experience which works across all devices even if youre adjusting the screen size from 4k to mobile without reloading;
+							however, this is often a laborious task that takes far longer than what I had intended to do with the website. Because of this I considered designs that were simple from the start, anticipating that I would add complexity as small changes came to me through development.
+						</p>
+						<p>
+							The design that won out of these was a terminal command line interface, due to my consideration of switching from a primarily Windows-based system to a Linux-based one. The idea for a terminal style website is not a unqiue one and has been implemented in many other personal websites,
+							as I suspect others may also have grown tired of far-fetched front-end code. There was also the added restriction that the site be statically generated, meaning no sever-side code or file-handling would (although not in reality, see later) have been possible.
+						</p>
+						<b>Terminal Interface</b>
+						<p>
+							I began development with a google search (as all great projects do) to see what resources are available and if it's been done before. Sure enough, a JavaScript library known as JQuery Terminal [1] was exactly what I was looking for by offering the front-end interface completely
+							implemented and allowing the ability to add custom commands with a high degree of freedom. Their website is also extremely well-documented, boasting an examples page full of useful code snippets that are easy to adapt and often implement the most challenging aspects already.
+						</p>
+						<p>
+							I decided to jump in head first and begin developing the website with the goal of being able to navigate the actual file system running the site, except for some restricted sections and files. This led me to implement basic commands such as echo, help, ls and cd with the idea of adding
+							further complexity later. File content could be navigated via a configuration file that would store extra information about the directories, and remove the need for additional files in each directory.
+						</p>
+						<div class="modal-image text-center mt-3 mb-3">
+	  					<img alt="Example of Terminal." src="example-terminal.png" onclick="$(this).siblings('.modal').css('display', 'block');" style="cursor: pointer; width: 100%;">
+						</div>
+						<p>
+							This configuration file could be accessed via an Ajax request which would retrieve the content of the JSON file and store it in a constant global JavaScript variable. However, I quickly realised that updating this configuration file was a big time-waster and could be automated
+							using a bash script to navigate the file structure and construct the JSON file itself. This was perhaps the most bespoke aspect of my website, but will undoubtedly save me many hours of adjusting the config file and fixing errors made during these changes.
+						</p>
+						<p>
+							The final hurdle I wanted to overcome was the ability to execute ".exe" files; these would prompt the user with questions or complete actions for them, such as sending me an email or directing them to another webpage. I drew inspiration from malicious files who use double file extensions
+							to mask the true nature of their file, by writing ".exe.txt" as the extension for these files so that no actual executables were present and my automatic configuration generater script would know which files were fake ".exe"'s.
+						</p>
+						<b>Project Pages</b>
+						<p>
+							While I enjoyed the terminal interface I wanted more freedom to write posts about projects I completed just in case I ever wanted to send them a link about it without intimidating them with the terminal interface. Hence, I constructed these project template pages for normal text posts
+							and Juypter notebooks, with some included automation for sharing links and getting the date/time of the post. As of the time of writing the root landing page is still the terminal interface, which may change but for now I think I'll keep it as it is.
+						</p>
+						<p>
+							Oh, and you can thank me later for the dark mode button ;).
+						</p>
+					</div>
+					<!-- references -->
+					<br>
+					<b>References</b>
+					<ol class="mt-2 pl-3">
+						<li><a href="https://terminal.jcubic.pl/" target="_blank">https://terminal.jcubic.pl/</a></li>
+					</ol>
+					<!-- references -->
+					<!-- content -->
+					<!-- footer -->
+					<footer class="page-footer font-small border-top mb-3">
+				  	<div class="footer-copyright text-center py-3">
+							<small>Copyright (c) 2020 Edward Gorman <<a href="https://github.com/edgorman">https://github.com/edgorman</a>></small>
+				  	</div>
+					</footer>
+					<!--- footer -->
+				</div>
+				<div class="col-xl-3 col-lg-2 col-md-1 d-none d-md-block side">	</div>
+			</div>
+		</div>
+		<script src="/_includes/js/custom.js"></script>
+		<script>load_project("projects/web-development/edgorman-personal")</script>
+  </body>
+</html>

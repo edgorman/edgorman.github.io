@@ -1,0 +1,4 @@
+echo~~~
+echo~~Redirecting . . .~
+echo~~~
+execute~redirect~https://www.polarsteps.com/EdwardGorman~
