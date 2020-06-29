@@ -7,7 +7,7 @@ function load_project(path){
 
   // Load config file
   $.ajax({
-    url: "/_config.json",
+    url: "/config.json",
     cache: false,
     async: false,
     // if request successful
