@@ -25,6 +25,10 @@ body .header-cover{
 /* DARK */
 body.dark{
   color: #dddddd;
+  background-color: #161616;
+  -webkit-transition: background-color 100ms ease;
+  -ms-transition: background-color 100ms ease;
+  transition: background-color 100ms ease;
 }
 
 body.dark a{

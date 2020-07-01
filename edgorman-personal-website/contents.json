@@ -1,0 +1,28 @@
+{
+  "headimg": null,
+  "title": "EdGorman Personal Website",
+  "date": "01-07-2020",
+  "time": "22:30",
+  "type": "Web Development",
+  "links": [
+    "email", "twitter", "linkedin"
+  ],
+  "content": [
+    "p Welcome to my post about my personal website (the one you're viewing right now!) where I discuss the inspiration behind it and how I went about implementing the various designs. This is the first style of post I am writing for this site, so if you have any feedback please get in touch.",
+    "b Inspiration",
+    "p I have experience with about a dozen websites previously so I know which aspects I enjoy designing and which I do not. Normally I revel in designing a user experience which works across all devices even if youre adjusting the screen size from 4k to mobile without reloading; however, this is often a laborious task that takes far longer than what I had intended to do with the website. Because of this I considered designs that were simple from the start, anticipating that I would add complexity as small changes came to me through development.",
+    "p The design that won out of these was a terminal command line interface, due to my consideration of switching from a primarily Windows-based system to a Linux-based one. The idea for a terminal style website is not a unqiue one and has been implemented in many other personal websites, as I suspect others may also have grown tired of far-fetched front-end code. There was also the added restriction that the site be statically generated, meaning no sever-side code or file-handling would (although not in reality, see later) have been possible.",
+    "b Terminal Interface",
+    "p I began development with a google search (as all great projects do) to see what resources are available and if it's been done before. Sure enough, a JavaScript library known as JQuery Terminal [1] was exactly what I was looking for by offering the front-end interface completely implemented and allowing the ability to add custom commands with a high degree of freedom. Their website is also extremely well-documented, boasting an examples page full of useful code snippets that are easy to adapt and often implement the most challenging aspects already.",
+    "p I decided to jump in head first and begin developing the website with the goal of being able to navigate the actual file system running the site, except for some restricted sections and files. This led me to implement basic commands such as echo, help, ls and cd with the idea of adding further complexity later. File content could be navigated via a configuration file that would store extra information about the directories, and remove the need for additional files in each directory.",
+    "i terminal.png~Example of Terminal.",
+    "p This configuration file could be accessed via an Ajax request which would retrieve the content of the JSON file and store it in a constant global JavaScript variable. However, I quickly realised that updating this configuration file was a big time-waster and could be automated using a bash script to navigate the file structure and construct the JSON file itself. This was perhaps the most bespoke aspect of my website, but will undoubtedly save me many hours of adjusting the config file and fixing errors made during these changes.",
+    "p The final hurdle I wanted to overcome was the ability to execute \".exe\" files; these would prompt the user with questions or complete actions for them, such as sending me an email or directing them to another webpage. I drew inspiration from malicious files who use double file extensions to mask the true nature of their file, by writing \".exe.txt\" as the extension for these files so that no actual executables were present and my automatic configuration generater script would know which files were fake \".exe\"'s.",
+    "b Project Pages",
+    "p While I enjoyed the terminal interface I wanted more freedom to write posts about projects I completed just in case I ever wanted to send them a link about it without intimidating them with the terminal interface. Hence, I constructed these project template pages for normal text posts and Juypter notebooks, with some included automation for sharing links and getting the date/time of the post. As of the time of writing the root landing page is still the terminal interface, which may change but for now I think I'll keep it as it is.",
+    "p Oh, and you can thank me later for the dark mode button ;)."
+  ],
+  "refs": [
+    "JQuery Terminal~https://terminal.jcubic.pl/"
+  ]
+}

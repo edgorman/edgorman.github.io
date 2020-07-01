@@ -1,0 +1,26 @@
+{
+  "headimg": null,
+  "title": "Phgorman Personal Website",
+  "date": "01-07-2020",
+  "time": "23:15",
+  "type": "Web Development",
+  "links": [
+    "email", "twitter", "linkedin"
+  ],
+  "content": [
+    "p Welcome to another post about a web-development project I worked on for my brother Peter Gorman: https://phgorman.com. This page describes the development process we shared to bring about his idea, and the technologies used.",
+    "b Purpose of Site",
+    "p My brother wanted an area of the web where he could demonstrate various technical projects and product discussions with his own thoughts and experience. Taken from his own about me section in his own words:",
+    "q Pete Gorman~This blog is designed to showcase the projects that I get up to outside of work. I am primarily interested in the engineering and design process behind building technical software/hardware products. I also have a desire to understand the strategy behind business decisions in tech and the overarching influence that government and geography contribute to this area.",
+    "p Our proposed design would lack emphasis on the visuals as he wanted to prioritise the content himself and make use of a template design where he could make easy additions or changes himself without my future input. With that in mind, a simple and sleek notebook-style website seemed the most appropriate and required little time to implement. Minor additions such as the back button at the top left were made to improve the user experience, as well as a mobile-first development approach since most users were likely to view this site on a mobile phone.",
+    "b Home Gallery",
+    "p The only challenging tehnical aspect of this project was recreating the gallery-style view for all his projects (located at the root of the site), which opened up a drop-down information panel below and shunted lower-down projects further so they remained visible. This design idea was stolen from another personal website (which I can no longer remember the name of) but required minimal effort to reimplement with the ability to view the source code of their site. The code was subsequently modified to improve readability and reduce complexity, resulting in the final interface (see below).",
+    "i gallery.png~Example of Gallery.",
+    "b Folder Structure",
+    "p To make the urls more user friendly for both posts and his thoughts, we named these subdirectories \"p\" and \"t\" respectively so that a given posts entire url would be several characters shorter. Each different section can be accessed through the navbar located at the top right of every page, which becomes condensed once the size of the screen is small enough to be considered as a mobile device.",
+    "p Thanks for reading!"
+  ],
+  "refs": [
+    
+  ]
+}
