@@ -6,7 +6,12 @@ recursivemap() {
   # for each file in current directory
   for file in *; do
     # ignore empty directory and includes and .git folder
-    if [[ $file = "*" ]] || [[ $file = "_"* ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]] || [[ $file = "config.json" ]]; then
+    if [[ $file = "*" ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]] || [[ $file = "package.json" ]] || [[ $file = "config.json" ]] || [[ $file = "config-generator.sh" ]]; then
+      continue
+    fi
+
+    # ignore index.html at root
+    if [[ $1 = "edgorman" ]] && [[ $file = "index.html" ]]; then
       continue
     fi
 

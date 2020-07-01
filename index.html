@@ -4,6 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script src="includes/js/jquery-3.3.1.min.js"></script>
 		<script src="includes/js/jquery.terminal.min.js"></script>
+		<script src="includes/js/echo_newline.js"></script>
 		<link rel="stylesheet" href="includes/css/jquery.terminal.min.css"/>
 		<link rel="icon" type="image/png" href="includes/img/favicon.png">
 		<title>edgorman</title>
@@ -103,10 +104,10 @@
 					// 		 		 command		description
 					this.echo('[[b;;]cd] \t\t\t Change the directory');
 					this.echo('[[b;;]clear] \t\t Clears the screen of all text');
-					this.echo('[[b;;]echo] \t\t Displays text or file');
 					this.echo('[[b;;]exit] \t\t Reloads the terminal')
 					this.echo('[[b;;]ls] \t\t\t Displays files in directory');
 					this.echo('\t\t\t [[b;;]-l] \t Use a long listing format')
+					this.echo('[[b;;]print] \t\t Displays text (string or file)');
 					this.echo('[[b;;]run] \t\t Executes a file (.exe or .html)');
 
 					this.echo('\nYou can also [[b;;]tab complete] file names\n')
@@ -136,7 +137,60 @@
 					}
 					this.echo();
 				},
-				echo : function(msg) {
+				exit : function() {
+					location.reload();
+				},
+				ls : function(...args) {
+					var options = $.terminal.parse_options(args);
+
+					// for each file in the directory
+					for (field in curr_directory){
+
+						// if field begins with _
+						if (field.startsWith("_")){
+							continue;
+						}
+
+						var file = curr_directory[field];
+						var output = "";
+
+						// if l flag is true
+						if (options.l){
+							output += file['_date'] + "\t" + file['_time'] + "\t";
+							if (file["_type"] == "dir"){
+								output += "&#60;dir&#62;\t\t";
+							}
+							else{
+								output += "\t\t\t";
+							}
+						}
+
+						// switch on type of file
+						switch(file["_type"]){
+							case "dir":
+								output += "[[b;#4545ff;]" + file["_name"] + "]";
+								break;
+							case "pic":
+								output += "[[b;#a6a600;]" + file["_name"] + "]";
+								break;
+							case "exe":
+								output += "[[b;green;]" + file["_name"] + "]";
+								break;
+							case "html":
+								output += "[[b;green;]" + file["_name"] + "]";
+								break;
+							case "txt":
+								output += "[[b;;]" + file["_name"] + "]";
+								break;
+							default:
+								output += "[[;;]" + file["_name"] + "]";
+						}
+
+						this.echo(output);
+					}
+					this.echo();
+				},
+				print : function(msg) {
 					// if is text
 					if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "txt"){
 						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
@@ -181,56 +235,6 @@
 							this.echo(msg + "\n");
 						}
 					}
-				},
-				exit : function() {
-					window.location = "/";
-				},
-				ls : function(...args) {
-					var options = $.terminal.parse_options(args);
-
-					// for each file in the directory
-					var field_count = 0;
-					for (field in curr_directory){
-						field_count++;
-
-						// if field begins with _
-						if (field.startsWith("_")){
-							continue;
-						}
-
-						var file = curr_directory[field];
-						var output = "";
-
-						// if l flag is true
-						if (options.l){
-							output += file['_date'] + "\t" + file['_time'] + "\t";
-							if (file["_type"] == "dir"){
-								output += "<dir>\t\t";
-							}
-							else{
-								output += "\t\t\t";
-							}
-						}
-
-						if (file["_type"] == "dir"){
-							output += "[[b;#4545ff;]" + file['_name'] + "]";
-						}
-						else if (file["_type"] == "pic"){
-							output += "[[b;#a6a600;]" + file['_name'] + "]";
-						}
-						else if (file["_type"] == "exe" || file["_type"] == "html"){
-							output += "[[b;green;]" + file['_name'] + "]";
-						}
-						else if (file["_type"] == "txt"){
-							output += "[[b;;]" + file['_name'] + "]";
-						}
-						else{
-							output += "[[;;]" + file['_name'] + "]";
-						}
-
-						this.echo(output);
-					}
-					this.echo();
 				},
 				run : function(path) {
 					// check path exists

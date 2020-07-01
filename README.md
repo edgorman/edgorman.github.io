@@ -1,6 +1,13 @@
 # edgorman.github.io
 
-This is my repository for my personal website, the purpose of which is to display information about myself and demonstrate my web development abilities. It uses web languages including [JQuery](https://jquery.com/), [Fontawesome](https://fontawesome.com/) and [Bootstrap](https://getbootstrap.com/) framework. For the contact me section I used [Basin](https://usebasin.com/) which is a free service for receiving emails and involves pre-built reCAPTCHA to prevent spam.
+This is the repository for my personal website hosted on Github pages. The design is meant to replicate a command line interface with several commands enabling the user to traverse directories, print documents and run project web pages.
+
+The following resources were used to create this site:
+[JQuery](https://jquery.com/)
+[JQuery Terminal](https://terminal.jcubic.pl/)
+[Bootstrap](https://getbootstrap.com/)
+[Fontawesome](https://fontawesome.com/)
+[Basin](https://usebasin.com/)
 
 ## Installation
 Use the following command to clone the respository:
