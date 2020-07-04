@@ -7,7 +7,7 @@
 		<script src="includes/js/echo_newline.js"></script>
 		<link rel="stylesheet" href="includes/css/jquery.terminal.min.css"/>
 		<link rel="icon" type="image/png" href="includes/img/favicon.png">
-		<title>edgorman</title>
+		<title>ed</title>
 		<script>
 			var json_data;
 
@@ -26,11 +26,12 @@
 				}
 			);
 
+
 			const file_system = json_data['directory'];
 			var terminal;
-			var start_directory = "edgorman";
+			var start_directory = "ed";
 			var curr_directory = file_system[start_directory]
-			document.title = start_directory;
+			parent.setActiveTitle("Terminal - " + start_directory);
 
 			function path_exists(path, from_dir, file_flag){
 				if (path == undefined){
@@ -106,7 +107,7 @@
 					this.echo('[[b;;]clear] \t\t Clears the screen of all text');
 					this.echo('[[b;;]exit] \t\t Reloads the terminal')
 					this.echo('[[b;;]ls] \t\t\t Displays files in directory');
-					this.echo('\t\t\t [[b;;]-l] \t Use a long listing format')
+					this.echo('\t\t\t [[b;;]-l] \t Long listing format')
 					this.echo('[[b;;]print] \t\t Displays text (string or file)');
 					this.echo('[[b;;]run] \t\t Executes a file (.exe or .html)');
 
@@ -121,11 +122,11 @@
 							curr_directory = path_exists(path, curr_directory, false);
 							if (curr_directory["_parent"] == ""){
 								this.set_prompt(curr_directory['_name'] + ">");
-								document.title = curr_directory['_name'];
+								parent.setActiveTitle("Terminal - " + curr_directory['_name']);
 							}
 							else{
 								this.set_prompt(curr_directory['_parent'].replace(/\//g, "\\") + "\\" + curr_directory['_name'] + ">");
-								document.title = curr_directory['_parent'] + "/" + curr_directory['_name'];
+								parent.setActiveTitle("Terminal - " + curr_directory['_parent'] + "/" + curr_directory['_name']);
 							}
 						}
 						else{
@@ -138,7 +139,7 @@
 					this.echo();
 				},
 				exit : function() {
-					location.reload();
+					parent.closeActive();
 				},
 				ls : function(...args) {
 					var options = $.terminal.parse_options(args);
@@ -194,11 +195,11 @@
 					// if is text
 					if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "txt"){
 						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
-						if (url.startsWith("/edgorman/")){
-							url = url.substring(10);
+						if (url.startsWith("/ed/")){
+							url = url.substring(4);
 						}
-						else if (url.startsWith("edgorman/")){
-							url = url.substring(9);
+						else if (url.startsWith("ed/")){
+							url = url.substring(3);
 						}
 						// ajax request to get file
 						$.ajax({
@@ -217,11 +218,11 @@
 					// else if image
 					else if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "pic"){
 						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
-						if (url.startsWith("/edgorman/")){
-							url = url.substring(10);
+						if (url.startsWith("/ed/")){
+							url = url.substring(4);
 						}
-						else if (url.startsWith("edgorman/")){
-							url = url.substring(9);
+						else if (url.startsWith("ed/")){
+							url = url.substring(3);
 						}
 
 						this.echo("<img style='width: 50%;' src=\"" + url + "\"/>\n", {raw: true});
@@ -241,11 +242,11 @@
 					if (path_exists(path, curr_directory, true)){
 						if (path_exists(path, curr_directory, true)["_type"] == "html"){
 							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
-							if (url.startsWith("/edgorman/")){
-								url = url.substring(10);
+							if (url.startsWith("/ed/")){
+								url = url.substring(4);
 							}
-							else if (url.startsWith("edgorman/")){
-								url = url.substring(9);
+							else if (url.startsWith("ed/")){
+								url = url.substring(3);
 							}
 
 							window.open(url);
@@ -257,11 +258,11 @@
 						if (path_exists(path, curr_directory, true)["_type"] == "exe"){
 
 							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
-							if (url.startsWith("/edgorman/")){
-								url = url.substring(10);
+							if (url.startsWith("/ed/")){
+								url = url.substring(4);
 							}
-							else if (url.startsWith("edgorman/")){
-								url = url.substring(9);
+							else if (url.startsWith("ed/")){
+								url = url.substring(3);
 							}
 							// ajax request to get file
 							$.ajax({

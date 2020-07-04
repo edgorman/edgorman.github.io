@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="/includes/js/jquery-3.3.1.min.js"></script>
+		<script src="/includes/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/includes/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/includes/css/edos.css"/>
+		<link rel="icon" type="image/png" href="/includes/img/favicon.png"/>
+		<title></title>
+  </head>
+  <body class="newtab">
+		<div class="container-fluid h-100 w-100 d-flex flex-column">
+		  <div class="row flex-grow-1">
+				<div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+					<div class="tab-icon cli" onclick="parent.redirectActive('/terminal.html');"><span>Command Line Interace</span></div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+					<div class="tab-icon file" onclick="parent.redirectActive('/404.html');"><span>File Explorer</span></div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+					<div class="tab-icon text" onclick="parent.redirectActive('/404.html');"><span>Text Editor</span></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			parent.setActiveTitle("New Tab");
+		</script>
+		<script src="/includes/js/edos.js"></script>
+  </body>
+</html>

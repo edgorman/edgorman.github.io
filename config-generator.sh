@@ -11,7 +11,7 @@ recursivemap() {
     fi
 
     # ignore index.html at root
-    if [[ $1 = "edgorman" ]] && [[ $file = "index.html" ]]; then
+    if [[ $1 = "ed" ]] && [[ $file = "index.html" ]]; then
       continue
     fi
 
@@ -47,8 +47,8 @@ recursivemap() {
 }
 
 # generate content of json file
-output="{\"directory\": {\"edgorman\": {\"_name\": \"edgorman\", \"_date\": \"\", \"_time\": \"\", \"_type\": \"dir\", \"_parent\": \"\","
-output="$output $(cd "$PWD/"; recursivemap "edgorman")"
+output="{\"directory\": {\"ed\": {\"_name\": \"ed\", \"_date\": \"\", \"_time\": \"\", \"_type\": \"dir\", \"_parent\": \"\","
+output="$output $(cd "$PWD/"; recursivemap "ed")"
 output="${output::-1}}}}"
 
 # output to config.json
