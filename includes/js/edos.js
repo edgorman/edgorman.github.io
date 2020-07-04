@@ -17,28 +17,44 @@ function newTab(path){
 }
 
 function spawnToast(title, message){
-  $('.toast-container').append('<div class="toast bg-dark" data-delay="10000"><div class="toast-header bg-dark"><strong class="mr-auto text-light">' + title + '</strong><button type="button text-light" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body bg-dark">' + message + '</div></div></div>')
+  var id = "toast-" + Math.floor(Math.random() * 10000);
+
+  $('.toast-container').append('<div id="' + id + '" class="toast bg-dark" data-delay="10000"><div class="toast-header bg-dark"><strong class="mr-auto text-light">' + title + '</strong><button type="button text-light" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body bg-dark">' + message + '</div></div></div>')
   $('.toast').toast('show');
+
+  $('#' + id).on('hidden.bs.toast', function () {
+    $(this).remove();
+  })
 }
 
 function closeTab(id){
+  // get index of current tab
+  // var index = -1;
+  // for (i = 0; i < $('.nav-tabs li').length; i++){
+  //   if ($('.nav-tabs li:eq('+i+')').attr('id') == "t"+id){
+  //     index = i;
+  //     break;
+  //   }
+  // }
+
+  // remove tab and pane
   $('#t'+id).remove();
   $('#p'+id).remove();
 
-  // switch focus to next tab
-  // var tmp = id;
-  // while($('#t'+tmp).length != 1 && tmp >=0){
-  //    tmp--;
-  // }
-  //
+  // if tab following this exists
   // if(tmp != -1){
-  //    alert(tmp);
-  //    $('li #t'+tmp).click();
-  //    $('li #t'+tmp).addClass("active");
-  //    $('.tab-pane #p'+tmp).addClass("active");
+  //    $('.nav-tabs li a').removeClass("active");
+  //    $('.tab-pane').removeClass("active");
+  //
+  //    $('.nav-tabs li#t'+tmp+' a').addClass("active");
+  //    $('.tab-pane#p'+tmp).addClass("active");
   // }
-  // else if(){
-  //    grab first list element
+  // else if($('.nav-tabs li').length > 1){
+  //   $('.nav-tabs li a').removeClass("active");
+  //   $('.tab-pane').removeClass("active");
+  //
+  //   $('.nav-tabs li:eq(0) a').addClass("active");
+  //   $('.tab-pane:eq(0)').addClass("active");
   // }
 }
 

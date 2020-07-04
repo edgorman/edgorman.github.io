@@ -54,6 +54,7 @@
 }
 li.add a, li.add a span{
   text-align: center;
+  font-size: 14px;
 }
 
 .tab-overlay{
@@ -70,6 +71,7 @@ li a.active .tab-overlay{
 .tab-overlay .tab-close{
   cursor: pointer;
   position: absolute;
+  font-size: 14px;
   right: 7px;
   top: 4px;
   width: 20px;

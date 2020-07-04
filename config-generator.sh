@@ -6,12 +6,12 @@ recursivemap() {
   # for each file in current directory
   for file in *; do
     # ignore empty directory and includes and .git folder
-    if [[ $file = "*" ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]] || [[ $file = "package.json" ]] || [[ $file = "config.json" ]] || [[ $file = "config-generator.sh" ]]; then
+    if [[ $file = "*" ]] || [[ $file = "includes" ]] || [[ $file = ".git" ]]; then
       continue
     fi
 
     # ignore index.html at root
-    if [[ $1 = "ed" ]] && [[ $file = "index.html" ]]; then
+    if [[ $1 = "ed" ]] && [[ $file = "404.html" ]]; then
       continue
     fi
 
