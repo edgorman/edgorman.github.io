@@ -6,9 +6,9 @@
     <script src="/includes/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/includes/css/bootstrap.min.css"/>
 		<script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" type="text/css" href="/includes/css/project.css"/>
+		<link rel="stylesheet" type="text/css" href="/includes/css/post.css"/>
 		<link rel="icon" type="image/png" href="/includes/img/favicon.png"/>
-		<title>edgorman</title>
+		<title></title>
   </head>
   <body>
 		<div class="container-fluid">
@@ -33,13 +33,13 @@
 							</p>
 							<div style="clear: both;"></div>
 						</h6>
-						<h1 id="pagetitle" class="thin text-center">Error 404: Page Not Found!</h1>
+						<h1 id="pagetitle" class="thin text-center">Error 404: Post Not Found!</h1>
 						<br>
 						<div class="media">
 						  <img src="/includes/img/generic-photo.jpg" style="height: 64px; width: 64px;" class="mr-3">
 						  <div class="media-body mt-2">
 						    <h5 class="mb-1">Edward Gorman</h5>
-								<h6 id="pagetimestamp" class="thin">01-01-2020 - 12:00</h6>
+								<h6 id="pagetimestamp" class="thin"></h6>
 						  </div>
 							<div class="mt-2 text-right">
 								<span id="pagetype" class="badge badge-secondary mb-1">
@@ -63,7 +63,7 @@
 							Unforunately that page doesn't exist!
 						</p>
 						<p class="text-center">
-							Why not <a href="/">go to the home page</a> to see some of my work?
+							Why not <a href="#" onclick="parent.redirectActive('/includes/tabs/newtab.html');">go to the home page</a> to see some of my work?
 						</p>
 						<br>
 					</div>
@@ -86,7 +86,9 @@
 				<div class="col-xl-3 col-lg-2 col-md-1 d-none d-md-block side">	</div>
 			</div>
 		</div>
-		<script src="/includes/js/project.js"></script>
-		<script>load_project(window.location.pathname)</script>
+		<script src="/includes/js/post.js"></script>
+		<script>
+			parent.setActiveTitle("Post Viewer");
+		</script>
   </body>
 </html>

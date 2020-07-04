@@ -19,7 +19,7 @@ function newTab(path){
 function spawnToast(title, message){
   var id = "toast-" + Math.floor(Math.random() * 10000);
 
-  $('.toast-container').append('<div id="' + id + '" class="toast bg-dark" data-delay="10000"><div class="toast-header bg-dark"><strong class="mr-auto text-light">' + title + '</strong><button type="button text-light" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body bg-dark">' + message + '</div></div></div>')
+  $('.toast-container').append('<div id="' + id + '" class="toast bg-dark" data-delay="5000"><div class="toast-header bg-dark"><strong class="mr-auto text-light">' + title + '</strong><button type="button text-light" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body bg-dark">' + message + '</div></div></div>')
   $('.toast').toast('show');
 
   $('#' + id).on('hidden.bs.toast', function () {

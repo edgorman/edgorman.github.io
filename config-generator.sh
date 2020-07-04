@@ -10,8 +10,10 @@ recursivemap() {
       continue
     fi
 
-    # ignore index.html at root
-    if [[ $1 = "ed" ]] && [[ $file = "404.html" ]]; then
+    # ignore index.html and 404.html at root
+    if [[ $1 = "ed" ]] && [[ $file = "index.html" ]]; then
+      continue
+    elif [[ $1 = "ed" ]] && [[ $file = "404.html" ]]; then
       continue
     fi
 

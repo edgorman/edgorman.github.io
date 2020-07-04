@@ -105,7 +105,7 @@
 					// 		 		 command		description
 					this.echo('[[b;;]cd] \t\t\t Change the directory');
 					this.echo('[[b;;]clear] \t\t Clears the screen of all text');
-					this.echo('[[b;;]exit] \t\t Reloads the terminal')
+					this.echo('[[b;;]exit] \t\t Closes the current tab')
 					this.echo('[[b;;]ls] \t\t\t Displays files in directory');
 					this.echo('\t\t\t [[b;;]-l] \t Long listing format')
 					this.echo('[[b;;]print] \t\t Displays text (string or file)');
@@ -225,7 +225,7 @@
 							url = url.substring(3);
 						}
 
-						this.echo("<img style='width: 50%;' src=\"" + url + "\"/>\n", {raw: true});
+						this.echo("<img style='width: 50%;' src=\"/" + url + "\"/>\n", {raw: true});
 					}
 					// else is normal message
 					else{
@@ -266,7 +266,7 @@
 							}
 							// ajax request to get file
 							$.ajax({
-								url: url,
+								url: '/' + url,
 								cache: false,
 								// if request successful
 								success:function(text) {
@@ -309,24 +309,29 @@
 										else if (command == 'execute'){
 											// preset commands
 											switch (name) {
-											 case 'email':
-											 	 if (result["confirm"] == "y"){
-													 $.ajax({
-													 	 url: "https://usebasin.com/f/441f945eb655.json",
-														 method: "POST",
-														 data: {message: result["message"], email: result["email"]},
-														 dataType: "json",
-														 success: function(){
-															 alert("Email sent successfully.");
-														 }
-													 }).fail(function() {
-														 alert("Error: Email not sent.")
-													 });
-												 }
-												 break;
-											 case 'redirect':
-											 	 window.open(message);
-											 default:
+											case 'email':
+												if (result["confirm"] == "y"){
+													$.ajax({
+													 	url: "https://usebasin.com/f/441f945eb655.json",
+														method: "POST",
+														data: {message: result["message"], email: result["email"]},
+														dataType: "json",
+														success: function(){
+															alert("Email sent successfully.");
+														}
+												  }).fail(function() {
+														alert("Error: Email not sent.")
+													});
+										 		 }
+											break;
+											case 'redirect':
+												window.open(message);
+												break;
+										  case 'tab':
+										 		parent.newTab(message);
+												parent.setActiveTitle("Post Viewer - " + message.substring(1, message.length));
+												break;
+											default:
 											}
 										}
 									}
