@@ -35,6 +35,14 @@ function load_project(path){
     $('#pageheader').html("<img class=\"img-fluid w-100\" src=\"" + config_data['headimg'] + "\"/><div class=\"header-cover\"></div>");
   }
 
+  // update title
+  if (self == top){
+    document.title = config_data['title'];
+  }
+  else{
+    parent.setActiveTitle('Post Viewer - ' + config_data['title']);
+  }
+
   // update pagetitle
   $('#pagetitle').html(config_data['title']);
 
