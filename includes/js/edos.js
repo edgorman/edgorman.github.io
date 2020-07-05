@@ -29,33 +29,28 @@ function spawnToast(title, message){
 
 function closeTab(id){
   // get index of current tab
-  // var index = -1;
-  // for (i = 0; i < $('.nav-tabs li').length; i++){
-  //   if ($('.nav-tabs li:eq('+i+')').attr('id') == "t"+id){
-  //     index = i;
-  //     break;
-  //   }
-  // }
+  var index = -1;
+  for (i = 0; i < $('.nav-tabs li').length; i++){
+    if ($('.nav-tabs li:eq('+i+')').attr('id') == "t"+id){
+      index = i;
+      break;
+    }
+  }
 
   // remove tab and pane
   $('#t'+id).remove();
   $('#p'+id).remove();
 
-  // if tab following this exists
-  // if(tmp != -1){
-  //    $('.nav-tabs li a').removeClass("active");
-  //    $('.tab-pane').removeClass("active");
-  //
-  //    $('.nav-tabs li#t'+tmp+' a').addClass("active");
-  //    $('.tab-pane#p'+tmp).addClass("active");
-  // }
-  // else if($('.nav-tabs li').length > 1){
-  //   $('.nav-tabs li a').removeClass("active");
-  //   $('.tab-pane').removeClass("active");
-  //
-  //   $('.nav-tabs li:eq(0) a').addClass("active");
-  //   $('.tab-pane:eq(0)').addClass("active");
-  // }
+  // find next tab to become active
+  index--;
+  if (index >= 0){
+    $('.nav-tabs li a').removeClass("active");
+    $('.tab-pane').removeClass("active");
+
+    $('.nav-tabs li:eq('+index+') a').addClass('active');
+    $('.tab-pane:eq('+index+')').addClass('active');
+  }
+
 }
 
 function setActiveTitle(title){
