@@ -1,3 +1,7 @@
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 function path_to_url(path){
   // if starts with /, remove it
   if (path.startsWith("/")){
@@ -82,7 +86,7 @@ function newTab(path){
     $('.nav-tabs li a').removeClass("active");
     $('.tab-pane').removeClass("active");
 
-    $('<li id=\"t'+tabIndex+'\"><a class="active" data-toggle="tab" href="#p'+tabIndex+'"><div class="spinner-border text-light" style="height: 15px; width: 15px;" role="status"><span class="sr-only">Loading...</span></div><div class="tab-overlay"><div class="tab-close" onclick="closeTab(\''+tabIndex+'\');">&times;</div></div></a></li>').insertBefore('.add');
+    $('<li id=\"t'+tabIndex+'\" data-toggle="tooltip" data-placement="bottom" title="New Tab"><a class="active" data-toggle="tab" href="#p'+tabIndex+'"><div class="spinner-border text-light" style="height: 15px; width: 15px;" role="status"><span class="sr-only">Loading...</span></div><div class="tab-overlay"><div class="tab-close" onclick="closeTab(\''+tabIndex+'\');">&times;</div></div></a></li>').insertBefore('.add');
     $('.tab-content').append("<div class=\"tab-pane active\" id=\"p"+tabIndex+"\"><iframe src=\""+path+"\"></iframe></div>");
 
     tabIndex++;
@@ -132,6 +136,7 @@ function closeTab(id){
 function setActiveTitle(title){
   var id = $('li a.active').attr('href').substring(2, 3);
   $('li a.active').html(title + "<div class=\"tab-overlay\"><div class=\"tab-close\" onclick=\"closeTab('"+id+"');\">×</div></div>");
+  $('li#t'+id).attr("title", title);
 }
 
 function redirectActive(path){
