@@ -1,4 +1,4 @@
-echo~~~
-echo~~Redirecting . . .~
-echo~~~
-execute~redirect~https://open.spotify.com/user/ed-gorman~
+echo~~~~
+echo~~Redirecting . . .~~
+echo~~~~
+execute~redirect~https://open.spotify.com/user/ed-gorman~~

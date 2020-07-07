@@ -26,79 +26,19 @@
 				}
 			);
 
-
 			const file_system = json_data['directory'];
 			var terminal;
 			var start_directory = "ed";
 			var curr_directory = file_system[start_directory]
 			parent.setActiveTitle("Terminal - " + start_directory);
 
-			function path_exists(path, from_dir, file_flag){
-				if (path == undefined){
-					return false;
-				}
-
-				let segments = path.split(/[\\/]/);
-				let temp_directory = from_dir;
-
-				// for each segment
-				for (let i=0; i < segments.length; i++){
-					var seg = segments[i];
-
-					if (seg == "" || seg == "."){									// self
-						continue;
-					}
-					else if (seg == '..'){												// parent dir
-						if (temp_directory["_parent"] != ""){
-							temp_directory = path_exists(temp_directory["_parent"], file_system, file_flag);
-						}
-					}
-					else if (temp_directory[seg] != null){				// child
-						if (temp_directory[seg]["_type"] == "dir" || file_flag){
-							temp_directory = temp_directory[seg];
-						}
-						else{
-							return false;
-						}
-					}
-					else{																					// n/a
-						return false;
-					}
-				}
-				return temp_directory;
-			}
-
-			function ask_question(question, format, callback){
-				terminal.push(function(input){
-					if (new RegExp(format).test(input)){
-						terminal.pop();
-						callback(input);
-					}
-				}, {
-            prompt: question + ' '
-        });
-			}
-
-			function send_email(result){
-				if (result["confirm"] == "y"){
-					$.ajax({
-					  url: "https://usebasin.com/f/441f945eb655.json",
-					  method: "POST",
-					  data: {message: result["message"], email: result["email"]},
-					  dataType: "json",
-						success: function(){
-							alert("Email sent successfully.");
-						}
-					}).fail(function() {
-						alert("Error: Email not sent.")
-					});
-				}
-		  }
 		</script>
 	</head>
 	<body>
+		<script src="/includes/js/edos.js"></script>
 		<script>
 			terminal = $('body').terminal({
+				// prints help message to the user
 				help : function() {
 					this.echo('Here is a list of the [[b;;]available commands]\n');
 
@@ -113,41 +53,60 @@
 
 					this.echo('\nYou can also [[b;;]tab complete] file names\n')
 				},
+				// changes current directory to path (must be directory)
 				cd : function(path) {
+					// if path is root directory
 					if (path == "/" || path == "\\"){
 						curr_directory = path_exists(start_directory, file_system, false)
 					}
+
+					// if path exists
 					if (path_exists(path, curr_directory, false)){
+						// if file is directory
 						if (path_exists(path, curr_directory, false)["_type"] == "dir"){
+
+							// switch curr_directory to new directory
 							curr_directory = path_exists(path, curr_directory, false);
+
+							// if curr_directory is at root
 							if (curr_directory["_parent"] == ""){
 								this.set_prompt(curr_directory['_name'] + ">");
 								parent.setActiveTitle("Terminal - " + curr_directory['_name']);
 							}
+							// else curr_directory is below root
 							else{
 								this.set_prompt(curr_directory['_parent'].replace(/\//g, "\\") + "\\" + curr_directory['_name'] + ">");
 								parent.setActiveTitle("Terminal - " + curr_directory['_parent'] + "/" + curr_directory['_name']);
 							}
 						}
+						// else not a directory
 						else{
 							this.echo("The directory name is invalid.");
 						}
 					}
+					// else path does not exist
 					else{
 						this.echo("The system cannot find the path specified.");
 					}
+
 					this.echo();
 				},
+				// close the current tab (must have parent window)
 				exit : function() {
-					parent.closeActive();
+					// if parent window exists
+					if (self != top){
+						parent.closeActive();
+					}
 				},
+				// lists the files present in current directory (+ args)
 				ls : function(...args) {
+					// get arguments from command line
 					var options = $.terminal.parse_options(args);
 
-					// for each file in the directory
+					// for each file in curr_directory
 					for (field in curr_directory){
 
-						// if field begins with _
+						// if field begins with _, ignore it
 						if (field.startsWith("_")){
 							continue;
 						}
@@ -157,7 +116,10 @@
 
 						// if l flag is true
 						if (options.l){
+							// add additional information
 							output += file['_date'] + "\t" + file['_time'] + "\t";
+
+							// if is directory, add <div> tag
 							if (file["_type"] == "dir"){
 								output += "&#60;dir&#62;\t\t";
 							}
@@ -187,94 +149,79 @@
 								output += "[[;;]" + file["_name"] + "]";
 						}
 
-						this.echo(output);
+						// if file type not in hidden list
+						if (!file["_type"].match("html|data")) {
+							this.echo(output);
+						}
 					}
+
 					this.echo();
 				},
+				// displays the message of file passed
 				print : function(msg) {
-					// if is text
+					// if msg is a path that exists and that type is txt
 					if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "txt"){
-						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
-						if (url.startsWith("/ed/")){
-							url = url.substring(4);
-						}
-						else if (url.startsWith("ed/")){
-							url = url.substring(3);
-						}
+						// generate url of file path
+						var url = path_to_url(curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg);
+
 						// ajax request to get file
 						$.ajax({
 							url: url,
 							cache: false,
-							// if request successful
 							success:function(text) {
-								 terminal.echo(text);
+								// print file contents
+								terminal.echo(text);
 							}
-							// if request failed
 							}).fail(function() {
+								// print error message
 								terminal.echo("No such file or directory.\n")
 							}
 						);
 					}
 					// else if image
 					else if (path_exists(msg, curr_directory, true) && path_exists(msg, curr_directory, true)["_type"] == "pic"){
-						var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg;
-						if (url.startsWith("/ed/")){
-							url = url.substring(4);
-						}
-						else if (url.startsWith("ed/")){
-							url = url.substring(3);
-						}
+						// generate url of file path
+						var url = path_to_url(curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + msg);
 
-						this.echo("<img style='width: 50%;' src=\"/" + url + "\"/>\n", {raw: true});
+						// print image
+						this.echo("<img style='width: 50%;' src=\"" + url + "\"/>", {raw: true});
+						this.echo();
 					}
-					// else is normal message
+					// else print passed msg
 					else{
-						if (msg == "hello there"){
-							this.echo("general kenobi\n");
+						switch(msg){
+							// general kenobi easter egg
+							case 'hello there':
+								this.echo('general kenobi');
+								break;
+							// default behaviour prints message
+							default:
+								this.echo(msg);
 						}
-						else{
-							this.echo(msg + "\n");
-						}
+						this.echo();
 					}
 				},
+				// executes fake .exe files according to pre-written instructions
 				run : function(path) {
-					// check path exists
-					if (path_exists(path, curr_directory, true)){
-						if (path_exists(path, curr_directory, true)["_type"] == "html"){
-							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
-							if (url.startsWith("/ed/")){
-								url = url.substring(4);
-							}
-							else if (url.startsWith("ed/")){
-								url = url.substring(3);
-							}
-
-							window.open(url);
-							this.echo();
-						}
-					}
-					else if (path_exists(path+".txt", curr_directory, true)){
+					// if path + ".txt" exists
+					if (path_exists(path+".txt", curr_directory, true)){
 						path += ".txt";
-						if (path_exists(path, curr_directory, true)["_type"] == "exe"){
 
-							var url = curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path;
-							if (url.startsWith("/ed/")){
-								url = url.substring(4);
-							}
-							else if (url.startsWith("ed/")){
-								url = url.substring(3);
-							}
+						// if type of file is an executable
+						if (path_exists(path, curr_directory, true)["_type"] == "exe"){
+							// generate url of file path
+							var url = path_to_url(curr_directory["_parent"] + "/" + curr_directory["_name"] + "/" + path);
+
 							// ajax request to get file
 							$.ajax({
-								url: '/' + url,
+								url: url,
 								cache: false,
-								// if request successful
 								success:function(text) {
-									// commit each command per line
 									var textLines = text.split("\n");
 									var result = {};
 									var i = 0;
 
+									// for each line in file
 									var question_loop = function(textLines){
 										// extract instructions
 										var command = textLines[i].split("~")[0];
@@ -282,58 +229,68 @@
 										var message = textLines[i].split("~")[2];
 										var format = textLines[i].split("~")[3];
 
-										// echo command
-										if (command == 'echo'){
-											terminal.echo(message);
-											i++;
-
-											// if questions left, loop
-											if (i < textLines.length-1){
-												question_loop(textLines);
-											}
-										}
-										// prompt command
-										else if (command == 'prompt'){
-											// asks question and returns to anon function when complete
-											ask_question(message, format, function(res){
+										// switch on type of command
+										switch(command){
+											case 'echo':
+												// print message
+												terminal.echo(message);
 												i++;
-												result[name] = res;
 
 												// if questions left, loop
 												if (i < textLines.length-1){
 													question_loop(textLines);
 												}
-											});
-										}
-										// execute commands
-										else if (command == 'execute'){
-											// preset commands
-											switch (name) {
-											case 'email':
-												if (result["confirm"] == "y"){
-													$.ajax({
-													 	url: "https://usebasin.com/f/441f945eb655.json",
-														method: "POST",
-														data: {message: result["message"], email: result["email"]},
-														dataType: "json",
-														success: function(){
-															alert("Email sent successfully.");
-														}
-												  }).fail(function() {
-														alert("Error: Email not sent.")
-													});
-										 		 }
-											break;
-											case 'redirect':
-												window.open(message);
 												break;
-										  case 'tab':
-										 		parent.newTab(message);
-												parent.setActiveTitle("Post Viewer - " + message.substring(1, message.length));
+											case 'prompt':
+											// asks question and returns to anon function when complete
+												ask_question(message, format, function(res){
+													i++;
+													result[name] = res;
+
+													// if questions left, loop
+													if (i < textLines.length-1){
+														question_loop(textLines);
+													}
+												});
+												break;
+											case 'execute':
+												// switch on type of execute
+												switch (name) {
+													case 'email':
+														// if user has confirmed to send
+														if (result["confirm"] == "y"){
+
+															// ajax request to post email
+															$.ajax({
+																url: "https://usebasin.com/f/441f945eb655.json",
+																method: "POST",
+																data: {message: result["message"], email: result["email"]},
+																dataType: "json",
+																success: function(){
+																	alert("Email sent successfully.");
+																}
+															}).fail(function() {
+																alert("Error: Email not sent.")
+															});
+													  }
+													  break;
+												  case 'redirect':
+												 		// redirect user to url
+		 												window.open(message);
+		 												break;
+		 										  case 'tab':
+														// open new tab for user
+		 										 		parent.newTab(message);
+		 												parent.setActiveTitle("Post Viewer - " + message.substring(1, message.length));
+		 												break;
+		 											default:
+														console.log("Error - Executable command not recognised: " + name);
+												}
 												break;
 											default:
-											}
+												console.log("Error - Command not recognised: " + command);
 										}
+
 									}
 
 									// call question loop
@@ -362,7 +319,7 @@
 				},
 				completion : function(){
 					var commands=[];
-					// var commands = ["cat", "cd", "clear", "echo", "ls", "help"];
+					// var commands = ["cd", "clear", "exit", "help", "ls", "print", "run"];
 					for (field in curr_directory){
 						// if field begins with _
 						if (field.startsWith("_")){

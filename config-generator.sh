@@ -10,13 +10,6 @@ recursivemap() {
       continue
     fi
 
-    # ignore index.html and 404.html at root
-    if [[ $1 = "ed" ]] && [[ $file = "index.html" ]]; then
-      continue
-    elif [[ $1 = "ed" ]] && [[ $file = "404.html" ]]; then
-      continue
-    fi
-
     # get file last modification date and time
     _date=$(date -r $file "+%d/%m/%Y")
     _time=$(date -r $file "+%H:%M")
@@ -33,17 +26,19 @@ recursivemap() {
       # if is executable
       if [[ $file = *".exe"* ]]; then
         echo "\"$file\":{\"_name\": \"${file::-4}\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"exe\", \"_parent\": \"$1\"},"
+      # if is text
+      elif [[ $file = *".txt" ]]; then
+        echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"txt\", \"_parent\": \"$1\"},"
       # if is picture
       elif [[ $file = *".png" ]] || [[ $file = *".jpg" ]]; then
         echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"pic\", \"_parent\": \"$1\"},"
       # if is webpage
       elif [[ $file = *".html" ]]; then
         echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"html\", \"_parent\": \"$1\"},"
-      # else is text
+      # else is data
       else
-        echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"txt\", \"_parent\": \"$1\"},"
+        echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"data\", \"_parent\": \"$1\"},"
       fi
-
     fi
   done
 }

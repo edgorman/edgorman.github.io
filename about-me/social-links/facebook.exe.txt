@@ -1,4 +1,4 @@
-echo~~~
-echo~~Redirecting . . .~
-echo~~~
-execute~redirect~https://www.facebook.com/edward.john.gorman/~
+echo~~~~
+echo~~Redirecting . . .~~
+echo~~~~
+execute~redirect~https://www.facebook.com/edward.john.gorman/~~

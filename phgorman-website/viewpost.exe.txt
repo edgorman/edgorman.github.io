@@ -1,4 +1,4 @@
-echo~~~
-echo~~Redirecting . . .~
-echo~~~
-execute~tab~/phgorman-website/~
+echo~~~~
+echo~~Redirecting . . .~~
+echo~~~~
+execute~tab~/phgorman-website/~~

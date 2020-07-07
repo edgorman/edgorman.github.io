@@ -1,4 +1,4 @@
-echo~~~
-echo~~Redirecting . . .~
-echo~~~
-execute~redirect~https://www.instagram.com/edgy_gorman/~
+echo~~~~
+echo~~Redirecting . . .~~
+echo~~~~
+execute~redirect~https://www.instagram.com/edgy_gorman/~~

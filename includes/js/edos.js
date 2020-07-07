@@ -1,3 +1,79 @@
+function path_to_url(path){
+  // if starts with /, remove it
+  if (path.startsWith("/")){
+    path = path.substring(1, path.length);
+  }
+
+  // if starts with ed/, remove it
+  if (path.startsWith("ed")){
+    path = path.substring(2, path.length);
+  }
+
+  return path;
+}
+
+function path_exists(path, from_dir, file_flag){
+  if (path == undefined){
+    return false;
+  }
+
+  let segments = path.split(/[\\/]/);
+  let temp_directory = from_dir;
+
+  // for each segment
+  for (let i=0; i < segments.length; i++){
+    var seg = segments[i];
+
+    if (seg == "" || seg == "."){									// self
+      continue;
+    }
+    else if (seg == '..'){												// parent dir
+      if (temp_directory["_parent"] != ""){
+        temp_directory = path_exists(temp_directory["_parent"], file_system, file_flag);
+      }
+    }
+    else if (temp_directory[seg] != null){				// child
+      if (temp_directory[seg]["_type"] == "dir" || file_flag){
+        temp_directory = temp_directory[seg];
+      }
+      else{
+        return false;
+      }
+    }
+    else{																					// n/a
+      return false;
+    }
+  }
+  return temp_directory;
+}
+
+function ask_question(question, format, callback){
+  terminal.push(function(input){
+    if (new RegExp(format).test(input)){
+      terminal.pop();
+      callback(input);
+    }
+  }, {
+      prompt: question + ' '
+  });
+}
+
+function send_email(result){
+  if (result["confirm"] == "y"){
+    $.ajax({
+      url: "https://usebasin.com/f/441f945eb655.json",
+      method: "POST",
+      data: {message: result["message"], email: result["email"]},
+      dataType: "json",
+      success: function(){
+        alert("Email sent successfully.");
+      }
+    }).fail(function() {
+      alert("Error: Email not sent.")
+    });
+  }
+}
+
 var maxTabCount = 6;
 var tabIndex = 0;
 
@@ -64,6 +140,6 @@ function redirectActive(path){
 }
 
 function closeActive(){
-  $('li a.active').parent().remove();
-  $('.tab-pane.active').remove();
+  var id = $('.tab-pane.active').attr('id').substring(1,2);
+  closeTab(id);
 }

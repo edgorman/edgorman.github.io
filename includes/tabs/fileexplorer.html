@@ -7,71 +7,84 @@
 		<link rel="stylesheet" type="text/css" href="/includes/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/includes/css/edos.css"/>
 		<link rel="icon" type="image/png" href="/includes/img/favicon.png"/>
-		<title></title>
+		<title>ed</title>
+		<script>
+			var json_data;
+
+			$.ajax({
+				url: "/config.json",
+				cache: false,
+				async: false,
+				// if request successful
+				success:function(json) {
+					json_data = json;
+				}
+				// if request failed
+				}).fail(function() {
+					alert("Error: Failed to retrieve config.json");
+					window.stop();
+				}
+			);
+
+
+			const file_system = json_data['directory'];
+			var start_directory = "ed";
+			var curr_directory = file_system[start_directory]
+			parent.setActiveTitle("Terminal - " + start_directory);
+		</script>
   </head>
   <body class="newtab">
-		<div class="container-fluid h-100 w-100">
-		  <div class="row">
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+		<div class="container-fluid h-100 w-100 d-flex flex-column">
+			<div class="row flex-grow-1">
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
-				<div class="col-6 col-sm-4 col-md-3 d-flex justify-content-center tab-icon">
-					<div class="folder" style="width: 72px; height: 72px;"></div>
-					<span>longer-folder-name</span>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-6 col-12 d-flex align-items-center justify-content-center tab-icon">
+					<div class="folder" style="height: 100px; width: 100px;"><span>folder-name</span></div>
 				</div>
 			</div>
 		</div>
 		<script>
-			parent.setActiveTitle("File Explorer");
+			//parent.setActiveTitle("File Explorer");
 		</script>
 		<script src="/includes/js/edos.js"></script>
   </body>
