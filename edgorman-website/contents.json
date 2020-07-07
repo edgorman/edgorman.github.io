@@ -1,26 +1,27 @@
 {
   "headimg": null,
   "title": "EdGorman Github Website",
-  "date": "01-07-2020",
-  "time": "22:30",
+  "date": "07-07-2020",
+  "time": "13:10",
   "type": "Web Development",
   "links": [
     "email", "twitter", "linkedin"
   ],
   "content": [
-    "p Welcome to my post about my personal website (the one you're viewing right now!) where I discuss the inspiration behind it and how I went about implementing the various designs. This is the first style of post I am writing for this site, so if you have any feedback please get in touch.",
-    "b Inspiration",
-    "p I have experience with about a dozen websites previously so I know which aspects I enjoy designing and which I do not. Normally I revel in designing a user experience which works across all devices even if youre adjusting the screen size from 4k to mobile without reloading; however, this is often a laborious task that takes far longer than what I had intended to do with the website. Because of this I considered designs that were simple from the start, anticipating that I would add complexity as small changes came to me through development.",
-    "p The design that won out of these was a terminal command line interface, due to my consideration of switching from a primarily Windows-based system to a Linux-based one. The idea for a terminal style website is not a unqiue one and has been implemented in many other personal websites, as I suspect others may also have grown tired of far-fetched front-end code. There was also the added restriction that the site be statically generated, meaning no sever-side code or file-handling would (although not in reality, see later) have been possible.",
-    "b Terminal Interface",
-    "p I began development with a google search (as all great projects do) to see what resources are available and if it's been done before. Sure enough, a JavaScript library known as JQuery Terminal [1] was exactly what I was looking for by offering the front-end interface completely implemented and allowing the ability to add custom commands with a high degree of freedom. Their website is also extremely well-documented, boasting an examples page full of useful code snippets that are easy to adapt and often implement the most challenging aspects already.",
-    "p I decided to jump in head first and begin developing the website with the goal of being able to navigate the actual file system running the site, except for some restricted sections and files. This led me to implement basic commands such as echo, help, ls and cd with the idea of adding further complexity later. File content could be navigated via a configuration file that would store extra information about the directories, and remove the need for additional files in each directory.",
+    "p Hello there! Welcome to my personal website (the one you're viewing right now!) where I explain the inspiration and technical implementation for the various aspects you may have or will encounter. This is actually my second time writing this post as I have since expanded greatly on the scope of the site, as you will learn shortly.",
+    "b Terminal",
+    "p I initially began this site with the idea for creating a command line interface which would directly interact with the files in the web folder itself. The purpose behind this was to avoid sinking time into designing a user interface, and focus my attentino on the actual coding projects. I found JQuery Terminal [1], a client-side terminal interface with the ability to add custom commands and interact with Ajax requests, which would be my method for interacting with the site since server-side requests are not allowed on Github Pages.",
     "i terminal.png~Example of Terminal.",
-    "p This configuration file could be accessed via an Ajax request which would retrieve the content of the JSON file and store it in a constant global JavaScript variable. However, I quickly realised that updating this configuration file was a big time-waster and could be automated using a bash script to navigate the file structure and construct the JSON file itself. This was perhaps the most bespoke aspect of my website, but will undoubtedly save me many hours of adjusting the config file and fixing errors made during these changes.",
-    "p The final hurdle I wanted to overcome was the ability to execute \".exe\" files; these would prompt the user with questions or complete actions for them, such as sending me an email or directing them to another webpage. I drew inspiration from malicious files who use double file extensions to mask the true nature of their file, by writing \".exe.txt\" as the extension for these files so that no actual executables were present and my automatic configuration generater script would know which files were fake \".exe\"'s.",
-    "b Project Pages",
-    "p While I enjoyed the terminal interface I wanted more freedom to write posts about projects I completed just in case I ever wanted to send them a link about it without intimidating them with the terminal interface. Hence, I constructed these project template pages for normal text posts and Juypter notebooks, with some included automation for sharing links and getting the date/time of the post. As of the time of writing the root landing page is still the terminal interface, which may change but for now I think I'll keep it as it is.",
-    "p Oh, and you can thank me later for the dark mode button ;)."
+    "p I went about implementing the basic commands such as cd, clear, exit, ls, and print, as well as one advanced command 'run' which would perform pre-written instructions according to executable files activated by the user. This included the ability to email me (see /about-me/message-me.exe), as well as redirect to new webpages or simply print a message to the user. After some trials with my brother and father to help make this more intuitive, I had finished! However, I had got to thinking what if I just wanted to show someone the project without navigating the site... uh oh.",
+    "b Post Viewer",
+    "p So naturally I began work on a post viewer webpage capable of automatically filling in information from a contents.json file in the same directory. This included the title of the page, time/date of the post, which social links to show, the writing in the page itself and the references section at the end. Alongside this was the dark mode button for my nocturnal friends, and several formatting types for the contents including headings, images, quotes and pseudocode.",
+    "i postviewer.png~Example of Post Viewer.",
+    "p For the website I wanted it to automatically redirect to some landing page if an incorrect path was entered, yet I wanted people to be able to directly visit each post. Sounds easy right, just place an index.html in each folder where theres a post (not what I had in mind ;)).I decided to host a single post viewer webpage as the 404 page for the entire website: it would first check whether the url referred to a folder containing a contents.json file and if so display the post viewer; else, redirect to some landing page. I didnt want this landing page to be the terminal in case that was too confusing though, and so I decided to construct a tab system... not again!!!",
+    "b Tab System",
+    "p Right hopefully this is the last big think I decide to implement (for the sake of the rest of my summer). This is where the site as it is starts to come together, with the EdOS landing page where users can open tabs and either access the terminal, file explorer or post viewer. The file explorer is simply an extension of the terminal page but with a gui so that was rather simple to implement since it just required the ability to open files and run executable scripts. The style is clearly influenced by a Chrome style application but I didnt want to spend forever designing my own.",
+    "i tabsystem.png~Example of Tab Page.",
+    "p And there you have it! This is how the site as it is came to be, I hope you enjoyed reading this article and remember to message-me.exe if you have any suggestions or projects you'd like to discuss. Thanks for reading.",
+    "p - Ed"
   ],
   "refs": [
     "JQuery Terminal~https://terminal.jcubic.pl/"
