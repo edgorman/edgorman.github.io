@@ -58,13 +58,13 @@ function load_project(path){
   for (key in config_data['links']){
     switch(config_data['links'][key]) {
       case "email":
-        $('#pagelinks').append("<a class=\"ml-1\" href=\"mailto:?subject=" + sub + "&body=" + url + "\"><i class=\"fas fa-envelope-square\"></i></a>");
+        $('#pagelinks').append("<a class=\"ml-1\" href=\"mailto:?subject=" + sub + "&body=" + url + "\" target=\"_blank\" ><i class=\"fas fa-envelope-square\"></i></a>");
         break;
       case "twitter":
-        $('#pagelinks').append("<a class=\"ml-1\" href=\"https://twitter.com/intent/tweet?url=" + url + "&text=" + sub + "\"><i class=\"fab fa-twitter-square\"></i></a>");
+        $('#pagelinks').append("<a class=\"ml-1\" href=\"https://twitter.com/intent/tweet?url=" + url + "&text=" + sub + "\" target=\"_blank\"><i class=\"fab fa-twitter-square\"></i></a>");
         break;
-      case "linkedin":
-        $('#pagelinks').append("<a class=\"ml-1\" href=\"https://www.linkedin.com/sharing/share-offsite/?url=" + url + "\"><i class=\"fab fa-linkedin\"></i></a>");
+      case "linkedin": //https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.css-tricks.com%2F&title=CSS-Tricks
+        $('#pagelinks').append("<a class=\"ml-1\" href=\"https://www.linkedin.com/shareArticle?mini=true&url=" + url + "\" target=\"_blank\"><i class=\"fab fa-linkedin\"></i></a>");
         break;
       default:
         console.log("Error: Page link not indentified: " + key);
