@@ -1,4 +1,1 @@
-echo~~~~
-echo~~Redirecting . . .~~
-echo~~~~
 execute~redirect~https://steamcommunity.com/id/goreman3/~~

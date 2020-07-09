@@ -85,17 +85,16 @@ li a.active .tab-overlay{
 }
 
 /* WINDOW */
-
-.tab-pane{
-  height: 100%;
-}
-
 .tab-content{
   width: 100%;
   border: 5px solid #383838;
 }
 
-.tab-content iframe{
+.tab-pane{
+  height: 100%;
+}
+
+.tab-pane iframe{
   height: 100%;
   width: 100%;
   border: none;
@@ -132,4 +131,29 @@ li a.active .tab-overlay{
   bottom: 0;
   text-align: center;
   font-size: 14px;
+}
+
+/* FILE EXPLORER */
+.search-bar{
+  width: 50%;
+  min-width: 300px;
+}
+
+.search-bar input{
+  height: 30px;
+  width: 33vw;
+  min-width: 250px;
+
+  font-size: 12px;
+  border: 1px solid #6c757d;
+  background-color: #383838;
+}
+
+.search-bar input:active,
+.search-bar input:focus{
+  background-color: #101010;
+}
+
+.search-bar button{
+  width: 40px;
 }

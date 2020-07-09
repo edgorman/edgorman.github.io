@@ -1,4 +1,1 @@
-echo~~~~
-echo~~Redirecting . . .~~
-echo~~~~
 execute~redirect~https://twitter.com/edgygorman~~
