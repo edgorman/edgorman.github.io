@@ -233,7 +233,7 @@
 										switch(command){
 											case 'echo':
 												// print message
-												terminal.echo(message);
+												terminal.echo("[[b;;]"+message+"]");
 												i++;
 
 												// if questions left, loop
@@ -242,8 +242,20 @@
 												}
 												break;
 											case 'prompt':
-											// asks question and returns to anon function when complete
-												ask_question(message, format, function(res){
+												// asks question and returns to anon function when complete
+												ask_question("[[b;;]"+message+"]", format, function(res){
+													i++;
+													result[name] = res;
+
+													// if questions left, loop
+													if (i < textLines.length-1){
+														question_loop(textLines);
+													}
+												});
+												break;
+											case 'confirm':
+												// asks question and returns to anon function when complete
+												ask_question("[[b;;]"+message+"]", format, function(res){
 													i++;
 													result[name] = res;
 
@@ -259,7 +271,6 @@
 													case 'email':
 														// if user has confirmed to send
 														if (result["confirm"] == "y"){
-
 															// ajax request to post email
 															$.ajax({
 																url: "https://usebasin.com/f/441f945eb655.json",
@@ -270,16 +281,19 @@
 																	alert("Email sent successfully.");
 																}
 															}).fail(function() {
-																alert("Error: Email not sent.")
+																alert("Error: Email not sent.");
 															});
 													  }
+														terminal.echo();
 													  break;
 												  case 'redirect':
 												 		// redirect user to url
+														terminal.echo("Redirecting . . .\n");
 		 												window.open(message);
 		 												break;
 		 										  case 'tab':
 														// open new tab for user
+														terminal.echo("Redirecting . . .\n");
 		 										 		parent.newTab(message);
 		 												parent.setActiveTitle("Post Viewer - " + message.substring(1, message.length));
 		 												break;
@@ -294,6 +308,7 @@
 									}
 
 									// call question loop
+									terminal.echo();
 									question_loop(textLines);
 								}
 								// if request fails

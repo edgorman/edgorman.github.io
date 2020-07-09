@@ -139,6 +139,11 @@ function setActiveTitle(title){
   $('li#t'+id).attr("title", title);
 }
 
+function setActiveBackground(color){
+  var id = $('li a.active').attr('href').substring(2, 3);
+  $('.tab-pane#p'+id).css("background", color);
+}
+
 function redirectActive(path){
   setActiveTitle('<div class="spinner-border text-light" style="height: 15px; width: 15px;" role="status"><span class="sr-only">Loading...</span></div>');
   $('.tab-pane.active').html("<iframe src=\""+path+"\"></iframe>");

@@ -1,9 +1,5 @@
-echo~~~~
 echo~~This is the service for contacting Edward Gorman.~~
-echo~~~~
-prompt~email~[[b;;]Enter your email:]~^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$~
-prompt~message~[[b;;]Enter your message:]~^[A-Za-z0-9 _.,!"'/$@]*$~
-echo~~~~
-prompt~confirm~[[b;;]Confirm send (y/n):]~^(y|n)$~
-echo~~~~
+prompt~email~Enter your email:~^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$~
+prompt~message~Enter your message:~^[A-Za-z0-9 _.,!"'/$@]+$~
+confirm~confirm~Confirm send (y/n):~^(y|n)$~
 execute~email~~~

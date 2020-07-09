@@ -1,4 +1,1 @@
-echo~~~~
-echo~~Redirecting . . .~~
-echo~~~~
 execute~redirect~https://www.linkedin.com/in/edward-john-gorman/~~
