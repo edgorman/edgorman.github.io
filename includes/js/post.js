@@ -63,7 +63,7 @@ function load_project(path){
       case "twitter":
         $('#pagelinks').append("<a class=\"ml-1\" href=\"https://twitter.com/intent/tweet?url=" + url + "&text=" + sub + "\" target=\"_blank\"><i class=\"fab fa-twitter-square\"></i></a>");
         break;
-      case "linkedin": //https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.css-tricks.com%2F&title=CSS-Tricks
+      case "linkedin":
         $('#pagelinks').append("<a class=\"ml-1\" href=\"https://www.linkedin.com/shareArticle?mini=true&url=" + url + "\" target=\"_blank\"><i class=\"fab fa-linkedin\"></i></a>");
         break;
       default:
