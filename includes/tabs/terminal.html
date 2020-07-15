@@ -332,9 +332,42 @@
 								 location.reload();
 						}
 				},
-				completion : function(){
+				doubleTab : function(){
+
+				},
+				completion : function(string){
+					// // get command atttributes
+					// var cmd = $.terminal.parse_command(this.before_cursor());
+					// var path = cmd["args"][0];
+					// let tmp_directory = null;
+					//
+					// // switch on command name
+					// switch (cmd["name"]){
+					// 	case 'cd':
+					// 		tmp_directory = path_exists(path, curr_directory, false);
+					// 	break;
+					// 	case 'clear':
+					// 		tmp_directory = null;
+					// 	break;
+					// 	case 'exit':
+					// 		tmp_directory = null;
+					// 	break;
+					// 	case 'ls':
+					// 		tmp_directory = path_exists(path, curr_directory, false);
+					// 	break;
+					// 	case 'print':
+					// 		tmp_directory = path_exists(path, curr_directory, true);
+					// 	break;
+					// 	case 'run':
+					// 		tmp_directory = path_exists(path, curr_directory, true);
+					// 	break;
+					// 	default:
+					// 		tmp_directory = null;
+					// }
+					//
+					// console.log(tmp_directory);
+
 					var commands=[];
-					// var commands = ["cd", "clear", "exit", "help", "ls", "print", "run"];
 					for (field in curr_directory){
 						// if field begins with _
 						if (field.startsWith("_")){

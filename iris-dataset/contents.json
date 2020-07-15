@@ -1,0 +1,16 @@
+{
+  "headimg": null,
+  "title": "Iris Data Set",
+  "date": "15-07-2020",
+  "time": "10:20",
+  "type": "Machine Learning",
+  "links": [
+    "email", "twitter", "linkedin"
+  ],
+  "content": [
+    "f iris-dataset.html"
+  ],
+  "refs": [
+    "Iris Data Set~https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html"
+  ]
+}

@@ -67,6 +67,11 @@ body.dark .blockquote-footer{
   font-weight: 100;
 }
 
+#pagereferences li a{
+  display: list-item;
+  overflow: hidden;
+}
+
 /* IMAGES */
 .modal-image .modal {
   display: none; /* Hidden by default */
