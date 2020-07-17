@@ -48,10 +48,9 @@
 					this.echo('[[b;;]exit] \t\t Closes the current tab')
 					this.echo('[[b;;]ls] \t\t\t Displays files in current directory');
 					this.echo('\t\t\t [[b;;]-l] \t Long listing format')
-					this.echo('[[b;;]print] \t\t Displays [[b;;;]text] and [[b;#a6a600;]images]');
-					this.echo('[[b;;]run] \t\t Run an [[b;green;]executable] file');
+					this.echo('[[b;;]print] \t\t Displays text, [[b;;;]txt files], [[b;#a6a600;]image files]');
 
-					this.echo('\nYou can also [[b;;]tab complete] file names\n')
+					this.echo('\nYou can also [[b;;]tab complete] file names and\n[[b;;]run] [[b;green;]executables] by entering the file name\n');
 				},
 				// changes current directory to path (must be directory)
 				cd : function(path) {
@@ -200,9 +199,64 @@
 						}
 						this.echo();
 					}
+				}
+			}, {
+				name : 'edgorman.github.io terminal',
+				keymap : {
+						'CTRL+R': function(e, original) {
+								 location.reload();
+						}
 				},
-				// executes fake .exe files according to pre-written instructions
-				run : function(path) {
+				doubleTab : function(){
+
+				},
+				completion : function(string){
+					// // get command atttributes
+					// var cmd = $.terminal.parse_command(this.before_cursor());
+					// var path = cmd["args"][0];
+					// let tmp_directory = null;
+					//
+					// // switch on command name
+					// switch (cmd["name"]){
+					// 	case 'cd':
+					// 		tmp_directory = path_exists(path, curr_directory, false);
+					// 	break;
+					// 	case 'clear':
+					// 		tmp_directory = null;
+					// 	break;
+					// 	case 'exit':
+					// 		tmp_directory = null;
+					// 	break;
+					// 	case 'ls':
+					// 		tmp_directory = path_exists(path, curr_directory, false);
+					// 	break;
+					// 	case 'print':
+					// 		tmp_directory = path_exists(path, curr_directory, true);
+					// 	break;
+					// 	case 'run':
+					// 		tmp_directory = path_exists(path, curr_directory, true);
+					// 	break;
+					// 	default:
+					// 		tmp_directory = null;
+					// }
+					//
+					// console.log(tmp_directory);
+
+					var commands=[];
+					for (field in curr_directory){
+						// if field begins with _
+						if (field.startsWith("_")){
+							continue;
+						}
+						else{
+							commands.push(curr_directory[field]["_name"]);
+						}
+					}
+					return commands;
+				},
+				onCommandNotFound : function(command, terminal){
+					var path = command;
+
 					// if path + ".txt" exists
 					if (path_exists(path+".txt", curr_directory, true)){
 						path += ".txt";
@@ -313,71 +367,17 @@
 								}
 								// if request fails
 							}).fail(function() {
-								terminal.echo("No such file or directory.\n");
+								terminal.echo("[[;red;]Error: Command not found '" + command + "'\n");
 							});
 
 						}
 						else{
-							this.echo("File is not an executable.\n");
+							terminal.echo("[[;red;]Error: Command not found '" + command + "'\n");
 						}
 					}
 					else{
-						this.echo("No such file or directory.\n");
+						this.echo("[[;red;]Error: Command not found '" + command + "'\n");
 					}
-				}
-			}, {
-				name : 'edgorman.github.io terminal',
-				keymap : {
-						'CTRL+R': function(e, original) {
-								 location.reload();
-						}
-				},
-				doubleTab : function(){
-
-				},
-				completion : function(string){
-					// // get command atttributes
-					// var cmd = $.terminal.parse_command(this.before_cursor());
-					// var path = cmd["args"][0];
-					// let tmp_directory = null;
-					//
-					// // switch on command name
-					// switch (cmd["name"]){
-					// 	case 'cd':
-					// 		tmp_directory = path_exists(path, curr_directory, false);
-					// 	break;
-					// 	case 'clear':
-					// 		tmp_directory = null;
-					// 	break;
-					// 	case 'exit':
-					// 		tmp_directory = null;
-					// 	break;
-					// 	case 'ls':
-					// 		tmp_directory = path_exists(path, curr_directory, false);
-					// 	break;
-					// 	case 'print':
-					// 		tmp_directory = path_exists(path, curr_directory, true);
-					// 	break;
-					// 	case 'run':
-					// 		tmp_directory = path_exists(path, curr_directory, true);
-					// 	break;
-					// 	default:
-					// 		tmp_directory = null;
-					// }
-					//
-					// console.log(tmp_directory);
-
-					var commands=[];
-					for (field in curr_directory){
-						// if field begins with _
-						if (field.startsWith("_")){
-							continue;
-						}
-						else{
-							commands.push(curr_directory[field]["_name"]);
-						}
-					}
-					return commands;
 				},
 				exceptionHandler : function(exception){
 					alert(exception);
