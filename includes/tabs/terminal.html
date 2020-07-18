@@ -211,45 +211,47 @@
 
 				},
 				completion : function(string){
-					// // get command atttributes
-					// var cmd = $.terminal.parse_command(this.before_cursor());
-					// var path = cmd["args"][0];
-					// let tmp_directory = null;
-					//
-					// // switch on command name
-					// switch (cmd["name"]){
-					// 	case 'cd':
-					// 		tmp_directory = path_exists(path, curr_directory, false);
-					// 	break;
-					// 	case 'clear':
-					// 		tmp_directory = null;
-					// 	break;
-					// 	case 'exit':
-					// 		tmp_directory = null;
-					// 	break;
-					// 	case 'ls':
-					// 		tmp_directory = path_exists(path, curr_directory, false);
-					// 	break;
-					// 	case 'print':
-					// 		tmp_directory = path_exists(path, curr_directory, true);
-					// 	break;
-					// 	case 'run':
-					// 		tmp_directory = path_exists(path, curr_directory, true);
-					// 	break;
-					// 	default:
-					// 		tmp_directory = null;
-					// }
-					//
-					// console.log(tmp_directory);
+					// get command atttributes
+					var cmd = $.terminal.parse_command(this.before_cursor());
+					var path = "";
 
+					// if command 'rest' is empty
+					if (cmd.rest == ""){
+						path = cmd.name;
+					}
+					else {
+						path = cmd.rest;
+					}
+
+					var segments = path.split(/[\\/]/);
+					var tmp_directory = null;
+
+					// if tab in current directory
+					if (segments.length == 1){
+						tmp_directory = curr_directory;
+					}
+					else{
+						path = segments.slice(0, segments.length-1).join('/');
+						tmp_directory = path_exists(path, curr_directory, false);
+					}
+
+					var entry = "";
 					var commands=[];
-					for (field in curr_directory){
+
+					// add files to completion list
+					for (field in tmp_directory){
 						// if field begins with _
 						if (field.startsWith("_")){
 							continue;
 						}
 						else{
-							commands.push(curr_directory[field]["_name"]);
+							if (segments.length == 1){
+								entry = tmp_directory[field]["_name"];
+							}
+							else{
+								entry = path + "/" + tmp_directory[field]["_name"];
+							}
+							commands.push(entry);
 						}
 					}
 					return commands;
