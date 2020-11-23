@@ -1,1 +1,0 @@
-execute~redirect~https://open.spotify.com/user/ed-gorman~~
