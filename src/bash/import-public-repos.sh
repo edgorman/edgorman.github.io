@@ -7,15 +7,17 @@
 # Import the repositories from https://github.com/edgorman as submodules
 # By Edward Gorman <ejgorman@gmail.com>
 
-# test=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/edgorman/repos | jq --join-output '[.[] | .html_url]')
-# echo "$test"
-
-curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/edgorman/repos | \
+# Get json containing repo info and parse using jq
+curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/edgorman/repos | \
 jq -rc '.[]' | \
+# For each repo found
 while IFS='' read repository
 do
-    name=$(echo "$repository" | jq .name | tail -c +2 | head -c -3)
+    # Extract the url of the repo
     url=$(echo "$repository" | jq .html_url | tail -c +2 | head -c -3)
-    # echo "${PWD}"/../../$name
-    git submodule add $url /../../
+    # Add repo as submodule
+    git submodule add $url
 done
+
+# Update all submodules
+git pull --recurse-submodules
