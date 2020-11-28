@@ -1,9 +1,302 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-  </head>
-  <body style="text-align: center;">
-    <img title="it's a joke, nothings loading" src="https://i.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.webp"/>
-  </body>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="src/js/jquery-3.3.1.min.js"></script>
+		<script src="src/js/jquery.terminal.min.js"></script>
+		<script src="src/js/echo_newline.js"></script>
+		<link rel="stylesheet" href="src/css/jquery.terminal.min.css"/>
+		<link rel="icon" type="image/png" href="src/img/favicon.png">
+		<title>edgorman.github.io</title>
+		<script>
+			var json_data;
+
+			$.ajax({
+				url: "config.json",
+				cache: false,
+				async: false,
+				// if request successful
+				success:function(json) {
+					json_data = json;
+				}
+				// if request failed
+				}).fail(function() {
+					alert("Error: Failed to retrieve config.json");
+					window.stop();
+				}
+			);
+			
+			var terminal;
+			var start_directory = "/";
+			const file_system = json_data['directory'][start_directory];
+			var curr_directory = file_system;
+
+			var user = "guest";
+			var host = "edgorman.github.io";
+
+		</script>
+	</head>
+	<body>
+		<script src="src/js/script.js"></script>
+		<script>
+			terminal = $('body').terminal({
+				// prints help message to the user
+				help : function() {
+					this.echo('Here is a list of the available commands\n');
+
+					// 		 	command			description
+					this.echo('[[b;;]cat] \t\t Prints file to terminal')
+					this.echo('[[b;;]cd] \t\t\t Change the current directory');
+					this.echo('[[b;;]clear] \t\t Clears the terminal screen');
+					this.echo('[[b;;]echo] \t\t Prints the string to terminal')
+					this.echo('[[b;;]exit] \t\t Closes the current window')
+					this.echo('[[b;;]login] \t\t Login as a user')
+					this.echo('\t\t\t [[b;;]-u] \t Username')
+					this.echo('\t\t\t [[b;;]-p] \t Password')
+					this.echo('[[b;;]ls] \t\t\t Displays files in current directory');
+					this.echo('\t\t\t [[b;;]-a] \t Include hidden files')
+					this.echo('\t\t\t [[b;;]-l] \t Long listing format')
+					this.echo('[[b;;]whoami] \t\t Prints name of current user');
+
+					this.echo('\nYou can also tab complete file names and\nrun executables by entering the file name\n');
+				},
+				// displays the file passed
+				cat : function(file) {
+					found_file = path_exists(file, curr_directory, true);
+					// if its a file that exists
+					if (found_file){
+						// if it is a directory
+						if (found_file["_type"] == "dir"){
+							this.echo("Cannot 'cat' a directory.")
+						}
+						else{
+							// if it is a picture
+							if (found_file["_type"] == "pic"){
+								this.echo("<img style='width: 50%;' src=\"" + url + "\"/>", {raw: true});
+								this.echo();
+							}
+							// else it is any file
+							else{
+								var path = curr_directory["_parent"] + curr_directory["_name"] + "/" + file;
+								if (path.startsWith("//")){
+									path = path.substring(2, path.length);
+								}
+								$.ajax({
+									url: path,
+									cache: false,
+									success:function(text) {
+										terminal.echo(text);
+									}
+									}).fail(function() {
+										terminal.echo("No such file or directory")
+									}
+								);
+							}
+						}
+					}
+					else{
+						this.echo("No such file could be found.");
+					}
+					this.echo();
+				},
+				// changes current directory to path (must be directory)
+				cd : function(path) {
+					// if path is root directory
+					if (path == "/" || path == "\\"){
+						curr_directory = path_exists(start_directory, file_system, false);
+					}
+					
+					found_file = path_exists(path, curr_directory, false);
+					// if its a file that exists
+					if (found_file){
+						// if it is a directory
+						if (found_file["_type"] == "dir"){
+							// switch curr_directory to new directory
+							curr_directory = found_file;
+
+							// if curr_directory is at root
+							if (curr_directory["_parent"] == ""){
+								this.set_prompt(user + "@" + host + ":" + curr_directory['_name'] + "$ ");
+							}
+							// else curr_directory is below root
+							else{
+								this.set_prompt(user + "@" + host + ":" + curr_directory['_parent'] + curr_directory['_name'] + "$ ");
+							}
+						}
+						else{
+							this.echo("The directory name is invalid.");
+						}
+					}
+					else{
+						this.echo("The system cannot find the path specified.");
+					}
+					this.echo();
+				},
+				// print the message passed
+				echo : function(msg) {
+					alert(msg);
+					switch(msg){
+						// general kenobi easter egg
+						case 'hello there':
+							this.echo('general kenobi');
+							break;
+						// default behaviour prints message
+						default:
+							this.echo(msg);
+					}
+					this.echo()
+				},
+				// close the current tab
+				exit : function() {
+					this.echo("Logging out of " + user + "... Goodbye!")
+					this.echo();
+
+					this.set_prompt("");
+					this.freeze(true);
+				},
+				// login function for hacking stuff
+				login : function(...args){
+					// TODO: another time
+					this.echo("Sorry not implemented yet, come back later!\n");
+				},
+				// lists the files present in current directory (+ args)
+				ls : function(...args) {
+					// get arguments from command line
+					var options = $.terminal.parse_options(args);
+
+					// for each file in curr_directory
+					for (field in curr_directory){
+
+						// if field begins with _, ignore it
+						if (field.startsWith("_")){
+							continue;
+						}
+
+						// if field begins with ., ignore it unless flag
+						if (field.startsWith(".") && !options.a){
+							continue
+						}
+						var file = curr_directory[field];
+						var output = "";
+
+						// if l flag is true
+						if (options.l){
+							// add additional information
+							output += file['_date'] + "\t" + file['_time'] + "\t";
+
+							// if is directory, add <div> tag
+							if (file["_type"] == "dir"){
+								output += "&#60;dir&#62;\t\t";
+							}
+							else{
+								output += "\t\t\t";
+							}
+						}
+
+						// switch on type of file
+						switch(file["_type"]){
+							case "dir":
+								output += "[[b;#4545ff;]" + file["_name"] + "]";
+								break;
+							case "pic":
+								output += "[[b;#a6a600;]" + file["_name"] + "]";
+								break;
+							case "exe":
+								output += "[[b;green;]" + file["_name"] + "]";
+								break;
+							case "html":
+								output += "[[b;green;]" + file["_name"] + "]";
+								break;
+							case "txt":
+								output += "[[b;;]" + file["_name"] + "]";
+								break;
+							default:
+								output += "[[;;]" + file["_name"] + "]";
+						}
+
+						this.echo(output);
+					}
+
+					this.echo();
+				},
+				// print who this be
+				whoami : function() {
+					this.echo(user);
+					this.echo();
+				}
+			}, {
+				name : 'edgorman.github.io terminal',
+				keymap : {
+					'CTRL+R': function(e, original) {
+						location.reload();
+					}
+				},
+				doubleTab : function(){
+
+				},
+				completion : function(string){
+					// get command atttributes
+					var cmd = $.terminal.parse_command(this.before_cursor());
+					var path = "";
+
+					// if command 'rest' is empty
+					if (cmd.rest == ""){
+						path = cmd.name;
+					}
+					else {
+						path = cmd.rest;
+					}
+
+					var segments = path.split(/[\\/]/);
+					var tmp_directory = null;
+
+					// if tab in current directory
+					if (segments.length == 1){
+						tmp_directory = curr_directory;
+					}
+					else{
+						path = segments.slice(0, segments.length-1).join('/');
+						tmp_directory = path_exists(path, curr_directory, false);
+					}
+
+					var entry = "";
+					var commands=[];
+
+					// add files to completion list
+					for (field in tmp_directory){
+						// if field begins with _
+						if (field.startsWith("_")){
+							continue;
+						}
+						else{
+							if (segments.length == 1){
+								entry = tmp_directory[field]["_name"];
+							}
+							else{
+								entry = path + "/" + tmp_directory[field]["_name"];
+							}
+							commands.push(entry);
+						}
+					}
+					return commands;
+				},
+				onCommandNotFound : function(command, terminal){
+					this.echo("[[;red;]Error: Command not found '" + command + "'\n");
+				},
+				exceptionHandler : function(exception){
+					alert(exception);
+				},
+				mobileDelete : true,
+				checkArity : false,
+				prompt : user + "@" + host + ":" + "/" + "$ ",
+				greetings : 
+`Copyright (c) 2020 Edward Gorman
+<https://github.com/edgorman>\n
+Welcome to https://edgorman.github.com
+You are currently logged in as: ` + user + `\n
+To start enter the command "help"
+`
+			});
+		</script>
+	</body>
 </html>
