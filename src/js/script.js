@@ -35,4 +35,22 @@ function path_exists(path, from_dir, file_flag){
     }
     return temp_directory;
 }
-  
+
+class User {
+    constructor(id, name, home_dir, password) {
+        this.id = id;
+        this.name = name;
+        this.home_dir = home_dir;
+        this.password = password;
+    }
+
+    get id(){
+        return this.id;
+    }
+    get name(){
+        return this.name;
+    }
+    get home_dir(){
+        return this.home_dir;
+    }
+}

@@ -13,3 +13,6 @@
 [submodule "Quadris"]
 	path = Quadris
 	url = https://github.com/edgorman/Quadris
+[submodule "Advent-of-Code"]
+	path = Advent-of-Code
+	url = https://github.com/edgorman/Advent-of-Code
