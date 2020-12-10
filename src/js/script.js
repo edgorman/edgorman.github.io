@@ -3,7 +3,7 @@ function path_exists(path, from_dir, file_flag){
         return false;
     }
 
-    let segments = path.split(/[\\/]/);
+    let segments = String(path).split(/[\\/]/);
     let temp_directory = from_dir;
 
     // for each segment
