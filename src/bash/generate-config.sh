@@ -23,29 +23,18 @@ recursivemap() {
       echo "${result::-1}},"
     # else is file
     else
-      # if is executable
-      if [[ $file = *".exe"* ]]; then
-        file_name=${file::-4}
+      # if is a script
+      if [[ $file = *".sh" ]] || [[ $file = *".html" ]] || [[ $file = *".py" ]] || [[ $file = *".js" ]] || [[ $file = *".css" ]]; then
         file_type="exe"
-      # if is text
-      elif [[ $file = *".txt" ]]; then
-        file_name=$file
-        file_type="txt"
-      # if is picture
+      # else if is picture
       elif [[ $file = *".png" ]] || [[ $file = *".jpg" ]]; then
-        file_name=$file
         file_type="pic"
-      # if is webpage
-      elif [[ $file = *".html" ]]; then
-        file_name=$file
-        file_type="html"
       # else is data
       else
-        file_name=$file
-        file_type="data"
+        file_type="txt"
       fi
       # output file
-      echo "\"$file\":{\"_name\": \"$file_name\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"$file_type\", \"_parent\": \"$1\"},"
+      echo "\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"$file_type\", \"_parent\": \"$1\"},"
     fi
   done
 }
@@ -57,4 +46,4 @@ output="$output $(cd "$PWD/"; recursivemap "$root_name")"
 output="${output::-1}}}}"
 
 # output to config.json
-echo $output > config.json
+cd src/data && { echo $output > config.json ; cd -;}

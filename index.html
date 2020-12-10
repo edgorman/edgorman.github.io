@@ -12,7 +12,7 @@
 			var json_data;
 
 			$.ajax({
-				url: "config.json",
+				url: "src/data/config.json",
 				cache: false,
 				async: false,
 				// if request successful
@@ -198,17 +198,14 @@
 							case "dir":
 								output += "[[b;#4545ff;]" + file["_name"] + "]";
 								break;
-							case "pic":
-								output += "[[b;#a6a600;]" + file["_name"] + "]";
-								break;
 							case "exe":
-								output += "[[b;green;]" + file["_name"] + "]";
-								break;
-							case "html":
 								output += "[[b;green;]" + file["_name"] + "]";
 								break;
 							case "txt":
 								output += "[[b;;]" + file["_name"] + "]";
+								break;
+							case "pic":
+								output += "[[b;#a6a600;]" + file["_name"] + "]";
 								break;
 							default:
 								output += "[[;;]" + file["_name"] + "]";
