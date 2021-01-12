@@ -16,3 +16,6 @@
 [submodule "Advent-of-Code"]
 	path = Advent-of-Code
 	url = https://github.com/edgorman/Advent-of-Code
+[submodule "URL-Analyser"]
+	path = URL-Analyser
+	url = https://github.com/edgorman/URL-Analyser
