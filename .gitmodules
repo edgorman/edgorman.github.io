@@ -19,3 +19,6 @@
 [submodule "URL-Analyser"]
 	path = URL-Analyser
 	url = https://github.com/edgorman/URL-Analyser
+[submodule "Voxel-Engine"]
+	path = Voxel-Engine
+	url = https://github.com/edgorman/Voxel-Engine
