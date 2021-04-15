@@ -17,12 +17,18 @@ jobs:
     steps:
     - name: Step 1 - Checkout main branch
       uses: actions/checkout@v2
+      
+    - name: echo folder structure
+      run: ls -al
+      shell: bash
     
     - name: Step 2 - Import submodules
-      run: sh ./src/bash/import-repos.sh
+      run: ./src/bash/import-repos.sh
+      shell: bash
     
     - name: Step 3 - Update config files
-      run: sh ./src/bash/generate-configs.sh
+      run: ./src/bash/generate-configs.sh
+      shell: bash
     
     - name: Step 4 - Add and commit changes
       uses: EndBug/add-and-commit@v7
