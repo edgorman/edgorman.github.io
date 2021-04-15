@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: echo folder structure
-      run: ls -al
+      run: ls -al src/bash/
       shell: bash
     
     - name: Step 2 - Import submodules
