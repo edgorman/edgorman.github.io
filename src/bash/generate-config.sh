@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/bash
 shopt -s dotglob
 
 # recursive mapping function for subdirectories and files
