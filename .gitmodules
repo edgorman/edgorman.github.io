@@ -1,6 +1,7 @@
 [submodule "edgorman.github.io"]
 	path = edgorman.github.io
 	url = https://github.com/edgorman/edgorman.github.io
+	update = none
 [submodule "One-More-Neuron"]
 	path = One-More-Neuron
 	url = https://github.com/edgorman/One-More-Neuron
@@ -22,3 +23,6 @@
 [submodule "Voxel-Engine"]
 	path = Voxel-Engine
 	url = https://github.com/edgorman/Voxel-Engine
+[submodule "Property-Fundamentals"]
+	path = Property-Fundamentals
+	url = https://github.com/edgorman/Property-Fundamentals
