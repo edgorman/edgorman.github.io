@@ -1,7 +1,6 @@
 [submodule "edgorman.github.io"]
 	path = edgorman.github.io
 	url = https://github.com/edgorman/edgorman.github.io
-	update = none
 [submodule "One-More-Neuron"]
 	path = One-More-Neuron
 	url = https://github.com/edgorman/One-More-Neuron
