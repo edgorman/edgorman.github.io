@@ -42,7 +42,7 @@
 			terminal = $('body').terminal({
 				// prints help message to the user
 				help : function() {
-					this.echo('Here is a list of the available commands\n');
+					this.echo('Here is a list of the available commands:\n');
 
 					// 		 	command			description
 					this.echo('[[b;;]cat] \t\t Prints file to terminal')
@@ -88,14 +88,14 @@
 										terminal.echo(text);
 									}
 									}).fail(function() {
-										terminal.echo("No such file or directory")
+										terminal.echo("[[;red;]No such file or directory.]\n")
 									}
 								);
 							}
 						}
 					}
 					else{
-						this.echo("No such file could be found.");
+						this.echo("[[;red;]No such file could be found.]");
 					}
 					this.echo();
 				},
@@ -116,25 +116,24 @@
 
 							// if curr_directory is at root
 							if (curr_directory["_parent"] == ""){
-								this.set_prompt(user + "@" + host + ":" + curr_directory['_name'] + "$ ");
+								this.set_prompt(user + "@" + host + " ~" + "\n$ ");
 							}
 							// else curr_directory is below root
 							else{
-								this.set_prompt(user + "@" + host + ":" + curr_directory['_parent'] + curr_directory['_name'] + "$ ");
+								this.set_prompt(user + "@" + host + " ~" + curr_directory['_parent'] + curr_directory['_name'] + "\n$ ");
 							}
 						}
 						else{
-							this.echo("The directory name is invalid.");
+							this.echo("[[;red;]The directory name '" + path + "' is invalid.]");
 						}
 					}
 					else{
-						this.echo("The system cannot find the path specified.");
+						this.echo("[[;red;]The system cannot find the directory '" + path + "'.]");
 					}
 					this.echo();
 				},
 				// print the message passed
 				echo : function(msg) {
-					alert(msg);
 					switch(msg){
 						// general kenobi easter egg
 						case 'hello there':
@@ -278,20 +277,20 @@
 					return commands;
 				},
 				onCommandNotFound : function(command, terminal){
-					this.echo("[[;red;]Error: Command not found '" + command + "'\n");
+					this.echo("[[;red;]Error: Command not found '" + command + "']\n");
 				},
 				exceptionHandler : function(exception){
 					alert(exception);
 				},
 				mobileDelete : true,
 				checkArity : false,
-				prompt : user + "@" + host + ":" + "/" + "$ ",
+				prompt : user + "@" + host + " " + "~" + "\n$ ",
 				greetings : 
 `Copyright (c) 2020 Edward Gorman
 <https://github.com/edgorman>\n
 Welcome to https://edgorman.github.io
 You are currently logged in as: ` + user + `\n
-To start enter the command "help"
+To start, enter the command "help"
 `
 			});
 		</script>
