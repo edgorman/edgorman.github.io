@@ -70,17 +70,18 @@
 							this.echo("Cannot 'cat' a directory.")
 						}
 						else{
+							var path = curr_directory["_parent"] + curr_directory["_name"] + "/" + file;
+							if (path.startsWith("//")){
+								path = path.substring(2, path.length);
+							}
+
 							// if it is a picture
 							if (found_file["_type"] == "pic"){
-								this.echo("<img style='width: 50%;' src=\"" + url + "\"/>", {raw: true});
+								this.echo("<img style='width: 50%;' src=\"" + path + "\"/>", {raw: true});
 								this.echo();
 							}
 							// else it is any file
 							else{
-								var path = curr_directory["_parent"] + curr_directory["_name"] + "/" + file;
-								if (path.startsWith("//")){
-									path = path.substring(2, path.length);
-								}
 								$.ajax({
 									url: path,
 									cache: false,
