@@ -102,6 +102,11 @@
 				},
 				// changes current directory to path (must be directory)
 				cd : function(path) {
+					// if path is home directory
+					if (path == "~"){
+						path = "/"
+					}
+
 					// if path is root directory
 					if (path == "/" || path == "\\"){
 						curr_directory = path_exists(start_directory, file_system, false);
