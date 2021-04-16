@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Generates a config file for the contents of the repository
+# By Edward Gorman <ejgorman@gmail.com>
 shopt -s dotglob
 
 # recursive mapping function for subdirectories and files

@@ -1,7 +1,4 @@
 #!/bin/bash
-#
-# import-public-repos.sh
-#
 # requires https://stedolan.github.io/jq/
 #
 # Import the repositories from https://github.com/edgorman as submodules
@@ -19,4 +16,5 @@ do
 done
 
 # Update all submodules
-git submodule update --remote
+git submodule update --init
+git submodule foreach git pull origin main
