@@ -28,7 +28,8 @@
 			
 			var terminal;
 			var start_directory = "/";
-			const last_commit = json_data['commit'];
+			const last_commit_short = json_data['commit_short'];
+			const last_commit_long = json_data['commit_long'];
 			const file_system = json_data['directory'][start_directory];
 			var curr_directory = file_system;
 
@@ -49,6 +50,7 @@
 					this.echo('[[b;;]cat] \t\t Prints file to terminal')
 					this.echo('[[b;;]cd] \t\t\t Change the current directory');
 					this.echo('[[b;;]clear] \t\t Clears the terminal screen');
+					this.echo('[[b;;]debug] \t\t Prints debug info for terminal');
 					this.echo('[[b;;]echo] \t\t Prints the string to terminal')
 					this.echo('[[b;;]exit] \t\t Closes the current window')
 					this.echo('[[b;;]login] \t\t Login as a user')
@@ -137,6 +139,11 @@
 					else{
 						this.echo("[[;red;]The system cannot find the directory '" + path + "'.]");
 					}
+					this.echo();
+				},
+				// print debug information
+				debug : function() {
+					this.echo(last_commit_long);
 					this.echo();
 				},
 				// print the message passed
@@ -299,7 +306,7 @@
 <https://github.com/edgorman>
 
 Welcome to https://edgorman.github.io
-` + last_commit + `
+` + last_commit_short + `
 
 You are currently logged in as: [[b;;]` + user + `]
 To start, enter the command "help"
