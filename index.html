@@ -153,7 +153,9 @@
 				},
 				// close the current tab
 				exit : function() {
-					this.echo("Logging out of " + user + "... Goodbye!")
+					this.echo("\nLogging out of " + user + "...")
+					this.echo("Press Ctrl+W to close terminal.")
+					this.echo("Press Ctrl+R to restart terminal.")
 					this.echo();
 
 					this.set_prompt("");
