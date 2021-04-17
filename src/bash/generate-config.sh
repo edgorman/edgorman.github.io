@@ -44,7 +44,7 @@ recursivemap() {
 
 # generate content of json file
 root_name="/"
-commit=$(git log -1 --pretty=format:"Last commit (%h) by %an, %ar")
+commit=$(git log -1 --pretty=format:"Last commit (%h) by %an on %cs")
 output="{\"commit\": \"$commit\", \"directory\": {\"$root_name\": {\"_name\": \"$root_name\", \"_date\": \"\", \"_time\": \"\", \"_type\": \"dir\", \"_parent\": \"\","
 output="$output $(cd "$PWD/"; recursivemap "$root_name")"
 output="${output::-1}}}}"
