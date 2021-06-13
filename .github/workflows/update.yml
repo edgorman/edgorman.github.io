@@ -9,6 +9,12 @@ on:
     branches: [ main ]
   schedule:
     - cron:  '0 18 * * 1'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Description'
+        required: false
+        default: 'Manually triggered workflow'
 
 jobs:
   import:
