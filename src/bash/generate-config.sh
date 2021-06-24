@@ -13,12 +13,11 @@ recursivemap() {
       continue
     fi
 
-    # get file last modification date and time
-    _date=$(date -r "$file" "+%d/%m/%Y")
-    _time=$(date -r "$file" "+%H:%M")
-
     # if is directory
     if [ -d "$file" ]; then
+      # get file last modification date and time
+      _date=$(date -r "$file" "+%d/%m/%Y")
+      _time=$(date -r "$file" "+%H:%M")
       result="\"$file\":{\"_name\": \"$file\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"dir\", \"_parent\": \"$1\","
       result="$result\".\":{\"_name\": \".\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"dir\", \"_parent\": \"$1\"},"
       result="$result\"..\":{\"_name\": \"..\", \"_date\": \"$_date\", \"_time\": \"$_time\", \"_type\": \"dir\", \"_parent\": \"$1\"},"
@@ -26,6 +25,9 @@ recursivemap() {
       echo "${result::-1}},"
     # else is file
     else
+      # get file last modification date and time
+      _date=$(date -r "$file" "+%d/%m/%Y")
+      _time=$(date -r "$file" "+%H:%M")
       # if is a script
       if [[ $file = *".sh" ]] || [[ $file = *".html" ]] || [[ $file = *".py" ]] || [[ $file = *".js" ]] || [[ $file = *".css" ]]; then
         file_type="exe"
