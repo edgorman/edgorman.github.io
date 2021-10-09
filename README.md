@@ -9,14 +9,14 @@ cd your/repo/directory
 git clone https://github.com/edgorman/edgorman.github.io
 ```
 
-Change into the proc directory:
+Change into the boot directory:
 ```
-cd proc
+cd boot
 ```
 
 To run this site locally requires installing the local npm package:
 ```
-npm install
+npm install --prefix ../proc/
 ```
 
 And then running the start command:
