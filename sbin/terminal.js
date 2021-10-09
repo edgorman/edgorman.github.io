@@ -3,6 +3,8 @@ terminal.js
 
 @edgorman 09-10-21
 */
+import { greetingMessage, promptMessage, generateKeyMappings} from './utilities.js'
+import { onCommandNotFound, exceptionThrown } from './errors.js';
 import { help } from '../bin/help.js';
 
 
@@ -14,6 +16,7 @@ export class Terminal
     constructor(currentUser, startDirectory="/"){
         this.user = currentUser;
         this.startDirectory = startDirectory;
+        this.commitMessage = `by edgorman on xxxx-xx-xx (xxxxxxx)`
 
         this.onLoad();
     }
@@ -34,19 +37,13 @@ export class Terminal
                 help : function(){ help(this); }
             }, {
                 name : this.hostname + " terminal",
-                keymap : { 'CTRL+R': function(e, original) { location.reload(); }},
                 mobileDelete : true,
                 checkArity : false,
-                prompt : this.user.name + "@" + this.hostname + " " + "~" + "\n$ ",
-                greetings : `Copyright (c) 2021 Edward Gorman` 
-                            + `\n<https://github.com/edgorman>`
-                            + `\n\nWelcome to https://`
-                            + this.hostname
-                            + `\nLast commit `
-                            + `by edgorman on xxxx-xx-xx (xxxxxxx)`
-                            + `\n\nYou are currently logged in as: [[b;;]` 
-                            + this.user.name
-                            + `]\nTo start, enter the command "[[b;;]help]"\n`
+                keymap : generateKeyMappings(),
+                onCommandNotFound : function(command){ onCommandNotFound(this, command) },
+				exceptionHandler : function(exception){ exceptionThrown(this, exception); },
+                prompt : promptMessage(this.user.name, this.hostname, this.startDirectory),
+                greetings : greetingMessage(this.user.name, this.hostname, this.commitMessage)
             }
         );
     }
