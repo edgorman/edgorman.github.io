@@ -19,16 +19,22 @@ To run this site locally requires installing the local npm package:
 npm install --prefix ../proc/
 ```
 
+## Usage
+Change into the boot directory:
+```
+cd boot
+```
+
 And then running the start command:
 ```
 npm start
 ```
 
-## Usage
-Open your favourite internet browser and navigate to the following place:
-```
-127.0.0.1:8080/
-```
+Open your favourite internet browser and navigate to the following path:
+
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
