@@ -136,7 +136,6 @@ dist/
 .vscode-test
 
 # Temporary folders
-tmp/
 temp/
 
 ### VisualStudioCode ###
