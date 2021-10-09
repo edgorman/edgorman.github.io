@@ -4,7 +4,7 @@
   "description": "My personal website hosted on Github Pages.",
   "main": "index.html",
   "scripts": {
-    "start": "http-server"
+    "start": "http-server ../"
   },
   "repository": {
     "type": "git",

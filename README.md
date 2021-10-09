@@ -9,6 +9,11 @@ cd your/repo/directory
 git clone https://github.com/edgorman/edgorman.github.io
 ```
 
+Change into the proc directory:
+```
+cd proc
+```
+
 To run this site locally requires installing the local npm package:
 ```
 npm install
