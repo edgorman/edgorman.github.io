@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "My personal website hosted on Github Pages.",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "start": "http-server ../"
   },
