@@ -30,7 +30,7 @@ generateFileSystem() {
     if [ -d "$e" ]; then
       result="$(addDirectory $e $d $t $1)"
       
-      cd $e
+      cd "$e"
       result="$result$(generateFileSystem $p)"
       echo "${result::-1}},"
       cd ".."
