@@ -5,8 +5,8 @@
 addDirectory() {
   # Args: dir_name, date, time, parent_dir_name
   echo "\"$1\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\",
-        \".\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},
-        \"..\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},"
+        \".\":{\"_name\": \".\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},
+        \"..\":{\"_name\": \"..\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},"
 }
 
 # Outputs file as string
@@ -28,14 +28,14 @@ generateFileSystem() {
     p="$1$e/"
 
     if [ -d "$e" ]; then
-      result="$(addDirectory $e $d $t $1)"
+      result=$(addDirectory "$e" $d $t "$1")
       
       cd "$e"
-      result="$result$(generateFileSystem $p)"
+      result="$result$(generateFileSystem "$p")"
       echo "${result::-1}},"
       cd ".."
     else
-      echo "$(addFile $e $d $t 'txt' $p)"
+      echo $(addFile "$e" $d $t 'txt' "$1")
     fi
   done
 }

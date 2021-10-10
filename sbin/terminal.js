@@ -31,11 +31,13 @@ export class Terminal
 
         this.terminal = $("body").terminal({
                 cd : function(path) { commands.cd(t, path); },
-                help : function(){ commands.help(t); }
+                help : function() { commands.help(t); },
+                ls : function(path) { commands.ls(t, path); }
             }, {
                 name : t.hostname + " terminal",
                 mobileDelete : true,
                 checkArity : false,
+                doubleTab : function(){},
                 keymap : generateKeyMappings(),
                 onCommandNotFound : function(command){ onCommandNotFound(t, command) },
 				exceptionHandler : function(exception){ onExceptionThrown(t, exception); },
