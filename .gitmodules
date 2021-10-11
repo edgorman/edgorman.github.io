@@ -1,0 +1,33 @@
+[submodule "srv/www/Advent-of-Code"]
+	path = srv/www/Advent-of-Code
+	url = https://github.com/edgorman/Advent-of-Code
+[submodule "srv/www/edgorman.github.io"]
+	path = srv/www/edgorman.github.io
+	url = https://github.com/edgorman/edgorman.github.io
+[submodule "srv/www/One-More-Neuron"]
+	path = srv/www/One-More-Neuron
+	url = https://github.com/edgorman/One-More-Neuron
+[submodule "srv/www/Pencil-Landing-Simulator"]
+	path = srv/www/Pencil-Landing-Simulator
+	url = https://github.com/edgorman/Pencil-Landing-Simulator
+[submodule "srv/www/phgorman.com"]
+	path = srv/www/phgorman.com
+	url = https://github.com/edgorman/phgorman.com
+[submodule "srv/www/Plex-Photo-Extractor"]
+	path = srv/www/Plex-Photo-Extractor
+	url = https://github.com/edgorman/Plex-Photo-Extractor
+[submodule "srv/www/Property-Fundamentals"]
+	path = srv/www/Property-Fundamentals
+	url = https://github.com/edgorman/Property-Fundamentals
+[submodule "srv/www/Quadris"]
+	path = srv/www/Quadris
+	url = https://github.com/edgorman/Quadris
+[submodule "srv/www/URL-Analyser"]
+	path = srv/www/URL-Analyser
+	url = https://github.com/edgorman/URL-Analyser
+[submodule "srv/www/Voxel-Engine"]
+	path = srv/www/Voxel-Engine
+	url = https://github.com/edgorman/Voxel-Engine
+[submodule "srv/www/Voxel-Terrain"]
+	path = srv/www/Voxel-Terrain
+	url = https://github.com/edgorman/Voxel-Terrain

@@ -1,17 +1,48 @@
-export function promptMessage(username, hostname, directory){
-    return username + "@" + hostname + " " + directory + "\n$ "
+/* 
+utilities.js 
+
+@edgorman 09-10-21
+*/
+
+export function onCommandNotFound(terminal, command){
+    terminal.echo("[[;red;]Error: Command not found '" + command + "']\n");
 }
 
-export function greetingMessage(username, hostname, commitMessage){
-    return `Copyright (c) 2021 Edward Gorman` 
-    + `\n<https://github.com/edgorman>`
-    + `\n\nWelcome to https://`
-    + hostname
-    + `\nLast commit `
-    + commitMessage
-    + `\n\nYou are currently logged in as: [[b;;]` 
-    + username
-    + `]\nTo start, enter the command "[[b;;]help]"\n`
+export function onExceptionThrown(terminal, exception){
+    console.error("ERROR: " + exception);
+    terminal.echo("[[;red;]Error: " + exception + "]\n");
+}
+
+export function generatePromptMessage(terminal, directory){
+    if (String(directory).startsWith(terminal.user.homeDirectory)){
+        directory = String(directory).replace(terminal.user.homeDirectory, "~");
+    }
+
+    document.title = directory;
+    return terminal.user.name + "@" + terminal.hostname + " " + directory + "\n$ "
+}
+
+export function generateGreetingMessage(username, hostname, commitMessage){
+    return "Currently rebuilding so is WIP, check back in a couple of weeks! :)";
+//  return `Copyright (c) 2021 Edward Gorman` 
+//  + `\n<https://github.com/edgorman>`
+//  + `\n\nWelcome to https://`
+//  + hostname
+//  + `\n`
+//  + commitMessage
+//  + `\n\nYou are currently logged in as: [[b;;]` 
+//  + username
+//  + `]\nTo start, enter the command "[[b;;]help]"`;
+}
+
+export function generateCommitMessage(commit){
+    return "Last commit by " 
+    + commit['author']
+    + " on "
+    + commit['date']
+    + " ("
+    + commit['id']
+    + ")";
 }
 
 export function generateKeyMappings(){
@@ -20,40 +51,140 @@ export function generateKeyMappings(){
     }
 }
 
-function path_exists(path, from_dir, file_flag){
-    if (path == undefined){
-        return false;
+function loadFile(path, successMsg, ErrorMsg){
+    var result;
+
+    $.ajax({
+        url: path,
+        cache: false,
+        async: false,
+        success:function(data) {
+            result = data;
+            console.info("INFO: " + successMsg);
+        }
+        }).fail(function() {
+            console.error("ERROR: " + ErrorMsg);
+            window.stop();
+        }
+    );
+    
+    return result;
+}
+
+export function loadFileSystem(fileSystemPath){
+    return loadFile(
+        fileSystemPath, 
+        "Successfully loaded file system from json file.",
+        "Failed to retrieve file system from json file."
+    );
+}
+
+export function loadGitHistory(gitHistoryPath){
+    return loadFile(
+        gitHistoryPath,
+        "Successfully loaded git history from json file.",
+        "Failed to retrieve git history from json file."
+    );
+}
+
+function splitPath(path){
+    if (String(path).startsWith("/"))
+        path = path.substring(1, path.length);
+    
+    if (String(path).endsWith("/"))
+        path = path.substring(0, path.length - 1);
+
+    if (path == "") return [];
+    else return String(path).split(/[\\/]/);
+}
+
+export function getAbsolutePath(fileSystem, absolutePath){
+    // Assumes the absolute path must exist
+    var path = fileSystem["/"];
+
+    var pathSegments = splitPath(absolutePath);
+    for (var i = 0; i < pathSegments.length; i++){
+        path = path[pathSegments[i]];
     }
 
-    let segments = String(path).split(/[\\/]/);
-    let temp_directory = from_dir;
+    return path;
+}
 
-    // for each segment
-    for (let i=0; i < segments.length; i++){
-        var seg = segments[i];
+export function getPath(fileSystem, currentDirectory, relativePath){
+    // Navigate to current directory
+    var path = getAbsolutePath(fileSystem, currentDirectory["_parent"] + currentDirectory["_name"]);
 
-        // self
-        if (seg == "" || seg == "."){
+    // Navigate to relative path
+    var pathSegments = splitPath(relativePath);
+    for (var i = 0; i < pathSegments.length; i++){
+
+        if (pathSegments[i] == "" || pathSegments[i] == "."){
             continue;
         }
-        // parent dir
-        else if (seg == '..'){
-            if (temp_directory["_parent"] != ""){
-                temp_directory = path_exists(temp_directory["_parent"], file_system, file_flag);
-            }
+        else if (pathSegments[i] == ".."){
+            path = getAbsolutePath(fileSystem, path['_parent']);
         }
-        // child
-        else if (temp_directory[seg] != null){
-            if (temp_directory[seg]["_type"] == "dir" || file_flag){
-                temp_directory = temp_directory[seg];
+        else{
+            if (pathSegments[i] in path){
+                path = path[pathSegments[i]];
             }
             else{
+                // Path does not exist
                 return false;
             }
         }
-        else{
-            return false;
-        }
+
     }
-    return temp_directory;
+
+    // Path must exist
+    return path;
+}
+
+export function onCompletion(terminal){
+    var input = $.terminal.parse_command(terminal.terminal.before_cursor());
+    var relativePath = "";
+
+    // Navigate to current directory
+    var path = getAbsolutePath(terminal.fileSystem, terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"]);
+
+    // Navigate to relative path
+    var pathSegments = splitPath(input.rest);
+    for (var i = 0; i < pathSegments.length; i++){
+
+        if (pathSegments[i] == "" || pathSegments[i] == "."){
+            continue;
+        }
+        else if (pathSegments[i] == ".."){
+            path = getAbsolutePath(terminal.fileSystem, path['_parent']);
+            relativePath += "../"
+        }
+        else{
+            if (pathSegments[i] in path){
+                path = path[pathSegments[i]];
+                relativePath += pathSegments[i] + "/";
+            }
+            else{
+                break;
+            }
+        }
+
+    }
+
+    // Add files to list of possible autofills
+    var autofills = [];
+    for (var entry in path){
+
+        if (String(entry).startsWith("_")){
+            continue;
+        }
+        else if (pathSegments.length == 0){
+            autofills.push(path[entry]["_name"]);
+        }
+        else{
+            autofills.push(relativePath + path[entry]["_name"]);
+        }
+
+    }
+
+    return autofills;
 }

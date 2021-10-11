@@ -3,49 +3,60 @@ terminal.js
 
 @edgorman 09-10-21
 */
-import { greetingMessage, promptMessage, generateKeyMappings} from './utilities.js'
-import { onCommandNotFound, exceptionThrown } from './errors.js';
-import { help } from '../bin/help.js';
+import * as commands from '../bin/include.js';
+import * as utilities from './utilities.js';
 
 
 export class Terminal
 {
     terminal;
-    hostname = "edgorman.github.io"
 
-    constructor(currentUser, startDirectory="/"){
-        this.user = currentUser;
-        this.startDirectory = startDirectory;
-        this.commitMessage = `by edgorman on xxxx-xx-xx (xxxxxxx)`
+    constructor(user, hostname){
+        this.user = user;
+        this.hostname = hostname;
 
-        this.onLoad();
-    }
+        this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
+        this.gitHistory = utilities.loadGitHistory("etc/gitHistory.json");
+        this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
-    // Execute on window load
-    onLoad(){
         this.create();
-    }
 
-    // Execute on window exit
-    onExit(){
-
+        this.currentDirectory = this.fileSystem["/"];
+        commands.cd(this, "~");
     }
 
     // Create terminal object
     create(){
+        var t = this;
+
         this.terminal = $("body").terminal({
-                help : function(){ help(this); }
+                cd : function(path) { commands.cd(t, path); },
+                debug : function() { commands.debug(t); },
+                echo: function(...args) { commands.echo(t, args); },
+                exit: function() { commands.exit(t); },
+                help : function() { commands.help(t); },
+                ls : function(path) { commands.ls(t, path); },
+                pwd : function() { commands.pwd(t); }
             }, {
-                name : this.hostname + " terminal",
+                name : t.hostname + " terminal",
                 mobileDelete : true,
                 checkArity : false,
-                keymap : generateKeyMappings(),
-                onCommandNotFound : function(command){ onCommandNotFound(this, command) },
-				exceptionHandler : function(exception){ exceptionThrown(this, exception); },
-                prompt : promptMessage(this.user.name, this.hostname, this.startDirectory),
-                greetings : greetingMessage(this.user.name, this.hostname, this.commitMessage)
+                doubleTab : function(){},
+                keymap : utilities.generateKeyMappings(),
+                completion : function(){ return utilities.onCompletion(t) },
+                onCommandNotFound : function(command){ utilities.onCommandNotFound(t, command) },
+				exceptionHandler : function(exception){ utilities.onExceptionThrown(t, exception); },
+                prompt : utilities.generatePromptMessage(t, t.currentDirectory),
+                greetings : utilities.generateGreetingMessage(t.user.name, t.hostname, t.commitMessage)
             }
         );
+
+        console.info("INFO: Successfully created terminal object.");
+    }
+
+    // Echo message through terminal object
+    echo(message){
+        this.terminal.echo(message);
     }
 
 }
