@@ -3,8 +3,8 @@ terminal.js
 
 @edgorman 09-10-21
 */
-import { generatePromptMessage, generateGreetingMessage, generateCommitMessage, generateKeyMappings, loadFileSystem, loadGitHistory, onCommandNotFound, onExceptionThrown} from './utilities.js'
 import * as commands from '../bin/index.js';
+import * as utilities from './utilities.js';
 
 
 export class Terminal
@@ -15,9 +15,9 @@ export class Terminal
         this.user = user;
         this.hostname = hostname;
 
-        this.fileSystem = loadFileSystem("etc/fileSystem.json");
-        this.gitHistory = loadGitHistory("etc/gitHistory.json");
-        this.commitMessage = generateCommitMessage(this.gitHistory['commits'][0]);
+        this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
+        this.gitHistory = utilities.loadGitHistory("etc/gitHistory.json");
+        this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
 
@@ -38,11 +38,12 @@ export class Terminal
                 mobileDelete : true,
                 checkArity : false,
                 doubleTab : function(){},
-                keymap : generateKeyMappings(),
-                onCommandNotFound : function(command){ onCommandNotFound(t, command) },
-				exceptionHandler : function(exception){ onExceptionThrown(t, exception); },
-                prompt : generatePromptMessage(t.user.name, t.hostname, t.currentDirectory),
-                greetings : generateGreetingMessage(t.user.name, t.hostname, t.commitMessage)
+                keymap : utilities.generateKeyMappings(),
+                completion : function(string){ return utilities.onCompletion(t) },
+                onCommandNotFound : function(command){ utilities.onCommandNotFound(t, command) },
+				exceptionHandler : function(exception){ utilities.onExceptionThrown(t, exception); },
+                prompt : utilities.generatePromptMessage(t.user.name, t.hostname, t.currentDirectory),
+                greetings : utilities.generateGreetingMessage(t.user.name, t.hostname, t.commitMessage)
             }
         );
 

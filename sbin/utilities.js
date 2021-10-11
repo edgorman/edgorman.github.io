@@ -19,15 +19,16 @@ export function generatePromptMessage(username, hostname, directory){
 }
 
 export function generateGreetingMessage(username, hostname, commitMessage){
-    return `Copyright (c) 2021 Edward Gorman` 
-    + `\n<https://github.com/edgorman>`
+    return "";
+//  return `Copyright (c) 2021 Edward Gorman` 
+//  + `\n<https://github.com/edgorman>`
 //  + `\n\nWelcome to https://`
 //  + hostname
 //  + `\n`
 //  + commitMessage
-    + `\n\nYou are currently logged in as: [[b;;]` 
-    + username
-    + `]\nTo start, enter the command "[[b;;]help]"`;
+//  + `\n\nYou are currently logged in as: [[b;;]` 
+//  + username
+//  + `]\nTo start, enter the command "[[b;;]help]"`;
 }
 
 export function generateCommitMessage(commit){
@@ -133,4 +134,54 @@ export function getPath(fileSystem, currentDirectory, relativePath){
 
     // Path must exist
     return path;
+}
+
+export function onCompletion(terminal){
+    var input = $.terminal.parse_command(terminal.terminal.before_cursor());
+    var relativePath = "";
+
+    // Navigate to current directory
+    var path = getAbsolutePath(terminal.fileSystem, terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"]);
+
+    // Navigate to relative path
+    var pathSegments = splitPath(input.rest);
+    for (var i = 0; i < pathSegments.length; i++){
+
+        if (pathSegments[i] == "" || pathSegments[i] == "."){
+            continue;
+        }
+        else if (pathSegments[i] == ".."){
+            path = getAbsolutePath(terminal.fileSystem, path['_parent']);
+            relativePath += "../"
+        }
+        else{
+            if (pathSegments[i] in path){
+                path = path[pathSegments[i]];
+                relativePath += pathSegments[i] + "/";
+            }
+            else{
+                break;
+            }
+        }
+
+    }
+
+    // Add files to list of possible autofills
+    var autofills = [];
+    for (var entry in path){
+
+        if (String(entry).startsWith("_")){
+            continue;
+        }
+        else if (pathSegments.length == 0){
+            autofills.push(path[entry]["_name"]);
+        }
+        else{
+            autofills.push(relativePath + path[entry]["_name"]);
+        }
+
+    }
+
+    console.log(autofills);
+    return autofills;
 }

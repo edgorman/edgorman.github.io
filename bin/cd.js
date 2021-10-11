@@ -25,14 +25,15 @@ export function cd(terminal, relativePath){
             var prompt = generatePromptMessage(terminal.user.name, terminal.hostname, path["_parent"] + path["_name"])
             terminal.terminal.set_prompt(prompt);
     
-            console.log("INFO: (cd) Changed directory to " + terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"] + ".");
-            terminal.echo("");
+            console.log("INFO: (cd) Changed directory to " + path["_parent"] + path["_name"] + ".");
         }
         else{
-            terminal.echo("[[;red;]Cannot change to non-directory path.]\n");
+            terminal.echo("[[;red;]Cannot change to non-directory path.]");
         }
     }
     else{
-        terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]\n");
+        terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]");
     }
+
+    terminal.echo("");
 }

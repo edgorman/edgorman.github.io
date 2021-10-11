@@ -1,12 +1,26 @@
 import { getPath, } from "../sbin/utilities.js";
 
 export function ls(terminal, relativePath){
+    var currentDirectory = terminal.currentDirectory;
+
     // If path is empty
     if (relativePath == undefined){
         relativePath = ".";
     }
 
-    var path = getPath(terminal.fileSystem, terminal.currentDirectory, relativePath);
+    // If path equals home directory
+    if (relativePath == "~"){
+        currentDirectory =  terminal.fileSystem["/"];
+        relativePath = terminal.user.homeDirectory;
+    }
+
+    // If path equals root
+    if (relativePath == "/" || relativePath == "\\"){
+        currentDirectory = terminal.fileSystem["/"];
+        relativePath = "";
+    }
+
+    var path = getPath(terminal.fileSystem, currentDirectory, relativePath);
     
     // If path exists
     if (path){
@@ -21,15 +35,16 @@ export function ls(terminal, relativePath){
                 terminal.echo(entry);
             }
 
-            console.log("INFO: (ls) Listed files in directory " + terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"] + ".");
-            terminal.echo("");
+            console.log("INFO: (ls) Listed files in directory " + path["_parent"] + path["_name"] + ".");
         }
         else{
-            terminal.echo("[[;red;]Cannot list files from a non-directory path.]\n");
+            terminal.echo("[[;red;]Cannot list files from a non-directory path.]");
         }
     }
     else{
-        terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]\n");
+        terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]");
     }
+
+    terminal.echo("");
 
 }

@@ -1,5 +1,7 @@
 export function help(terminal){
-    terminal.echo("\nhelp message\n");
+    terminal.echo("\nhelp message");
 
-    console.log("INFO: (help) Displayed help message.")
+    console.log("INFO: (help) Displayed help message.");
+
+    terminal.echo("");
 }
