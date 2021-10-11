@@ -95,6 +95,11 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "advent-of-code",
+      "python"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -168,14 +173,14 @@
     "releases_url": "https://api.github.com/repos/edgorman/edgorman.github.io/releases{/id}",
     "deployments_url": "https://api.github.com/repos/edgorman/edgorman.github.io/deployments",
     "created_at": "2019-08-25T12:37:35Z",
-    "updated_at": "2021-09-27T18:16:40Z",
-    "pushed_at": "2021-09-27T18:16:37Z",
+    "updated_at": "2021-10-04T18:17:06Z",
+    "pushed_at": "2021-10-11T16:25:18Z",
     "git_url": "git://github.com/edgorman/edgorman.github.io.git",
     "ssh_url": "git@github.com:edgorman/edgorman.github.io.git",
     "clone_url": "https://github.com/edgorman/edgorman.github.io.git",
     "svn_url": "https://github.com/edgorman/edgorman.github.io",
     "homepage": "https://edgorman.github.io",
-    "size": 24375,
+    "size": 24362,
     "stargazers_count": 1,
     "watchers_count": 1,
     "language": "HTML",
@@ -188,7 +193,7 @@
     "mirror_url": null,
     "archived": false,
     "disabled": false,
-    "open_issues_count": 5,
+    "open_issues_count": 4,
     "license": {
       "key": "mit",
       "name": "MIT License",
@@ -197,9 +202,16 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "bash",
+      "github-pages",
+      "html",
+      "js"
+    ],
     "visibility": "public",
     "forks": 0,
-    "open_issues": 5,
+    "open_issues": 4,
     "watchers": 1,
     "default_branch": "main"
   },
@@ -293,6 +305,11 @@
     "open_issues_count": 0,
     "license": null,
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "python",
+      "reinforcement-learning"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -389,6 +406,10 @@
     "open_issues_count": 0,
     "license": null,
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -491,6 +512,12 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "html",
+      "js",
+      "website"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -593,6 +620,11 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "chrome-extensions",
+      "javascript"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -666,14 +698,14 @@
     "releases_url": "https://api.github.com/repos/edgorman/Property-Fundamentals/releases{/id}",
     "deployments_url": "https://api.github.com/repos/edgorman/Property-Fundamentals/deployments",
     "created_at": "2021-04-10T12:13:57Z",
-    "updated_at": "2021-10-04T13:39:40Z",
-    "pushed_at": "2021-10-04T13:39:37Z",
+    "updated_at": "2021-10-07T20:56:14Z",
+    "pushed_at": "2021-10-07T20:56:11Z",
     "git_url": "git://github.com/edgorman/Property-Fundamentals.git",
     "ssh_url": "git@github.com:edgorman/Property-Fundamentals.git",
     "clone_url": "https://github.com/edgorman/Property-Fundamentals.git",
     "svn_url": "https://github.com/edgorman/Property-Fundamentals",
     "homepage": null,
-    "size": 17304,
+    "size": 17415,
     "stargazers_count": 1,
     "watchers_count": 1,
     "language": "Jupyter Notebook",
@@ -689,6 +721,10 @@
     "open_issues_count": 0,
     "license": null,
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+
+    ],
     "visibility": "public",
     "forks": 1,
     "open_issues": 0,
@@ -785,6 +821,12 @@
     "open_issues_count": 0,
     "license": null,
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "app",
+      "godot",
+      "tetris"
+    ],
     "visibility": "public",
     "forks": 1,
     "open_issues": 0,
@@ -887,6 +929,12 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "cli",
+      "malicious-url-detection",
+      "python"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 0,
@@ -989,6 +1037,13 @@
       "node_id": "MDc6TGljZW5zZTEz"
     },
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+      "3d",
+      "java",
+      "maven",
+      "rendering"
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 4,
@@ -1085,6 +1140,10 @@
     "open_issues_count": 1,
     "license": null,
     "allow_forking": true,
+    "is_template": false,
+    "topics": [
+
+    ],
     "visibility": "public",
     "forks": 0,
     "open_issues": 1,
