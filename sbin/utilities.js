@@ -182,6 +182,5 @@ export function onCompletion(terminal){
 
     }
 
-    console.log(autofills);
     return autofills;
 }

@@ -31,6 +31,7 @@ export class Terminal
 
         this.terminal = $("body").terminal({
                 cd : function(path) { commands.cd(t, path); },
+                echo: function(...args) { commands.echo(t, args); },
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); }
             }, {
@@ -39,7 +40,7 @@ export class Terminal
                 checkArity : false,
                 doubleTab : function(){},
                 keymap : utilities.generateKeyMappings(),
-                completion : function(string){ return utilities.onCompletion(t) },
+                completion : function(){ return utilities.onCompletion(t) },
                 onCommandNotFound : function(command){ utilities.onCommandNotFound(t, command) },
 				exceptionHandler : function(exception){ utilities.onExceptionThrown(t, exception); },
                 prompt : utilities.generatePromptMessage(t.user.name, t.hostname, t.currentDirectory),

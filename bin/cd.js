@@ -1,6 +1,11 @@
 import { getPath, generatePromptMessage} from "../sbin/utilities.js";
 
 export function cd(terminal, relativePath){
+    // If path is empty
+    if (relativePath == undefined){
+        relativePath = ".";
+    }
+        
     // If path equals home directory
     if (relativePath == "~"){
         terminal.currentDirectory = terminal.fileSystem["/"];
