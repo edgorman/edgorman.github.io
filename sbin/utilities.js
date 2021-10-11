@@ -23,7 +23,7 @@ export function generatePromptMessage(terminal, directory){
 }
 
 export function generateGreetingMessage(username, hostname, commitMessage){
-    return "";
+    return "Currently rebuilding so is WIP, check back in a couple of weeks! :)";
 //  return `Copyright (c) 2021 Edward Gorman` 
 //  + `\n<https://github.com/edgorman>`
 //  + `\n\nWelcome to https://`
