@@ -35,7 +35,8 @@ export class Terminal
                 echo: function(...args) { commands.echo(t, args); },
                 exit: function() { commands.exit(t); },
                 help : function() { commands.help(t); },
-                ls : function(path) { commands.ls(t, path); }
+                ls : function(path) { commands.ls(t, path); },
+                pwd : function() { commands.pwd(t); }
             }, {
                 name : t.hostname + " terminal",
                 mobileDelete : true,
@@ -45,7 +46,7 @@ export class Terminal
                 completion : function(){ return utilities.onCompletion(t) },
                 onCommandNotFound : function(command){ utilities.onCommandNotFound(t, command) },
 				exceptionHandler : function(exception){ utilities.onExceptionThrown(t, exception); },
-                prompt : utilities.generatePromptMessage(t.user.name, t.hostname, t.currentDirectory),
+                prompt : utilities.generatePromptMessage(t, t.currentDirectory),
                 greetings : utilities.generateGreetingMessage(t.user.name, t.hostname, t.commitMessage)
             }
         );

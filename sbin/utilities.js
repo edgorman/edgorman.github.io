@@ -13,9 +13,13 @@ export function onExceptionThrown(terminal, exception){
     terminal.echo("[[;red;]Error: " + exception + "]\n");
 }
 
-export function generatePromptMessage(username, hostname, directory){
+export function generatePromptMessage(terminal, directory){
+    if (String(directory).startsWith(terminal.user.homeDirectory)){
+        directory = String(directory).replace(terminal.user.homeDirectory, "~");
+    }
+
     document.title = directory;
-    return username + "@" + hostname + " " + directory + "\n$ "
+    return terminal.user.name + "@" + terminal.hostname + " " + directory + "\n$ "
 }
 
 export function generateGreetingMessage(username, hostname, commitMessage){

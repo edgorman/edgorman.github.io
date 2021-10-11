@@ -27,7 +27,7 @@ export function cd(terminal, relativePath){
             // Change directory to path
             terminal.currentDirectory = path;
 
-            var prompt = generatePromptMessage(terminal.user.name, terminal.hostname, path["_parent"] + path["_name"])
+            var prompt = generatePromptMessage(terminal, path["_parent"] + path["_name"])
             terminal.terminal.set_prompt(prompt);
     
             console.log("INFO: (cd) Changed directory to " + path["_parent"] + path["_name"] + ".");
