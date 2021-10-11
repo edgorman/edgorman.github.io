@@ -24,18 +24,22 @@ jobs:
     - name: Step 1 - Checkout main branch
       uses: actions/checkout@v2
     
-    - name: Step 2 - Import submodules
-      run: ./src/bash/import-repos.sh
+    - name: Step 2 - Update submodules
+      run: ./sbin/updateSubmodules.sh
       shell: bash
     
-    - name: Step 3 - Update config files
-      run: ./src/bash/generate-config.sh
+    - name: Step 3 - Update file system
+      run: ./sbin/generateFileSystem.sh
       shell: bash
     
+    - name: Step 4 - Update git history
+      run: ./sbin/generateGitHistory.sh
+      shell: bash
+
     - name: Step 4 - Add and commit changes
       uses: EndBug/add-and-commit@v7
       with:
-        message: 'Update Config Files (via workflow)'
+        message: 'Automatic update (via workflow)'
         add: '*'
     
     - name: Step 5 - Push commit
