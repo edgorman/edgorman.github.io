@@ -3,7 +3,7 @@ terminal.js
 
 @edgorman 09-10-21
 */
-import * as commands from '../bin/index.js';
+import * as commands from '../bin/include.js';
 import * as utilities from './utilities.js';
 
 
@@ -33,6 +33,7 @@ export class Terminal
                 cd : function(path) { commands.cd(t, path); },
                 debug : function() { commands.debug(t); },
                 echo: function(...args) { commands.echo(t, args); },
+                exit: function() { commands.exit(t); },
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); }
             }, {
