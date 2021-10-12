@@ -33,6 +33,7 @@ export class Terminal
         this.terminal = $("body").terminal({
                 cat : function(path) { commands.cat(t, path) },
                 cd : function(path) { commands.cd(t, path); },
+                date : function() { commands.date(t); },
                 debug : function() { commands.debug(t); },
                 echo: function(...args) { commands.echo(t, args); },
                 exit: function() { commands.exit(t); },
