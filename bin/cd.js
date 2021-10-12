@@ -1,6 +1,8 @@
 import { getPath, generatePromptMessage} from "../sbin/utilities.js";
 
 export function cd(terminal, relativePath){
+    var currentDirectory = terminal.currentDirectory;
+
     // If path is empty
     if (relativePath == undefined){
         relativePath = ".";
@@ -18,7 +20,13 @@ export function cd(terminal, relativePath){
         relativePath = "";
     }
 
-    var path = getPath(terminal.fileSystem, terminal.currentDirectory, relativePath);
+    // If path starts with root
+    if (String(relativePath).startsWith("/")){
+        currentDirectory = terminal.fileSystem["/"];
+        relativePath = String(relativePath).substring(1, relativePath.length);
+    }
+
+    var path = getPath(terminal.fileSystem, currentDirectory, relativePath);
 
     // If path exists
     if (path){

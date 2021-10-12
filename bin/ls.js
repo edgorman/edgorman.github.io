@@ -20,6 +20,12 @@ export function ls(terminal, relativePath){
         relativePath = "";
     }
 
+    // If path starts with root
+    if (String(relativePath).startsWith("/")){
+        currentDirectory = terminal.fileSystem["/"];
+        relativePath = String(relativePath).substring(1, relativePath.length);
+    }
+
     var path = getPath(terminal.fileSystem, currentDirectory, relativePath);
     
     // If path exists
