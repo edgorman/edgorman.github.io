@@ -1,0 +1,49 @@
+# This workflow will update the config files that represent the repo file structure.
+
+name: Update Config Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 18 * * 1'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Description'
+        required: false
+        default: 'Manually triggered workflow'
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Step 1 - Checkout main branch
+      uses: actions/checkout@v2
+    
+    - name: Step 2 - Update submodules
+      run: ./sbin/updateSubmodules.sh
+      shell: bash
+    
+    - name: Step 3 - Update file system
+      run: ./sbin/generateFileSystem.sh
+      shell: bash
+    
+    - name: Step 4 - Update git history
+      run: ./sbin/generateGitHistory.sh
+      shell: bash
+
+    - name: Step 5 - Add and commit changes
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: 'Automatic update (via workflow)'
+        add: '*'
+    
+    - name: Step 6 - Push commit
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

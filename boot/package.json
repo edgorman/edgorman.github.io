@@ -1,0 +1,25 @@
+{
+  "name": "edgorman.github.io",
+  "version": "1.0.0",
+  "description": "My personal website hosted on Github Pages.",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "http-server ../"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgorman/edgorman.github.io.git"
+  },
+  "author": "edgorman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edgorman/edgorman.github.io/issues"
+  },
+  "homepage": "https://github.com/edgorman/edgorman.github.io#readme",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "ecstatic": "^4.1.4",
+    "http-server": "^0.12.3"
+  }
+}
