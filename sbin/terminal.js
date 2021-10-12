@@ -16,12 +16,13 @@ export class Terminal
         this.hostname = hostname;
 
         this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
+        this.currentDirectory = this.fileSystem["/"];
+
         this.gitHistory = utilities.loadGitHistory("etc/gitHistory.json");
         this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
-
-        this.currentDirectory = this.fileSystem["/"];
+        
         commands.cd(this, "~");
     }
 
@@ -30,6 +31,7 @@ export class Terminal
         var t = this;
 
         this.terminal = $("body").terminal({
+                cat : function(path) { commands.cat(t, path) },
                 cd : function(path) { commands.cd(t, path); },
                 debug : function() { commands.debug(t); },
                 echo: function(...args) { commands.echo(t, args); },

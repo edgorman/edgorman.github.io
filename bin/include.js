@@ -1,3 +1,4 @@
+export {cat} from './cat.js'
 export {cd} from './cd.js'
 export {debug} from './debug.js'
 export {echo} from './echo.js'

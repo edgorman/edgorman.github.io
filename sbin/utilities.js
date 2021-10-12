@@ -51,7 +51,7 @@ export function generateKeyMappings(){
     }
 }
 
-function loadFile(path, successMsg, ErrorMsg){
+export function loadFile(path){
     var result;
 
     $.ajax({
@@ -60,10 +60,10 @@ function loadFile(path, successMsg, ErrorMsg){
         async: false,
         success:function(data) {
             result = data;
-            console.info("INFO: " + successMsg);
+            console.info("INFO: Successfully loaded " + path + ".");
         }
         }).fail(function() {
-            console.error("ERROR: " + ErrorMsg);
+            console.error("ERROR: Failed to retrieve " + path + ".");
             window.stop();
         }
     );
@@ -72,19 +72,11 @@ function loadFile(path, successMsg, ErrorMsg){
 }
 
 export function loadFileSystem(fileSystemPath){
-    return loadFile(
-        fileSystemPath, 
-        "Successfully loaded file system from json file.",
-        "Failed to retrieve file system from json file."
-    );
+    return loadFile(fileSystemPath);
 }
 
 export function loadGitHistory(gitHistoryPath){
-    return loadFile(
-        gitHistoryPath,
-        "Successfully loaded git history from json file.",
-        "Failed to retrieve git history from json file."
-    );
+    return loadFile(gitHistoryPath);
 }
 
 function splitPath(path){
