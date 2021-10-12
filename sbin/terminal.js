@@ -16,12 +16,13 @@ export class Terminal
         this.hostname = hostname;
 
         this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
+        this.currentDirectory = this.fileSystem["/"];
+
         this.gitHistory = utilities.loadGitHistory("etc/gitHistory.json");
         this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
-
-        this.currentDirectory = this.fileSystem["/"];
+        
         commands.cd(this, "~");
     }
 
@@ -30,10 +31,13 @@ export class Terminal
         var t = this;
 
         this.terminal = $("body").terminal({
+                cat : function(path) { commands.cat(t, path) },
                 cd : function(path) { commands.cd(t, path); },
+                date : function() { commands.date(t); },
                 debug : function() { commands.debug(t); },
                 echo: function(...args) { commands.echo(t, args); },
                 exit: function() { commands.exit(t); },
+                history: function() { commands.history(t); },
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); },
                 pwd : function() { commands.pwd(t); }
@@ -47,7 +51,7 @@ export class Terminal
                 onCommandNotFound : function(command){ utilities.onCommandNotFound(t, command) },
 				exceptionHandler : function(exception){ utilities.onExceptionThrown(t, exception); },
                 prompt : utilities.generatePromptMessage(t, t.currentDirectory),
-                greetings : utilities.generateGreetingMessage(t.user.name, t.hostname, t.commitMessage)
+                greetings : utilities.generateGreetingMessage(t)
             }
         );
 

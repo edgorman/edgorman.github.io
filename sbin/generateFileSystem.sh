@@ -35,7 +35,8 @@ generateFileSystem() {
       echo "${result::-1}},"
       cd ".."
     else
-      echo $(addFile "$e" $d $t 'txt' "$1")
+      n="${e##*.}"
+      echo $(addFile "$e" $d $t $n "$1")
     fi
   done
 }

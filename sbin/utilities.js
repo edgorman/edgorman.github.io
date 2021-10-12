@@ -19,19 +19,19 @@ export function generatePromptMessage(terminal, directory){
     }
 
     document.title = directory;
-    return terminal.user.name + "@" + terminal.hostname + " " + directory + "\n$ "
+    return "&#91;" + terminal.user.name + "@" + terminal.hostname + ":" + directory + "&#93;$ ";
 }
 
-export function generateGreetingMessage(username, hostname, commitMessage){
+export function generateGreetingMessage(terminal){
     return "Currently rebuilding so is WIP, check back in a couple of weeks! :)";
 //  return `Copyright (c) 2021 Edward Gorman` 
 //  + `\n<https://github.com/edgorman>`
 //  + `\n\nWelcome to https://`
-//  + hostname
+//  + terminal.hostname
 //  + `\n`
-//  + commitMessage
+//  + termina.commitMessage
 //  + `\n\nYou are currently logged in as: [[b;;]` 
-//  + username
+//  + termina.user.name
 //  + `]\nTo start, enter the command "[[b;;]help]"`;
 }
 
@@ -51,7 +51,7 @@ export function generateKeyMappings(){
     }
 }
 
-function loadFile(path, successMsg, ErrorMsg){
+export function loadFile(path){
     var result;
 
     $.ajax({
@@ -60,10 +60,10 @@ function loadFile(path, successMsg, ErrorMsg){
         async: false,
         success:function(data) {
             result = data;
-            console.info("INFO: " + successMsg);
+            console.info("INFO: Successfully loaded " + path + ".");
         }
         }).fail(function() {
-            console.error("ERROR: " + ErrorMsg);
+            console.error("ERROR: Failed to retrieve " + path + ".");
             window.stop();
         }
     );
@@ -72,19 +72,11 @@ function loadFile(path, successMsg, ErrorMsg){
 }
 
 export function loadFileSystem(fileSystemPath){
-    return loadFile(
-        fileSystemPath, 
-        "Successfully loaded file system from json file.",
-        "Failed to retrieve file system from json file."
-    );
+    return loadFile(fileSystemPath);
 }
 
 export function loadGitHistory(gitHistoryPath){
-    return loadFile(
-        gitHistoryPath,
-        "Successfully loaded git history from json file.",
-        "Failed to retrieve git history from json file."
-    );
+    return loadFile(gitHistoryPath);
 }
 
 function splitPath(path){
