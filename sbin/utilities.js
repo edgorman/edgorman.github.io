@@ -158,6 +158,12 @@ export function getPath(terminal, relativePath){
 export function onCompletion(terminal){
     var input = $.terminal.parse_command(terminal.terminal.before_cursor());
     var relativePath = "";
+    var currentDirectory = terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"];
+
+    // If path starts with root
+    if (String(input.rest).startsWith("/")){
+        currentDirectory = "/";
+    }
 
     // Navigate to current directory
     var path = getAbsolutePath(terminal, getFilePath(terminal.currentDirectory));
