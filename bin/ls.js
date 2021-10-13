@@ -1,26 +1,7 @@
-import { getPath, } from "../sbin/utilities.js";
+import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, relativePath){
-    var currentDirectory = terminal.currentDirectory;
-
-    // If path is empty
-    if (relativePath == undefined){
-        relativePath = ".";
-    }
-
-    // If path equals home directory
-    if (relativePath == "~"){
-        currentDirectory =  terminal.fileSystem["/"];
-        relativePath = terminal.user.homeDirectory;
-    }
-
-    // If path equals root
-    if (relativePath == "/" || relativePath == "\\"){
-        currentDirectory = terminal.fileSystem["/"];
-        relativePath = "";
-    }
-
-    var path = getPath(terminal.fileSystem, currentDirectory, relativePath);
+    var path = getPath(terminal, relativePath);
     
     // If path exists
     if (path){
@@ -35,7 +16,7 @@ export function ls(terminal, relativePath){
                 terminal.echo(entry);
             }
 
-            console.log("INFO: (ls) Listed files in directory " + path["_parent"] + path["_name"] + ".");
+            console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");
         }
         else{
             terminal.echo("[[;red;]Cannot list files from a non-directory path.]");
