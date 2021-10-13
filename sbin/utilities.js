@@ -4,13 +4,13 @@ utilities.js
 @edgorman 09-10-21
 */
 
-export function onCommandNotFound(terminal, command){
-    terminal.echo("[[;red;]Error: Command not found '" + command + "']\n");
-}
-
 export function onExceptionThrown(terminal, exception){
     console.error("ERROR: " + exception);
     terminal.echo("[[;red;]Error: " + exception + "]\n");
+}
+
+export function onCommandNotFound(terminal, command){
+    onExceptionThrown(terminal, "Command not found '" + command + "'");
 }
 
 export function generatePromptMessage(terminal, directory){
@@ -90,9 +90,13 @@ function splitPath(path){
     else return String(path).split(/[\\/]/);
 }
 
-export function getAbsolutePath(fileSystem, absolutePath){
+export function getFilePath(file){
+    return file["_parent"] + file["_name"];
+}
+
+export function getAbsolutePath(terminal, absolutePath){
     // Assumes the absolute path must exist
-    var path = fileSystem["/"];
+    var path = terminal.fileSystem["/"];
 
     var pathSegments = splitPath(absolutePath);
     for (var i = 0; i < pathSegments.length; i++){
@@ -102,9 +106,28 @@ export function getAbsolutePath(fileSystem, absolutePath){
     return path;
 }
 
-export function getPath(fileSystem, currentDirectory, relativePath){
+export function getPath(terminal, relativePath){
+    var currentDirectory = terminal.currentDirectory;
+
+    // If path is empty
+    if (relativePath == undefined){
+        relativePath = ".";
+    }
+
+    // If path starts with root
+    if (String(relativePath).startsWith("/")){
+        currentDirectory = terminal.fileSystem["/"];
+        relativePath = String(relativePath).substring(1, relativePath.length);
+    }
+
+    // If path starts with home
+    if (String(relativePath).startsWith("~")){
+        currentDirectory = getAbsolutePath(terminal, terminal.user.homeDirectory);
+        relativePath = String(relativePath).substring(1, relativePath.length);
+    }
+
     // Navigate to current directory
-    var path = getAbsolutePath(fileSystem, currentDirectory["_parent"] + currentDirectory["_name"]);
+    var path = getAbsolutePath(terminal, getFilePath(currentDirectory));
 
     // Navigate to relative path
     var pathSegments = splitPath(relativePath);
@@ -114,7 +137,7 @@ export function getPath(fileSystem, currentDirectory, relativePath){
             continue;
         }
         else if (pathSegments[i] == ".."){
-            path = getAbsolutePath(fileSystem, path['_parent']);
+            path = getAbsolutePath(terminal, path['_parent']);
         }
         else{
             if (pathSegments[i] in path){
@@ -143,7 +166,7 @@ export function onCompletion(terminal){
     }
 
     // Navigate to current directory
-    var path = getAbsolutePath(terminal.fileSystem, currentDirectory);
+    var path = getAbsolutePath(terminal, getFilePath(terminal.currentDirectory));
 
     // Navigate to relative path
     var pathSegments = splitPath(input.rest);
@@ -172,13 +195,15 @@ export function onCompletion(terminal){
     var autofills = [];
     for (var entry in path){
 
-        if (String(entry).startsWith("_")){
+        if (String(entry).startsWith("_") || entry == "." || entry == ".."){
             continue;
         }
         else if (pathSegments.length == 0){
+            console.log(entry);
             autofills.push(path[entry]["_name"]);
         }
         else{
+            console.log(entry);
             autofills.push(relativePath + path[entry]["_name"]);
         }
 
