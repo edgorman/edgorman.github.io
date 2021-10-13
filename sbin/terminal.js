@@ -14,6 +14,7 @@ export class Terminal
     constructor(user, hostname){
         this.user = user;
         this.hostname = hostname;
+        this.osName = "edOS";
 
         this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
         this.currentDirectory = this.fileSystem["/"];
@@ -40,7 +41,8 @@ export class Terminal
                 history: function() { commands.history(t); },
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); },
-                pwd : function() { commands.pwd(t); }
+                pwd : function() { commands.pwd(t); },
+                uname : function() { commands.uname(t); }
             }, {
                 name : t.hostname + " terminal",
                 mobileDelete : true,
