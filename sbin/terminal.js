@@ -42,7 +42,8 @@ export class Terminal
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); },
                 pwd : function() { commands.pwd(t); },
-                uname : function() { commands.uname(t); }
+                uname : function() { commands.uname(t); },
+                whoami : function() { commands.whoami(t); }
             }, {
                 name : t.hostname + " terminal",
                 mobileDelete : true,
