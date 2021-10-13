@@ -19,20 +19,16 @@ export function generatePromptMessage(terminal, directory){
     }
 
     document.title = directory;
-    return "&#91;" + terminal.user.name + "@" + terminal.hostname + ":" + directory + "&#93;$ ";
+    return "[[;#7bd833;]" + terminal.user.name + "@" + terminal.hostname + "]:[[;#5b88df;]" + directory + "]$ ";
 }
 
 export function generateGreetingMessage(terminal){
-    return "Currently rebuilding so is WIP, check back in a couple of weeks! :)";
-//  return `Copyright (c) 2021 Edward Gorman` 
-//  + `\n<https://github.com/edgorman>`
-//  + `\n\nWelcome to https://`
-//  + terminal.hostname
-//  + `\n`
-//  + termina.commitMessage
-//  + `\n\nYou are currently logged in as: [[b;;]` 
-//  + termina.user.name
-//  + `]\nTo start, enter the command "[[b;;]help]"`;
+    return `Copyright (c) `
+    + (1900 + new Date().getYear())
+    + ` Edward Gorman <https://github.com/edgorman>`
+    + `\nLast login: `
+    + Date()
+    + `\n\nTo start, enter the command "[[b;;]help]"`;
 }
 
 export function generateCommitMessage(commit){
