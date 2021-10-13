@@ -19,7 +19,7 @@ export function generatePromptMessage(terminal, directory){
     }
 
     document.title = directory;
-    return "&#91;" + terminal.user.name + "@" + terminal.hostname + ":" + directory + "&#93;$ ";
+    return "[[;#7bd833;]" + terminal.user.name + "@" + terminal.hostname + "]:[[;#5b88df;]" + directory + "]$ ";
 }
 
 export function generateGreetingMessage(terminal){
