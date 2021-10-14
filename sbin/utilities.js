@@ -75,6 +75,30 @@ export function loadGitHistory(gitHistoryPath){
     return loadFile(gitHistoryPath);
 }
 
+export function createFile(terminal, parentPath, filename){
+    try{
+        var date = new Date();
+        var extension = "txt";
+    
+        if (String(filename).includes('.')){
+            extension = filename.split('.').pop();
+        }
+    
+        terminal.fileSystem[parentPath][filename] = {
+            "_name": filename, 
+            "_date": date.getDate() + "/" + date.getMonth() + "/" + (1900 + date.getYear()),
+            "_time": date.getHours() + ":" + date.getMinutes(), 
+            "_type": extension, 
+            "_parent": parentPath
+        }
+
+        return true;
+    }
+    catch (e){
+        return false;
+    }
+}
+
 export function splitPath(path){
     if (String(path).startsWith("/"))
         path = path.substring(1, path.length);

@@ -1,4 +1,4 @@
-import { splitPath, getFilePath, getParentPath } from "../sbin/utilities.js";
+import { splitPath, getFilePath, getParentPath, createFile } from "../sbin/utilities.js";
 
 export function touch(terminal, relativePath){
     var path = getParentPath(terminal, relativePath);
@@ -14,12 +14,24 @@ export function touch(terminal, relativePath){
 
             // If filename is not defined
             if (filename != undefined){
-
-                console.log("INFO: (touch) Created file " + filename + " at " + getFilePath(path) + ".");
+                // If filename does not exist in path
+                if (!(filename in path)){
+                    // If file creation was successful
+                    if (createFile(terminal, getFilePath(path), filename)){
+                        console.log("INFO: (touch) Created file " + filename + " at " + getFilePath(path) + ".");
+                    }
+                    else{
+                        terminal.echo("[[;red;]Error creating file " + filename + " at " + getFilePath(path) + ".]");
+                    }
+                }
+                else{
+                    terminal.echo("[[;red;]The file " + filename + " already exists at " + getFilePath(path) + ".]");
+                }
             }
             else{
                 terminal.echo("[[;red;]Cannot create file without a name.]");
             }
+
         }
         else{
             terminal.echo("[[;red;]Cannot create file in non-directory path.]");
