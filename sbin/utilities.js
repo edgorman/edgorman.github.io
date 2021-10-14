@@ -191,56 +191,77 @@ export function getPath(terminal, relativePath){
 }
 
 export function onCompletion(terminal){
-    var input = $.terminal.parse_command(terminal.terminal.before_cursor());
-    var relativePath = "";
-    var currentDirectory = terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"];
-
-    // If path starts with root
-    if (String(input.rest).startsWith("/")){
-        currentDirectory = "/";
-    }
-
-    // Navigate to current directory
-    var path = getAbsolutePath(terminal, getFilePath(terminal.currentDirectory));
-
-    // Navigate to relative path
-    var pathSegments = splitPath(input.rest);
-    for (var i = 0; i < pathSegments.length; i++){
-
-        if (pathSegments[i] == "" || pathSegments[i] == "."){
-            continue;
-        }
-        else if (pathSegments[i] == ".."){
-            path = getAbsolutePath(terminal.fileSystem, path['_parent']);
-            relativePath += "../"
-        }
-        else{
-            if (pathSegments[i] in path){
-                path = path[pathSegments[i]];
-                relativePath += pathSegments[i] + "/";
-            }
-            else{
-                break;
-            }
-        }
-
-    }
+    var remainingPath = $.terminal.parse_command(terminal.terminal.before_cursor()).rest;
+    var path = getParentPath(terminal, remainingPath);
+    var pathSegments = splitPath(path);
 
     // Add files to list of possible autofills
     var autofills = [];
     for (var entry in path){
-
-        if (String(entry).startsWith("_") || entry == "." || entry == ".."){
-            continue;
+        if (!String(entry).startsWith("_")){
+            if (pathSegments.length == 1){
+                autofills.push(path[entry]["_name"]);
+            }
+            else{
+                autofills.push(pathSegments.slice(0, pathSegments.length - 1).join("/") + path[entry]["_name"]);
+            }
         }
-        else if (pathSegments.length == 0){
-            autofills.push(path[entry]["_name"]);
-        }
-        else{
-            autofills.push(relativePath + path[entry]["_name"]);
-        }
-
     }
 
     return autofills;
+
+    // return autofills;
+
+    // var relativePath = "";
+    // var currentDirectory = terminal.currentDirectory["_parent"] + terminal.currentDirectory["_name"];
+
+    // // If path starts with root
+    // if (String(input.rest).startsWith("/")){
+    //     currentDirectory = "/";
+    // }
+
+    // // Navigate to current directory
+    // var path = getAbsolutePath(terminal, getFilePath(terminal.currentDirectory));
+
+    // // Navigate to relative path
+    // var pathSegments = splitPath(input.rest);
+    // for (var i = 0; i < pathSegments.length; i++){
+
+    //     if (pathSegments[i] == "" || pathSegments[i] == "."){
+    //         continue;
+    //     }
+    //     else if (pathSegments[i] == ".."){
+    //         path = getAbsolutePath(terminal.fileSystem, path['_parent']);
+    //         relativePath += "../"
+    //     }
+    //     else{
+    //         if (pathSegments[i] in path){
+    //             path = path[pathSegments[i]];
+    //             relativePath += pathSegments[i] + "/";
+    //         }
+    //         else{
+    //             break;
+    //         }
+    //     }
+
+    // }
+
+    // // Add files to list of possible autofills
+    // var autofills = [];
+    // for (var entry in path){
+
+    //     if (String(entry).startsWith("_") || entry == "." || entry == ".."){
+    //         continue;
+    //     }
+    //     else if (pathSegments.length == 0){
+    //         autofills.push(path[entry]["_name"]);
+    //     }
+    //     else{
+    //         autofills.push(relativePath + path[entry]["_name"]);
+    //     }
+
+    // }
+
+    // return autofills;
+    return ['test'];
 }
