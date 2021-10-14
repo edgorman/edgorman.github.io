@@ -75,7 +75,7 @@ export function loadGitHistory(gitHistoryPath){
     return loadFile(gitHistoryPath);
 }
 
-function splitPath(path){
+export function splitPath(path){
     if (String(path).startsWith("/"))
         path = path.substring(1, path.length);
     
@@ -93,13 +93,28 @@ export function getFilePath(file){
 export function getAbsolutePath(terminal, absolutePath){
     // Assumes the absolute path must exist
     var path = terminal.fileSystem["/"];
-
+    
     var pathSegments = splitPath(absolutePath);
     for (var i = 0; i < pathSegments.length; i++){
         path = path[pathSegments[i]];
     }
 
     return path;
+}
+
+export function getParentPath(terminal, relativePath){
+    var pathSegments = splitPath(relativePath);
+    var parentPath =  pathSegments.slice(0, pathSegments.length - 1).join('/');
+
+    if (String(relativePath).startsWith("/")){
+        parentPath = "/" + parentPath;
+    }
+
+    if (String(relativePath).startsWith("~") && !String(relativePath).startsWith("~/")){
+        parentPath = "~/" + parentPath;
+    }
+
+    return getPath(terminal, parentPath);
 }
 
 export function getPath(terminal, relativePath){
@@ -195,11 +210,9 @@ export function onCompletion(terminal){
             continue;
         }
         else if (pathSegments.length == 0){
-            console.log(entry);
             autofills.push(path[entry]["_name"]);
         }
         else{
-            console.log(entry);
             autofills.push(relativePath + path[entry]["_name"]);
         }
 

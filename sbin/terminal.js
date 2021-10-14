@@ -41,6 +41,7 @@ export class Terminal
                 history: function() { commands.history(t); },
                 help : function() { commands.help(t); },
                 ls : function(path) { commands.ls(t, path); },
+                touch : function(path) { commands.touch(t, path); },
                 pwd : function() { commands.pwd(t); },
                 uname : function() { commands.uname(t); },
                 whoami : function() { commands.whoami(t); }
