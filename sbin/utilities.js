@@ -27,8 +27,7 @@ export function generateGreetingMessage(terminal){
     + (1900 + new Date().getYear())
     + ` Edward Gorman <https://github.com/edgorman>`
     + `\nLast login: `
-    + Date()
-    + `\n\nTo start, enter the command "[[b;;]help]"`;
+    + Date();
 }
 
 export function generateCommitMessage(commit){
