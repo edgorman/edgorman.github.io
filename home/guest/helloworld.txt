@@ -1,0 +1,13 @@
+
+Hello and welcome to my website!
+
+Congrats on being able to print this file,
+feel free to explore using the other commands.
+
+To view my website without the terminal,
+click here: https://edgorman.github.io
+
+If you're feeling adventurous, see if you can 
+access the files from eg2 or root (WIP) ;)
+
+- Ed

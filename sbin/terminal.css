@@ -1,3 +1,33 @@
 .terminal {
     --color: #dfdfdf;
 }
+
+.terminal .directory-link{
+    color: var(--link-color,#5b88df);
+    cursor: pointer;
+}
+
+.terminal .directory-link:hover{
+    color: var(--background,#000);
+    background-color: var(--link-color,#5b88df);
+}
+
+.terminal .executable-link{
+    color: var(--link-color,#7bd833);
+    cursor: pointer;
+}
+
+.terminal .executable-link:hover{
+    color: var(--background,#000);
+    background-color: var(--link-color,#7bd833);
+}
+
+.terminal .file-link{
+    color: var(--link-color,#dfdfdf);
+    cursor: pointer;
+}
+
+.terminal .file-link:hover{
+    color: var(--background,#000);
+    background-color: var(--link-color,#dfdfdf);
+}
