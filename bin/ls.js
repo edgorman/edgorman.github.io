@@ -9,8 +9,8 @@ export function ls(terminal, relativePath){
         if (path['_type'] == "dir"){
             // If path is not root
             if (path['_name'] != ""){
-                terminal.echo("[[;#5b88df;].]");
-                terminal.echo("[[;#5b88df;]..]");
+                terminal.echo($("<span class='directory-link' onclick='window.terminal.terminal.exec(\"cd .\");'>.</span>"));
+                terminal.echo($("<span class='directory-link' onclick='window.terminal.terminal.exec(\"cd ..\");'>..</span>"));
             }
 
             // List all files in path
@@ -21,16 +21,16 @@ export function ls(terminal, relativePath){
 
                 switch(path[entry]['_type']){
                     case 'dir':
-                        terminal.echo("[[;#5b88df;]" + entry + "]");
+                        terminal.echo($("<span class='directory-link' onclick='window.terminal.terminal.exec(\"cd " + entry + "\");'>" + entry + "</span>"));
                         break;
                     case 'sh':
-                        terminal.echo("[[;#7bd833;]" + entry + "]");
+                        terminal.echo($("<span class='executable-link' onclick='window.terminal.terminal.exec(\"cat " + entry + "\");'>" + entry + "</span>"));
                         break;
                     case 'js':
-                        terminal.echo("[[;#7bd833;]" + entry + "]");
+                        terminal.echo($("<span class='executable-link' onclick='window.terminal.terminal.exec(\"cat " + entry + "\");'>" + entry + "</span>"));
                         break;
                     default:
-                        terminal.echo(entry);
+                        terminal.echo($("<span class='file-link' onclick='window.terminal.terminal.exec(\"cat " + entry + "\");'>" + entry + "</span>"));
                         break;
                 }
             }

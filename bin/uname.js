@@ -1,7 +1,7 @@
 export function uname(terminal){
-    terminal.echo(terminal.osName);
+    terminal.echo(terminal.terminal.name());
 
-    console.log("INFO: (uname) Displayed OS message.");
+    console.log("INFO: (uname) Displayed uname message.");
 
     terminal.echo("");
 }
