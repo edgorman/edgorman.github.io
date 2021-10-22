@@ -1,12 +1,12 @@
 /* Root */
 :root{
-  --text-color: #e5e5e5;
+  --text-color: #e1e1e1;
   --background-color: #1b1b1e;
 }
 
 :root.light-theme{
   --text-color: rgb(22, 22, 22);
-  --background-color: #e5e5e5;
+  --background-color: #e1e1e1;
 }
 
 /* Body */
