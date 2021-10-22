@@ -1,22 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>/</title>
+		<title>Edward Gorman | Personal Website</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<script src="lib/jquery-3.3.1.min.js"></script>
-		<script src="lib/jquery.terminal.min.js"></script>
-		<script src="lib/echo_newline.js"></script>
-		<link href="lib/jquery.terminal.min.css" rel="stylesheet"/>
-		<link href="sbin/terminal.css" rel="stylesheet"/>
 		<link rel="icon" type="image/png" href="media/favicon.png">
 	</head>
 	<body>
-		<script type="module">
-			import { User } from './sbin/user.js';
-			import { Terminal } from './sbin/terminal.js';
-			
-			window.user = new User("guest", "", "/home/guest");
-			window.terminal = new Terminal(window.user, "edgorman.github.io");
-		</script>
+		<iframe src="srv/www/index.html" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:1000;"></iframe>
+        <iframe src="sbin/terminal.html" style="position:fixed; bottom:0; left:0; right:0; width: 100%; height:0px; border:none; margin:0; padding:0; overflow:hidden; z-index:2000;"></iframe>
 	</body>
 </html>
