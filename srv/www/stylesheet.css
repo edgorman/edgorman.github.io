@@ -16,6 +16,10 @@ body{
   min-height: 100vh;
 }
 
+body.developer *{
+  border: 1px inset red;
+}
+
 .row{
   margin-left: 0px;
   margin-right: 0px;
@@ -39,11 +43,25 @@ body{
   color: #c5c5c5;
 }
 
+.navbar div button{
+  margin: 0 5px 0 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar div {
+    width: 100%;
+  }
+}
+
 /* Content */
 .content{
   position: relative;
   min-height: 90vh;
   padding: 15px 0 5rem 0;
+}
+
+.separator{
+  border-top: 1px inset #6c757d;
 }
 
 /* Footer */
@@ -60,4 +78,15 @@ body{
 .footer a{
   color: #6c757d;
   text-decoration: none;
+  font-weight: bold;
+}
+
+.footer button{
+  margin: 0 5px 0 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .footer p {
+    width: 100%;
+  }
 }
