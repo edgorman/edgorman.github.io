@@ -83,12 +83,23 @@
     </div>
 
     <div class="terminal-container">
-        <div></div>
+        <div id="terminal"></div>
+        <div class="terminal-buttons">
+            <button class="btn btn-sm btn-danger" onclick="$('.terminal-container').toggleClass('active');">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="btn btn-sm btn-warning" onclick="$('.terminal-container').height('100vh');">
+                <i class="fas fa-angle-double-down"></i>
+            </button>
+            <button class="btn btn-sm btn-info" style="cursor: default;">
+                <i class="fas fa-arrows-alt-v"></i>
+            </button>
+        </div>
     </div>
 
     <script type="module">
-        import { User } from '../sbin/user.js';
-        import { Terminal } from '../sbin/terminal.js';
+        import { User } from './sbin/user.js';
+        import { Terminal } from './sbin/terminal.js';
         
         window.user = new User("guest", "", "/home/guest");
         window.terminal = new Terminal(window.user, "edgorman.github.io");
