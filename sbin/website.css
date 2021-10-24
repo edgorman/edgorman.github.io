@@ -9,6 +9,39 @@
   --background-color: #e1e1e1;
 }
 
+/* Terminal */
+.terminal-container{
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  width: 100%; 
+  display: none;
+  margin: 0; 
+  padding: 0;
+  z-index: 2000; 
+
+  resize: vertical;
+  overflow: hidden;
+}
+
+.terminal-container.active{
+  display: block;
+}
+
+.terminal-container, .terminal{
+  transform: rotateX(180deg);
+  border: none;
+  min-height: 25vh;
+  max-height: 100vh;
+}
+
+.terminal{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 /* Body */
 body{
   color: var(--text-color);
