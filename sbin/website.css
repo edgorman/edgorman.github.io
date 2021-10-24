@@ -66,6 +66,7 @@ body.developer *{
 .navbar .breadcrumb{
   background-color: transparent;
   margin: 0;
+  padding-left: 0;
 }
 
 .navbar .breadcrumb li a{
