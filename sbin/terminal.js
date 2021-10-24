@@ -15,10 +15,10 @@ export class Terminal
         this.user = user;
         this.hostname = hostname;
 
-        this.fileSystem = utilities.loadFileSystem("etc/fileSystem.json");
+        this.fileSystem = utilities.loadFileSystem("../etc/fileSystem.json");
         this.currentDirectory = this.fileSystem["/"];
 
-        this.gitHistory = utilities.loadGitHistory("etc/gitHistory.json");
+        this.gitHistory = utilities.loadGitHistory("../etc/gitHistory.json");
         this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
