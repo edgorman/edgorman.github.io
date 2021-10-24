@@ -31,7 +31,7 @@ export class Terminal
     create(){
         var t = this;
 
-        this.terminal = $("body").terminal({
+        this.terminal = $("#terminal").terminal({
                 cat : function(path) { commands.cat(t, path) },
                 cd : function(path) { commands.cd(t, path); },
                 date : function() { commands.date(t); },
