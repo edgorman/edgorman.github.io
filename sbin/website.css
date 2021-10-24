@@ -63,7 +63,7 @@ body{
 }
 
 body.developer *{
-  border: 1px inset red;
+  outline: 1px inset rgba(255, 0, 0, 0.42);
 }
 
 .row{
