@@ -20,6 +20,7 @@
   margin: 0; 
   padding: 0;
   z-index: 2000; 
+  border-bottom: 2px solid black;
 
   resize: vertical;
   overflow: hidden;
@@ -31,13 +32,13 @@
 
 .terminal-container, .terminal{
   transform: rotateX(180deg);
-  border: none;
-  min-height: 25vh;
-  max-height: 100vh;
+  min-height: 33vh;
+  max-height: 93vh;
 }
 
 .terminal{
   position: relative;
+  border: none;
   width: 100%;
   height: 100%;
 }
@@ -71,6 +72,10 @@ body.developer *{
   margin-right: 0px;
 }
 
+a.disabled{
+  pointer-events: none;
+}
+
 /* Navbar */
 .navbar{
   background-color: #2a2a30;
@@ -90,12 +95,33 @@ body.developer *{
   color: #c5c5c5;
 }
 
-.navbar div button{
+.navbar .breadcrumb .btn-group{
+  display: inline-flex;
+}
+
+.navbar .breadcrumb .btn-group button{
+  margin: 0;
+  padding: 0;
+  color: #6c757d;
+  transition: none;
+}
+
+.navbar .breadcrumb-item+.breadcrumb-item::before{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.navbar .navbar-menu button{
   margin: 0 5px 0 5px;
 }
 
+.navbar .navbar-menu .dropdown-menu-right{
+  left: auto;
+  right: 0;
+}
+
 @media screen and (max-width: 600px) {
-  .navbar div {
+  .navbar .navbar-menu {
     width: 100%;
   }
 }
