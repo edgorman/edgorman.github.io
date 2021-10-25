@@ -129,22 +129,29 @@ a.disabled{
 /* Content */
 .content{
   position: relative;
-  min-height: 90vh;
+  min-height: 80vh;
   padding: 15px 0 5rem 0;
 }
 
 .separator{
-  border-top: 1px inset #6c757d;
+  border-top: 2px inset #8a9096;
+}
+
+.content-info{
+  margin: 25px 0px 0px 15px;
+  padding: 10px 0 10px 15px;
+  border-left: 2px inset #8a9096;
+}
+
+.content-info .badge{
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
 }
 
 /* Footer */
 .footer{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 1rem 15px 3rem 15px ;
-  border-top: 1px inset #6c757d;
+  border-top: 1px inset #8a9096;
   font-size: 12px;
 }
 
