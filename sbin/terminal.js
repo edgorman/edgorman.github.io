@@ -24,6 +24,7 @@ export class Terminal
         this.create();
         
         this.echo($("<br><span>To start, enter the command \"<span class='file-link' onclick='window.terminal.terminal.exec(\"help\");'>help</span>\" (or click the help text)</span>"));
+        this.echo("");
         commands.cd(this, "~");
     }
 
@@ -31,21 +32,23 @@ export class Terminal
     create(){
         var t = this;
 
-        this.terminal = $("#terminal").terminal({
-                cat : function(path) { commands.cat(t, path) },
-                cd : function(path) { commands.cd(t, path); },
-                date : function() { commands.date(t); },
-                debug : function() { commands.debug(t); },
-                echo: function(...args) { commands.echo(t, args); },
-                exit: function() { commands.exit(t); },
-                history: function() { commands.history(t); },
-                help : function() { commands.help(t); },
-                ls : function(path) { commands.ls(t, path); },
-                touch : function(path) { commands.touch(t, path); },
-                pwd : function() { commands.pwd(t); },
-                uname : function() { commands.uname(t); },
-                whoami : function() { commands.whoami(t); }
-            }, {
+        this.terminal = $("#terminal").terminal(
+            {
+                cat : function(path) { commands.cat(t, path); t.echo(""); },
+                cd : function(path) { commands.cd(t, path); t.echo(""); },
+                date : function() { commands.date(t); t.echo(""); },
+                debug : function() { commands.debug(t); t.echo(""); },
+                echo: function(...args) { commands.echo(t, args); t.echo(""); },
+                exit: function() { commands.exit(t); t.echo(""); },
+                history: function() { commands.history(t); t.echo(""); },
+                help : function() { commands.help(t); t.echo(""); },
+                ls : function(path) { commands.ls(t, path); t.echo(""); },
+                touch : function(path) { commands.touch(t, path); t.echo(""); },
+                pwd : function() { commands.pwd(t); t.echo(""); },
+                uname : function() { commands.uname(t); t.echo(""); },
+                whoami : function() { commands.whoami(t); t.echo(""); }
+            }, 
+            {
                 name : "edOS",
                 mobileDelete : true,
                 checkArity : false,

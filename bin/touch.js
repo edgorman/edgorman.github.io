@@ -40,6 +40,4 @@ export function touch(terminal, relativePath){
     else{
         terminal.echo("[[;red;]The system cannot find the parent directory of '" + relativePath + "'.]");
     }
-
-    terminal.echo("");
 }
