@@ -19,6 +19,4 @@ export function help(terminal){
     terminal.echo("whoami\t\t\tDisplay the system's hostname");
 
     console.log("INFO: (help) Displayed help message.");
-
-    terminal.echo("");
 }

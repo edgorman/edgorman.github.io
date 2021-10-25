@@ -6,6 +6,4 @@ export function history(terminal){
     }
 
     console.log("INFO: (history) Displayed history message.");
-
-    terminal.echo("");
 }

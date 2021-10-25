@@ -11,40 +11,63 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar" aria-label="breadcrumb">
         <div class="container d-flex justify-content-between">
+            <!-- Directory display -->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"></li>
-                <li class="breadcrumb-item file"><a href="#">edgorman.github.io</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="#">..</a></li>
+                <li class="breadcrumb-item"><a href="#">edgorman.github.io</a></li>
+                <li class="breadcrumb-item">
+                    <div class="btn-group">
+                        <button class="btn btn-link" id="directoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ..
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="directoryDropdown">
+                            <a class="dropdown-item" href="#">/Advent-of-Code</a>
+                            <a class="dropdown-item" href="#">/2020</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="breadcrumb-item" aria-current="page"><a href="#">Day 1</a></li>
                 <li class="breadcrumb-item file" aria-current="page"><a href="#">main.py</a></li>
             </ol>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-dark btn-sm" title="Toggle Theme" onclick="$(document.documentElement).toggleClass('light-theme');">
-                    <i class="fas fa-adjust"></i>
-                </button>
-                <button class="btn btn-dark btn-sm" title="Toggle Developer Mode" onclick="$('body').toggleClass('developer');">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="btn btn-dark btn-sm" title="Open Terminal" onclick="$('.terminal-container').toggleClass('active');">
-                    <i class="fas fa-terminal"></i>
-                </button>
+            <!-- Navbar menu buttons -->
+            <div class="navbar-menu d-flex justify-content-center">
+                <div class="btn-group">
+                    <button class="btn btn-dark btn-sm" title="Change to Home Directory" onclick="cd('/srv/www/');">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <button class="btn btn-dark btn-sm" title="Toggle Theme" onclick="$(document.documentElement).toggleClass('light-theme');">
+                        <i class="fas fa-adjust"></i>
+                    </button>
+                    <button class="btn btn-dark btn-sm" title="User Settings" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <!-- use active to show somethings enabled -->
+                        <h6 class="dropdown-header">Guest</h6>
+                        <a class="dropdown-item" href="javascript:;" onclick="">Sign In</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:;" onclick="$('.terminal-container').toggleClass('active');">Toggle Terminal</a>
+                        <a class="dropdown-item disabled" href="javascript:;" onclick="$('body').toggleClass('developer');">Developer Mode</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container content">
-        <div class="row" style="padding-bottom: 50px;">
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="row content" style="padding-bottom: 50px;">
+            <!-- Left -->
             <div class="col-lg-8 mt-3">
                 <h2>
                     Work In Progress
                 </h2>
-                <p>
-                    Just revamping the website, come back soon :)
-                </p>
-                <!--<h2>
-                    Example Content
-                </h2>
+                <h5>
+                    Subtitle
+                </h5>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
@@ -52,36 +75,68 @@
                     Subtitle
                 </h5>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>-->
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
             </div>
-            <div class="col-lg-4 mt-5">
-
+            <!-- Right -->
+            <div class="col-lg-4 mt-3">
+                <div class="row">
+                    <div class="content-info col-lg-12 col-md-6">
+                        <h6>
+                            Metadata
+                        </h6>
+                        <small class="mb-0">
+                            <b>Author:</b> Edward Gorman
+                            <br>
+                            <b>Last updated:</b> 2021-10-17
+                        </small>
+                    </div>
+                    <div class="content-info col-lg-12 col-md-5">
+                        <h6>
+                            Tags
+                        </h6>
+                        <p class="mb-0">
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                            <span class="badge badge-dark">first-post</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- Footer -->
         <div class="footer d-flex justify-content-between">
             <p class="mb-0">
                 Copyright © 2021 <a href="https://github.com/edgorman">Edward Gorman</a>
                 <br>
-                Last commit on 2021-10-17 (<a href="https://github.com/edgorman">0dcc801</a>)
+                Last commit on 2021-10-17 (<a href="https://github.com/edgorman/edgorman.github.io/commit/0dcc801" target="_blank" title="Edward Gorman: 'Merge pull request #74 from edgorman/small-fixes'">0dcc801</a>)
             </p>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-dark btn-sm rounded-circle" title="Toggle Theme" onclick="location.href = 'https://github.com/edgorman';">
-                    <i class="fab fa-github"></i>
+                <button class="btn btn-dark btn-sm rounded-circle" title="Mail" onclick="location.href = 'mailto:ejgorman@gmail.com';">
+                    <i class="fas fa-envelope"></i>
                 </button>
-                <button class="btn btn-dark btn-sm rounded-circle" title="Toggle Theme" onclick="location.href = 'https://twitter.com/edgygorman';">
+                <button class="btn btn-dark btn-sm rounded-circle" title="Twitter" onclick="location.href = 'https://twitter.com/edgygorman';">
                     <i class="fab fa-twitter"></i>
                 </button>
-                <button class="btn btn-dark btn-sm rounded-circle" title="Toggle Theme" onclick="location.href = 'https://linkedin.com/edward-john-gorman';">
+                <button class="btn btn-dark btn-sm rounded-circle" title="LinkedIn" onclick="location.href = 'https://linkedin.com/edward-john-gorman';">
                     <i class="fab fa-linkedin"></i>
                 </button>
-                <button class="btn btn-dark btn-sm rounded-circle" title="Toggle Theme" onclick="location.href = 'mailto:ejgorman@gmail.com';">
-                    <i class="fas fa-envelope"></i>
+                <button class="btn btn-dark btn-sm rounded-circle" title="Github" onclick="location.href = 'https://github.com/edgorman';">
+                    <i class="fab fa-github"></i>
                 </button>
             </div>
         </div>
+        <!-- Footer -->
     </div>
+    <!-- Main content -->
 
+    <!-- Terminal -->
     <div class="terminal-container">
         <div id="terminal"></div>
         <div class="terminal-buttons">
@@ -96,20 +151,14 @@
             </button>
         </div>
     </div>
+    <!-- Terminal -->
 
-    <script type="module">
-        import { User } from './sbin/user.js';
-        import { Terminal } from './sbin/terminal.js';
-        
-        window.user = new User("guest", "", "/home/guest");
-        window.terminal = new Terminal(window.user, "edgorman.github.io");
-    </script>
     <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/jquery.terminal.min.js"></script>
     <script src="lib/echo_newline.js"></script>
     <script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
-    <script src="sbin/website.js"></script>
+    <script src="sbin/website.js" type="module"></script>
 </body>
 
 </html>

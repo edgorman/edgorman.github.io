@@ -3,6 +3,4 @@ export function echo(terminal, message){
     message == "hello there" ? terminal.echo("general kenobi") : terminal.echo(message);
 
     console.log("INFO: (echo) Displayed echo message.");
-
-    terminal.echo("");
 }

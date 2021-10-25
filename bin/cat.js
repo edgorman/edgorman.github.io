@@ -29,6 +29,4 @@ export function cat(terminal, relativePath){
     else{
         terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]");
     }
-
-    terminal.echo("");
 }
