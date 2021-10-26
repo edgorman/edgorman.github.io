@@ -96,7 +96,7 @@ a.disabled{
 }
 
 .navbar .breadcrumb .btn-group{
-  display: inline-flex;
+  vertical-align: top;
 }
 
 .navbar .breadcrumb .btn-group button{
@@ -121,6 +121,10 @@ a.disabled{
 }
 
 @media screen and (max-width: 600px) {
+  .navbar .breadcrumb {
+    margin: 0 auto;
+  }
+  
   .navbar .navbar-menu {
     width: 100%;
   }
@@ -140,7 +144,7 @@ a.disabled{
 .content-info{
   margin: 25px 0px 0px 15px;
   padding: 10px 0 10px 15px;
-  border-left: 2px inset #8a9096;
+  border-left: 1px inset #8a9096;
 }
 
 .content-info .badge{
