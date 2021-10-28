@@ -14,12 +14,16 @@ export function cd(terminal, relativePath){
             terminal.terminal.set_prompt(prompt);
     
             console.log("INFO: (cd) Changed directory to " + getFilePath(path) + ".");
+
+            return [getFilePath(path)];
         }
         else{
-            terminal.echo("[[;red;]Cannot change to non-directory path.]");
+            terminal.error("Cannot change to non-directory path.");
         }
     }
     else{
-        terminal.echo("[[;red;]The system cannot find the path '" + relativePath + "'.]");
+        terminal.error("The system cannot find the path '" + relativePath + "'.");
     }
+
+    return [""];
 }

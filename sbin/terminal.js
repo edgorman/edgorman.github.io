@@ -34,19 +34,19 @@ export class Terminal
 
         this.terminal = $("#terminal").terminal(
             {
-                cat : function(path) { commands.cat(t, path); t.echo(""); },
-                cd : function(path) { commands.cd(t, path); t.echo(""); },
-                date : function() { commands.date(t); t.echo(""); },
-                debug : function() { commands.debug(t); t.echo(""); },
-                echo: function(...args) { commands.echo(t, args); t.echo(""); },
-                exit: function() { commands.exit(t); t.echo(""); },
-                history: function() { commands.history(t); t.echo(""); },
-                help : function() { commands.help(t); t.echo(""); },
-                ls : function(path) { commands.ls(t, path); t.echo(""); },
-                touch : function(path) { commands.touch(t, path); t.echo(""); },
-                pwd : function() { commands.pwd(t); t.echo(""); },
-                uname : function() { commands.uname(t); t.echo(""); },
-                whoami : function() { commands.whoami(t); t.echo(""); }
+                cat : function(path) { t.echo(commands.cat(t, path)); },
+                cd : function(path) { commands.cd(t, path); },
+                date : function() { t.echo(commands.date(t)); },
+                debug : function() { t.echo(commands.debug(t)); },
+                echo: function(...args) { t.echo(commands.echo(t, args)); },
+                exit: function() { t.echo(commands.exit(t)); },
+                history: function() { t.echo(commands.history(t)); },
+                help : function() { t.echo(commands.help(t)); },
+                ls : function(path) { t.echo(commands.ls(t, path)); },
+                touch : function(path) { commands.touch(t, path); },
+                pwd : function() { t.echo(commands.pwd(t)); },
+                uname : function() { t.echo(commands.uname(t)); },
+                whoami : function() { t.echo(commands.whoami(t)); }
             }, 
             {
                 name : "edOS",
@@ -65,9 +65,16 @@ export class Terminal
         console.info("INFO: Successfully created terminal object.");
     }
 
-    // Echo message through terminal object
-    echo(message){
-        this.terminal.echo(message);
+    // Echo message to terminal
+    echo(messageList){
+        for (const message of messageList){
+            this.terminal.echo(message);
+        }
+    }
+
+    // Echo error to terminal
+    error(errorMessage){
+        this.terminal.echo("[[;red;]" + errorMessage + "]");
     }
 
 }

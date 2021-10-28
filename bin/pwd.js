@@ -1,5 +1,7 @@
-export function pwd(terminal){
-    terminal.echo(terminal.currentDirectory['_parent'] + terminal.currentDirectory['_name']);
+import { getFilePath } from "../sbin/utilities.js";
 
+export function pwd(terminal){
     console.log("INFO: (pwd) Displayed the working directory.");
+
+    return [getFilePath(terminal.currentDirectory)];
 }
