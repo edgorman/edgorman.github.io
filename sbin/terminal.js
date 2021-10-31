@@ -42,7 +42,7 @@ export class Terminal
                 exit: function() { t.echo(commands.exit(t)); },
                 history: function() { t.echo(commands.history(t)); },
                 help : function() { t.echo(commands.help(t)); },
-                ls : function(path) { t.echo(commands.ls(t, path)); },
+                ls : function(path) { t.echoFiles(commands.ls(t, path)); },
                 touch : function(path) { commands.touch(t, path); },
                 pwd : function() { t.echo(commands.pwd(t)); },
                 uname : function() { t.echo(commands.uname(t)); },
@@ -75,6 +75,26 @@ export class Terminal
     // Echo error to terminal
     error(errorMessage){
         this.terminal.echo("[[;red;]" + errorMessage + "]");
+    }
+
+    // Echo files to terminal
+    echoFiles(filesList){
+        for (let i = 0; i < filesList.length; i++){
+            switch(filesList[i]['_type']){
+                case 'dir':
+                    this.echo($("<span class='directory-link' onclick='window.cd(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                case 'sh':
+                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                case 'js':
+                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                default:
+                    this.echo($("<span class='file-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+            }
+        }
     }
 
 }

@@ -88,7 +88,8 @@ a.disabled{
 }
 
 .navbar .breadcrumb li a{
-  color: #6c757d
+  color: #6c757d;
+  margin-right: 10px;
 }
 
 .navbar .breadcrumb li.file a{
@@ -139,6 +140,16 @@ a.disabled{
 
 .separator{
   border-top: 2px inset #8a9096;
+}
+
+.content .list-group{
+  width: 100%;
+}
+
+.content .list-group-item{
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border-color: #8a9096;
 }
 
 .content-info{
