@@ -17,6 +17,8 @@ export function ls(terminal, relativePath){
                 message.push(path[entry]);
             }
 
+            terminal.echoFiles(message);
+
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");
 
             return message;

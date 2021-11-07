@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <link href="lib/jquery.terminal.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/vs2015.min.css" rel="stylesheet">
     <link href="sbin/terminal.css" rel="stylesheet"/>
     <link href="sbin/website.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="media/favicon.png">
@@ -15,36 +16,47 @@
     <nav class="navbar" aria-label="breadcrumb">
         <div class="container d-flex justify-content-between">
             <!-- Directory display -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="javascript:;" onclick="cd('/srv/www/');">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="javascript:;" onclick="cd('/srv/www/');">
-                        . .
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="javascript:;" onclick="cd('/srv/www/');">
-                        Day 1
-                    </a>
-                    <div class="btn-group">
-                        <button class="btn btn-link" id="directoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-sort-down" style="font-size: 12px; vertical-align: top; padding-top: 5px;"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="directoryDropdown">
-                            <a class="dropdown-item" href="#">README.md</a>
-                            <a class="dropdown-item" href="#">input.txt</a>
-                            <a class="dropdown-item disabled" href="#">main.py</a>
-                        </div>
+            <div class="navbar-directory d-flex justify-content-start">
+                <div class="btn-group">
+                    <button id="directoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        /
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="directoryDropdown">
+                        <a class="dropdown-item" href="#">bin</a>
+                        <a class="dropdown-item" href="#">boot</a>
+                        <a class="dropdown-item" href="#">dev</a>
+                        <a class="dropdown-item" href="#">...</a>
                     </div>
-                </li>
-                <li class="breadcrumb-item file" aria-current="page">
-                    <a href="#">main.py</a>
-                </li>
-            </ol>
+                </div>
+                <a href="javascript:;" onclick="cd('/srv/www/');">
+                    bin
+                </a>
+                <div class="btn-group">
+                    <button id="directory2Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        /
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="directory2Dropdown">
+                        <a class="dropdown-item" href="#">bin</a>
+                        <a class="dropdown-item" href="#">boot</a>
+                        <a class="dropdown-item" href="#">dev</a>
+                        <a class="dropdown-item" href="#">...</a>
+                    </div>
+                </div>
+                <a href="javascript:;" onclick="cd('/srv/www/');">
+                    boot
+                </a>
+                <div class="btn-group">
+                    <button id="directory3Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        /
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="directory3Dropdown">
+                        <a class="dropdown-item" href="#">bin</a>
+                        <a class="dropdown-item" href="#">boot</a>
+                        <a class="dropdown-item" href="#">dev</a>
+                        <a class="dropdown-item" href="#">...</a>
+                    </div>
+                </div>
+            </div>
             <!-- Navbar menu buttons -->
             <div class="navbar-menu d-flex justify-content-center">
                 <div class="btn-group">
@@ -155,6 +167,7 @@
     <script src="lib/jquery.terminal.min.js"></script>
     <script src="lib/echo_newline.js"></script>
     <script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <script src="sbin/website.js" type="module"></script>
 </body>
 

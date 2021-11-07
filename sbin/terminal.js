@@ -34,18 +34,18 @@ export class Terminal
 
         this.terminal = $("#terminal").terminal(
             {
-                cat : function(path) { t.echo(commands.cat(t, path)); },
+                cat : function(path) { commands.cat(t, path); },
                 cd : function(path) { commands.cd(t, path); },
-                date : function() { t.echo(commands.date(t)); },
-                debug : function() { t.echo(commands.debug(t)); },
-                echo: function(...args) { t.echo(commands.echo(t, args)); },
-                exit: function() { t.echo(commands.exit(t)); },
-                history: function() { t.echo(commands.history(t)); },
-                help : function() { t.echo(commands.help(t)); },
-                ls : function(path) { t.echoFiles(commands.ls(t, path)); },
+                date : function() { commands.date(t); },
+                debug : function() { commands.debug(t); },
+                echo: function(...args) { commands.echo(t, args); },
+                exit: function() { commands.exit(t); },
+                history: function() { commands.history(t); },
+                help : function() { commands.help(t); },
+                ls : function(path) { commands.ls(t, path); },
+                pwd : function() { commands.pwd(t); },
                 touch : function(path) { commands.touch(t, path); },
-                pwd : function() { t.echo(commands.pwd(t)); },
-                uname : function() { t.echo(commands.uname(t)); },
+                uname : function() { commands.uname(t); },
                 whoami : function() { t.echo(commands.whoami(t)); }
             }, 
             {

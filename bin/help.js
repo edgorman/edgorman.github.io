@@ -22,6 +22,8 @@ export function help(terminal){
 
     message.push("");
 
+    terminal.echo(message);
+
     console.log("INFO: (help) Displayed help message.");
 
     return message;

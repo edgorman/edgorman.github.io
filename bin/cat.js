@@ -7,7 +7,6 @@ export function cat(terminal, relativePath){
     if (path){
         // If path is not a directory
         if (path['_type'] != "dir"){
-            
             // Load file
             var file = loadFile(getFilePath(path));
 
@@ -15,12 +14,11 @@ export function cat(terminal, relativePath){
             
             // If file is a picture
             if (['jpg', 'png'].includes(path['_type'])){
-                return [$("<img src='" + getFilePath(path) + "' style='width: 50%; max-width: 320px;'/>")];
+                file = $("<img src='" + getFilePath(path) + "' style='width: 50%; max-width: 320px;'/>");
             }
-            // Else is text file
-            else{
-                return [file];
-            }
+            
+            terminal.echo([file]);
+            return file;
         }
         else{
             terminal.error("Can only display text or pictures.");
@@ -30,5 +28,5 @@ export function cat(terminal, relativePath){
         terminal.error("The system cannot find the path '" + relativePath + "'.");
     }
 
-    return [""];
+    return "";
 }

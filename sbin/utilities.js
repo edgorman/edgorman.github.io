@@ -6,7 +6,7 @@ utilities.js
 
 export function onExceptionThrown(terminal, exception){
     console.error("ERROR: " + exception);
-    terminal.echo("[[;red;]Error: " + exception + "]\n");
+    terminal.echo(["[[;red;]Error: " + exception + "]", ""]);
 }
 
 export function onCommandNotFound(terminal, command){
@@ -263,4 +263,51 @@ export function onCompletion(terminal){
 
     // return autofills;
     return ['test'];
+}
+
+export function generateNavbarDropdown(elem, path, files){
+    if (path != "/"){
+        console.log(path);
+        $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
+    }
+    
+    let dropdownId = path + "Dropdown";
+    $(elem).append(`<div class="btn-group"></div>`);
+    $(elem + ' .btn-group').last().append(`<button id="` + dropdownId + `" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">/</button>`);
+    $(elem + ' .btn-group').last().append(`<div class="dropdown-menu" aria-labelledby="` + dropdownId + `"></div>`);
+    
+    for (const file of files){
+        if (!String(file["_name"]).startsWith(".")) {
+            if (file["_type"] == "dir"){
+                $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cd('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+            }
+            else{
+                $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cat('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+            }
+        }
+    }
+}
+
+export function generateContentDirectory(elem, path, files){
+    $(elem).append(`<div class="list-group"></div>`);
+
+    if (path != "/"){
+        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');">.</a>`);
+        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');">. .</a>`);
+    }
+
+    for (const file of files){
+        if (!String(file["_name"]).startsWith(".")) {
+            if (file["_type"] == "dir"){
+                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+            }
+            else{
+                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cat('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+            }
+        }
+    }
+}
+
+export function generateContentFile(elem, content, type){
+
 }

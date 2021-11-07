@@ -20,63 +20,83 @@ $( document ).ready(function() {
 window.cat = function cat(path){
     var newContent = commands.cat(terminal, path);
     if (newContent.length == 1 && newContent[0] == ""){ return; }
-
     $('.content .col-lg-8').empty();
-    $('.content .col-lg-8').append(`<p>` + newContent + `</p>`);
+
+    $('.content .col-lg-8').append(`<pre><code class="language-python">` + newContent + `</pre></code>`);
+    hljs.highlightAll();
 }
 
-// Terminal functions
 window.cd = function cd(path){ 
-    var newPath = commands.cd(terminal, path)[0];
+    // Check the new path exists
+    var newPath = commands.cd(terminal, path);
     if (newPath == ""){ return; }
 
-    // Update the navbar
-    $('.navbar .breadcrumb').empty();
-    var navbarContent, fileList;
-    
-    var currentPath = "/";
-    for (const path of utilities.splitPath(newPath)){
-        currentPath += path + "/";
-        navbarContent = `<li class="breadcrumb-item"><a href="javascript:;" onclick="window.cd('` + currentPath + `');">` + path + `</a><div class="btn-group">
-                         <button class="btn btn-link" id="` + currentPath + `Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <i class="fas fa-sort-down" style="font-size: 12px; vertical-align: top; padding-top: 5px;"></i>
-                         </button><div class="dropdown-menu" aria-labelledby="` + currentPath + `Dropdown">`;
-        
-        fileList = commands.ls(terminal, currentPath);
-        
-        for (const file of fileList){
-            if (!String(file["_name"]).startsWith(".")) {
-                if (file["_type"] == "dir"){
-                    navbarContent += `<a class="dropdown-item" href="javascript:;" onclick="window.cd('` + utilities.getFilePath(file) + `');">` + file["_name"] + `</a>`
-                }
-                else{
-                    navbarContent += `<a class="dropdown-item" href="javascript:;" onclick="window.cat('` + utilities.getFilePath(file) + `');">` + file["_name"] + `</a>`
-                }
-            }
-        }
-
-        navbarContent += `</div></div></li>`;
-        $('.navbar .breadcrumb').append(navbarContent);
-    }
-
-    // Update the page content
+    // Clear navbar and content
+    $('.navbar-directory').empty();
     $('.content .col-lg-8').empty();
-    fileList = commands.ls(terminal, currentPath);
-    var mainContent = `<div class="list-group">`;
-    mainContent += `<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + newPath + `');">.</a>`;
-    mainContent += `<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + newPath + `/../');">. .</a>`;
 
-    for (const file of fileList){
-        if (!String(file["_name"]).startsWith(".")) {
-            if (file["_type"] == "dir"){
-                mainContent += `<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + utilities.getFilePath(file) + `');">` + file["_name"] + `</a>`;
-            }
-            else{
-                mainContent += `<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cat('` + utilities.getFilePath(file) + `');">` + file["_name"] + `</a>`;
-            }
-        }
+    // Generate content for navbar
+    var currentPath = "";
+    for (const path of [currentPath].concat(utilities.splitPath(newPath))){
+        currentPath += path + "/";
+
+        utilities.generateNavbarDropdown(
+            '.navbar-directory',
+            currentPath,
+            commands.ls(terminal, currentPath)
+        )
     }
 
-    mainContent += `</div>`;
-    $('.content .col-lg-8').append(mainContent);
+    // Generate content for content
+    utilities.generateContentDirectory(
+        '.content .col-lg-8',
+        currentPath,
+        commands.ls(terminal, currentPath)
+    );
+}
+
+window.date = function date(){
+    commands.date(terminal);
+}
+
+window.debug_ = function debug(){
+    commands.debug(terminal);
+}
+
+window.echo = function echo(message){
+    commands.echo(terminal, message);
+}
+
+window.exit = function exit(){
+    if (confirm("Are you sure you want to close the website?\n\nAll file changes will be lost.")) {
+        close();
+    }
+}
+
+window.help = function help(){
+    commands.help(terminal);
+}
+
+window.history_ = function history(){
+    commands.history(terminal);
+}
+
+window.ls = function ls(path){
+    commands.ls(terminal, path);
+}
+
+window.pwd = function pwd(){
+    commands.pwd(terminal);
+}
+
+window.touch = function touch(path){
+    commands.touch(terminal, path);
+}
+
+window.uname = function uname(){
+    commands.uname(terminal);
+}
+
+window.whoami = function whoami(){
+    commands.whoami(terminal);
 }

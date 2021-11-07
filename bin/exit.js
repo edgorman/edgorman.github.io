@@ -7,10 +7,11 @@ export function exit(terminal){
     message.push("Press Ctrl+W to close terminal.")
     message.push("Press Ctrl+R to restart terminal.")
 
+    terminal.echo(message);
     terminal.terminal.set_prompt("");
 	terminal.terminal.freeze(true);
 
     console.log("INFO: (exit) Exited the terminal.");
 
-    return message
+    return "";
 }
