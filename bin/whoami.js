@@ -1,5 +1,8 @@
 export function whoami(terminal){
-    terminal.echo(terminal.hostname);
-
+    var name = terminal.hostname;
+    terminal.echo([name]);
+    
     console.log("INFO: (whoami) Displayed who am I message.");
+
+    return name;
 }

@@ -34,19 +34,19 @@ export class Terminal
 
         this.terminal = $("#terminal").terminal(
             {
-                cat : function(path) { commands.cat(t, path); t.echo(""); },
-                cd : function(path) { commands.cd(t, path); t.echo(""); },
-                date : function() { commands.date(t); t.echo(""); },
-                debug : function() { commands.debug(t); t.echo(""); },
-                echo: function(...args) { commands.echo(t, args); t.echo(""); },
-                exit: function() { commands.exit(t); t.echo(""); },
-                history: function() { commands.history(t); t.echo(""); },
-                help : function() { commands.help(t); t.echo(""); },
-                ls : function(path) { commands.ls(t, path); t.echo(""); },
-                touch : function(path) { commands.touch(t, path); t.echo(""); },
-                pwd : function() { commands.pwd(t); t.echo(""); },
-                uname : function() { commands.uname(t); t.echo(""); },
-                whoami : function() { commands.whoami(t); t.echo(""); }
+                cat : function(path) { commands.cat(t, path); },
+                cd : function(path) { commands.cd(t, path); },
+                date : function() { commands.date(t); },
+                debug : function() { commands.debug(t); },
+                echo: function(...args) { commands.echo(t, args); },
+                exit: function() { commands.exit(t); },
+                history: function() { commands.history(t); },
+                help : function() { commands.help(t); },
+                ls : function(path) { commands.ls(t, path); },
+                pwd : function() { commands.pwd(t); },
+                touch : function(path) { commands.touch(t, path); },
+                uname : function() { commands.uname(t); },
+                whoami : function() { t.echo(commands.whoami(t)); }
             }, 
             {
                 name : "edOS",
@@ -65,9 +65,36 @@ export class Terminal
         console.info("INFO: Successfully created terminal object.");
     }
 
-    // Echo message through terminal object
-    echo(message){
-        this.terminal.echo(message);
+    // Echo message to terminal
+    echo(messageList){
+        for (const message of messageList){
+            this.terminal.echo(message);
+        }
+    }
+
+    // Echo error to terminal
+    error(errorMessage){
+        this.terminal.echo("[[;red;]" + errorMessage + "]");
+    }
+
+    // Echo files to terminal
+    echoFiles(filesList){
+        for (let i = 0; i < filesList.length; i++){
+            switch(filesList[i]['_type']){
+                case 'dir':
+                    this.echo($("<span class='directory-link' onclick='window.cd(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                case 'sh':
+                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                case 'js':
+                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+                default:
+                    this.echo($("<span class='file-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
+                    break;
+            }
+        }
     }
 
 }

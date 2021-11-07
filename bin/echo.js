@@ -1,6 +1,9 @@
 export function echo(terminal, message){
     message = message.join(" ");
-    message == "hello there" ? terminal.echo("general kenobi") : terminal.echo(message);
+    var result = message == "hello there" ? "general kenobi" : message;
+    terminal.echo([result]);
 
     console.log("INFO: (echo) Displayed echo message.");
+
+    return result;
 }

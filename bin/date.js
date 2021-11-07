@@ -1,5 +1,8 @@
 export function date(terminal){
-    terminal.echo(Date());
-
+    var date = Date();
+    terminal.echo([date]);
+    
     console.log("INFO: (date) Displayed date message.");
+
+    return date;
 }
