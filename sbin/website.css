@@ -2,15 +2,16 @@
 :root{
   --text-primary-color: #e1e1e1;
   --text-link-color: #8ab4f8;
-  --navbar-color: #2a2a30;
+  --text-navbar-color: #e1e1e1;
+  --text-footer-color: #8a9096;
+  --bg-navbar-color: #2a2a30;
   --bg-primary-color: #1b1b1e;
-  --bg-secondary-color: var(--navbar-color);
+  --bg-secondary-color: var(--bg-navbar-color);
 }
 
 :root.light-theme{
   --text-primary-color: #1b1b1e;
   --text-link-color: #094ebd;
-  --navbar-color: #2a2a30;
   --bg-primary-color: #e1e1e1;
   --bg-secondary-color: #f1f1f1;
 }
@@ -84,39 +85,32 @@ a.disabled{
 
 /* Navbar */
 .navbar{
-  background-color: var(--navbar-color);
+  background-color: var(--bg-navbar-color);
+}
+
+.navbar a.dropdown-item{
+  color: #8ab4f8;
+  font-size: 14px;
 }
 
 .navbar .dropdown-menu{
-  background-color: var(--navbar-color);
+  background-color: var(--bg-navbar-color);
 }
 
-.navbar .dropdown-menu a{
-  font-size: 12px;
-  color: #e1e1e1;
-  margin: 5px 0 5px 0;
+.navbar .dropdown-menu .dropdown-item:hover{
+  background-color: #27272a;
 }
 
 .navbar .dropdown-menu .dropdown-divider{
   border-top: 1px inset #1b1b1e;
 }
 
-.navbar .navbar-directory > a{
-  color: #e1e1e1;
-  padding: 0 5px 0 5px;
-}
-
-.navbar .navbar-directory button{
-  color: #6c757d;
-  background-color: var(--navbar-color);
+.navbar .navbar-directory button, .navbar .navbar-directory > a{
+  color: #8ab4f8;
+  background-color: var(--bg-navbar-color);
   border: none;
-  padding: 0 10px 0 10px;
+  padding: 0 5px 0 5px;
   cursor: pointer;
-}
-
-.navbar .navbar-directory > a:hover, .navbar .navbar-directory button:hover{
-  color: #e1e1e1;
-  text-decoration: none;
 }
 
 .navbar .navbar-directory button:focus{
@@ -150,7 +144,7 @@ a.disabled{
 }
 
 .separator{
-  border-top: 2px inset #8a9096;
+  border-top: 2px inset var(--text-footer-color);;
 }
 
 .content .list-group{
@@ -169,7 +163,7 @@ a.disabled{
 .content-info{
   margin: 25px 0px 0px 15px;
   padding: 10px 0 10px 15px;
-  border-left: 1px inset #8a9096;
+  border-left: 1px inset var(--text-footer-color);;
 }
 
 .content-info .badge{
@@ -185,12 +179,12 @@ a.disabled{
 /* Footer */
 .footer{
   padding: 1rem 15px 3rem 15px ;
-  border-top: 1px inset #8a9096;
+  border-top: 1px inset var(--text-footer-color);;
   font-size: 12px;
 }
 
 .footer a{
-  color: #6c757d;
+  color: var(--text-footer-color);
   text-decoration: none;
   font-weight: bold;
 }
