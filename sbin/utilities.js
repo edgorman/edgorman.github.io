@@ -292,22 +292,26 @@ export function generateContentDirectory(elem, path, files){
     $(elem).append(`<div class="list-group"></div>`);
 
     if (path != "/"){
-        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');">.</a>`);
-        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');">. .</a>`);
+        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);
+        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');"><i class="far fa-folder"></i> . .</a>`);
     }
 
     for (const file of files){
         if (!String(file["_name"]).startsWith(".")) {
+            let onclick = `window.cat('` + getFilePath(file) + `');`;
+            let innerhtml = `<i class="far fa-file"></i>` + file["_name"];
+
             if (file["_type"] == "dir"){
-                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+                onclick = `window.cd('` + getFilePath(file) + `');`;
+                innerhtml = `<i class="far fa-folder"></i>` + file["_name"];
             }
-            else{
-                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cat('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
-            }
+
+            $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="` + onclick + `">` + innerhtml + `</a>`);
         }
     }
 }
 
-export function generateContentFile(elem, content, type){
-
+export function generateContentFile(elem, content, file){
+    $(elem).append(`<h2 class="mb-4">` + file['_name'] + `</h2>`);
+    $(elem).append(`<pre><code class="language-python">` + content + `</pre></code>`);
 }

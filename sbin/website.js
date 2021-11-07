@@ -6,6 +6,19 @@ import { Terminal } from '../sbin/terminal.js';
 $('.disabled').click(function(e){
     e.preventDefault();
 });
+
+window.toggleTheme = function toggleTheme(){
+    $(document.documentElement).toggleClass('light-theme');
+
+    if (document.documentElement.classList.contains('light-theme')){
+        document.querySelector(`link[title="light"]`).removeAttribute("disabled");
+        document.querySelector(`link[title="dark"]`).setAttribute("disabled", "disabled");
+    }
+    else{
+        document.querySelector(`link[title="dark"]`).removeAttribute("disabled");
+        document.querySelector(`link[title="light"]`).setAttribute("disabled", "disabled");
+    }
+}
         
 var user;
 var terminal;
@@ -14,15 +27,24 @@ $( document ).ready(function() {
     user = new User("guest", "", "/home/guest");
     terminal = new Terminal(user, "edgorman.github.io");
 
-    window.cd("/srv/www/");
+    window.cd("/srv/www/Advent-of-Code/2019/Day 1/");
 });
 
 window.cat = function cat(path){
+    // Check the file path exists
     var newContent = commands.cat(terminal, path);
     if (newContent.length == 1 && newContent[0] == ""){ return; }
-    $('.content .col-lg-8').empty();
 
-    $('.content .col-lg-8').append(`<pre><code class="language-python">` + newContent + `</pre></code>`);
+    // Clear content and sidebar
+    $('.content .left').empty();
+    $('.content .right').empty();
+
+    // Generate content for content
+    utilities.generateContentFile(
+        '.content .left',
+        newContent,
+        utilities.getPath(terminal, path)
+    )
     hljs.highlightAll();
 }
 
@@ -33,7 +55,7 @@ window.cd = function cd(path){
 
     // Clear navbar and content
     $('.navbar-directory').empty();
-    $('.content .col-lg-8').empty();
+    $('.content .left').empty();
 
     // Generate content for navbar
     var currentPath = "";
@@ -49,7 +71,7 @@ window.cd = function cd(path){
 
     // Generate content for content
     utilities.generateContentDirectory(
-        '.content .col-lg-8',
+        '.content .left',
         currentPath,
         commands.ls(terminal, currentPath)
     );

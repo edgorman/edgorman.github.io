@@ -1,12 +1,18 @@
 /* Root */
 :root{
-  --text-color: #e1e1e1;
-  --background-color: #1b1b1e;
+  --text-primary-color: #e1e1e1;
+  --text-link-color: #8ab4f8;
+  --navbar-color: #2a2a30;
+  --bg-primary-color: #1b1b1e;
+  --bg-secondary-color: var(--navbar-color);
 }
 
 :root.light-theme{
-  --text-color: rgb(22, 22, 22);
-  --background-color: #e1e1e1;
+  --text-primary-color: #1b1b1e;
+  --text-link-color: #094ebd;
+  --navbar-color: #2a2a30;
+  --bg-primary-color: #e1e1e1;
+  --bg-secondary-color: #f1f1f1;
 }
 
 /* Terminal */
@@ -58,8 +64,8 @@
 
 /* Body */
 body{
-  color: var(--text-color);
-  background-color: var(--background-color);
+  color: var(--text-primary-color);
+  background-color: var(--bg-primary-color);
   min-height: 100vh;
 }
 
@@ -78,20 +84,43 @@ a.disabled{
 
 /* Navbar */
 .navbar{
-  background-color: #2a2a30;
+  background-color: var(--navbar-color);
 }
 
-.navbar .navbar-directory a{
-  color: #6c757d;
+.navbar .dropdown-menu{
+  background-color: var(--navbar-color);
+}
+
+.navbar .dropdown-menu a{
+  font-size: 12px;
+  color: #e1e1e1;
+  margin: 5px 0 5px 0;
+}
+
+.navbar .dropdown-menu .dropdown-divider{
+  border-top: 1px inset #1b1b1e;
+}
+
+.navbar .navbar-directory > a{
+  color: #e1e1e1;
   padding: 0 5px 0 5px;
 }
 
 .navbar .navbar-directory button{
   color: #6c757d;
-  background-color: #2a2a30;
+  background-color: var(--navbar-color);
   border: none;
   padding: 0 10px 0 10px;
   cursor: pointer;
+}
+
+.navbar .navbar-directory > a:hover, .navbar .navbar-directory button:hover{
+  color: #e1e1e1;
+  text-decoration: none;
+}
+
+.navbar .navbar-directory button:focus{
+  outline: none;
 }
 
 .navbar .navbar-menu{
@@ -107,12 +136,8 @@ a.disabled{
   right: 0;
 }
 
-@media screen and (max-width: 600px) {
-  .navbar .breadcrumb {
-    margin: 0 auto;
-  }
-  
-  .navbar .navbar-menu {
+@media screen and (max-width: 750px) {
+  .navbar .navbar-directory, .navbar .navbar-menu {
     width: 100%;
   }
 }
@@ -133,9 +158,12 @@ a.disabled{
 }
 
 .content .list-group-item{
-  color: var(--text-color);
-  background-color: var(--background-color);
-  border-color: #8a9096;
+  color: var(--text-link-color);
+  background-color: var(--bg-secondary-color);
+}
+
+.content .list-group-item i{
+  margin-right: 15px;
 }
 
 .content-info{
@@ -172,7 +200,7 @@ a.disabled{
   max-height: 32px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .footer p {
     width: 100%;
   }
