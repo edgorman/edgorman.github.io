@@ -17,7 +17,7 @@ export function cat(terminal, relativePath){
                 file = $("<img src='" + getFilePath(path) + "' style='width: 50%; max-width: 320px;'/>");
             }
             
-            return [[file], [], [file]];
+            return [String(file).split('\n'), [], [file]];
         }
         else{
             return [[], ["Can only display text or pictures."], []];

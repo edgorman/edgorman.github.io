@@ -66,15 +66,13 @@ export class Terminal
     }
 
     // Echo message to terminal
-    echo(messageList){
-        for (const message of messageList){
-            this.terminal.echo(message);
-        }
+    echo(message){
+        this.terminal.echo(message);
     }
 
     // Echo error to terminal
-    error(errorMessage){
-        this.terminal.echo("[[;red;]" + errorMessage + "]");
+    error(message){
+        this.terminal.echo("[[;red;]" + message + "]");
     }
 
     // Echo files to terminal
@@ -100,7 +98,7 @@ export class Terminal
         var out = output[0];
         var err = output[1];
         var inf = output[2];
-        
+
         // If there are no errors
         if (err.length == 0){
             // If output contains files
@@ -111,15 +109,15 @@ export class Terminal
             }
             // Else contains text
             else{
-                for (const msg in out){
-                    this.echo(msg);
+                for (let i = 0; i < out.length; i++){
+                    this.echo(out[i]);
                 }
             }
         }
         // If there are errors
         else{
-            for (const msg in err){
-                this.error(msg);
+            for (let i = 0; i < err.length; i++){
+                this.error(err[i]);
             }
         }
     }
