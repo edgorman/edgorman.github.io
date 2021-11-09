@@ -83,6 +83,13 @@ a.disabled{
   pointer-events: none;
 }
 
+.fa-spin{
+  height: 26px; 
+  display: block; 
+  font-size: 16px; 
+  padding-top: 5px;
+}
+
 /* Navbar */
 .navbar{
   background-color: var(--bg-navbar-color);
@@ -195,7 +202,7 @@ a.disabled{
 }
 
 @media screen and (max-width: 750px) {
-  .footer p {
+  .footer div {
     width: 100%;
   }
 }

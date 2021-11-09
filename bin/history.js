@@ -6,9 +6,7 @@ export function history(terminal){
         message.push((i + 1) + "\t" + history[history.length - i - 1]);
     }
 
-    terminal.echo(message);
-    
     console.log("INFO: (history) Displayed history message.");
 
-    return message;
+    return [message, [], []];
 }

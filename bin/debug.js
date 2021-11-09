@@ -1,6 +1,5 @@
 export function debug(terminal){
-    terminal.echo([terminal.commitMessage]);
     console.log("INFO: (debug) Displayed debug message.");
 
-    return terminal.commitMessage;
+    return [[terminal.commitMessage], [], []];
 }

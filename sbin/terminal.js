@@ -34,19 +34,19 @@ export class Terminal
 
         this.terminal = $("#terminal").terminal(
             {
-                cat : function(path) { commands.cat(t, path); },
-                cd : function(path) { commands.cd(t, path); },
-                date : function() { commands.date(t); },
-                debug : function() { commands.debug(t); },
-                echo: function(...args) { commands.echo(t, args); },
-                exit: function() { commands.exit(t); },
-                history: function() { commands.history(t); },
-                help : function() { commands.help(t); },
-                ls : function(path) { commands.ls(t, path); },
-                pwd : function() { commands.pwd(t); },
-                touch : function(path) { commands.touch(t, path); },
-                uname : function() { commands.uname(t); },
-                whoami : function() { t.echo(commands.whoami(t)); }
+                cat : function(path) { t.onFunctionReturnHandler(commands.cat(t, path)); },
+                cd : function(path) { t.onFunctionReturnHandler(commands.cd(t, path)); },
+                date : function() { t.onFunctionReturnHandler(commands.date(t)); },
+                debug : function() { t.onFunctionReturnHandler(commands.debug(t)); },
+                echo: function(...args) { t.onFunctionReturnHandler(commands.echo(t, args)); },
+                exit: function() { t.onFunctionReturnHandler(commands.exit(t)); },
+                history: function() { t.onFunctionReturnHandler(commands.history(t)); },
+                help : function() { t.onFunctionReturnHandler(commands.help(t)); },
+                ls : function(path) { t.onFunctionReturnHandler(commands.ls(t, path), true); },
+                pwd : function() { t.onFunctionReturnHandler(commands.pwd(t)); },
+                touch : function(path) { t.onFunctionReturnHandler(commands.touch(t, path)); },
+                uname : function() { t.onFunctionReturnHandler(commands.uname(t)); },
+                whoami : function() { t.onFunctionReturnHandler(commands.whoami(t)); }
             }, 
             {
                 name : "edOS",
@@ -66,33 +66,58 @@ export class Terminal
     }
 
     // Echo message to terminal
-    echo(messageList){
-        for (const message of messageList){
-            this.terminal.echo(message);
-        }
+    echo(message){
+        this.terminal.echo(message);
     }
 
     // Echo error to terminal
-    error(errorMessage){
-        this.terminal.echo("[[;red;]" + errorMessage + "]");
+    error(message){
+        this.terminal.echo("[[;red;]" + message + "]");
     }
 
     // Echo files to terminal
-    echoFiles(filesList){
-        for (let i = 0; i < filesList.length; i++){
-            switch(filesList[i]['_type']){
-                case 'dir':
-                    this.echo($("<span class='directory-link' onclick='window.cd(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
-                    break;
-                case 'sh':
-                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
-                    break;
-                case 'js':
-                    this.echo($("<span class='executable-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
-                    break;
-                default:
-                    this.echo($("<span class='file-link' onclick='window.cat(\"" + filesList[i]["_name"] + "\");'>" + filesList[i]["_name"] + "</span>"));
-                    break;
+    echoFiles(file){
+        switch(file['_type']){
+            case 'dir':
+                this.echo($("<span class='directory-link' onclick='window.cd(\"" + file["_name"] + "\");'>" + file["_name"] + "</span>"));
+                break;
+            case 'sh':
+                this.echo($("<span class='executable-link' onclick='window.cat(\"" + file["_name"] + "\");'>" + file["_name"] + "</span>"));
+                break;
+            case 'js':
+                this.echo($("<span class='executable-link' onclick='window.cat(\"" + file["_name"] + "\");'>" + file["_name"] + "</span>"));
+                break;
+            default:
+                this.echo($("<span class='file-link' onclick='window.cat(\"" + file["_name"] + "\");'>" + file["_name"] + "</span>"));
+                break;
+        }
+    }
+
+    // On function return handler
+    onFunctionReturnHandler(output, isFiles=false){
+        var out = output[0];
+        var err = output[1];
+        var inf = output[2];
+
+        // If there are no errors
+        if (err.length == 0){
+            // If output contains files
+            if (isFiles){
+                for (let i = 0; i < out.length; i++){
+                    this.echoFiles(out[i]);
+                }
+            }
+            // Else contains text
+            else{
+                for (let i = 0; i < out.length; i++){
+                    this.echo(out[i]);
+                }
+            }
+        }
+        // If there are errors
+        else{
+            for (let i = 0; i < err.length; i++){
+                this.error(err[i]);
             }
         }
     }

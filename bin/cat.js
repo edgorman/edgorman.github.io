@@ -17,16 +17,13 @@ export function cat(terminal, relativePath){
                 file = $("<img src='" + getFilePath(path) + "' style='width: 50%; max-width: 320px;'/>");
             }
             
-            terminal.echo([file]);
-            return file;
+            return [String(file).split('\n'), [], [file]];
         }
         else{
-            terminal.error("Can only display text or pictures.");
+            return [[], ["Can only display text or pictures."], []];
         }
     }
     else{
-        terminal.error("The system cannot find the path '" + relativePath + "'.");
+        return [[], ["The system cannot find the path '" + relativePath + "'."], []];
     }
-
-    return "";
 }

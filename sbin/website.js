@@ -27,12 +27,17 @@ $( document ).ready(function() {
     user = new User("guest", "", "/home/guest");
     terminal = new Terminal(user, "edgorman.github.io");
 
-    window.cd("/srv/www/Advent-of-Code/2019/Day 1/");
+    // Update footer copyright and last commit message
+    $('.footer p.mb-0').empty();
+    utilities.generateFooterMessage(terminal, '.footer p.mb-0');
+
+    // To do: navigate to url path before 404 redirect
+    window.cd("/srv/www/");
 });
 
 window.cat = function cat(path){
     // Check the file path exists
-    var newContent = commands.cat(terminal, path);
+    var newContent = commands.cat(terminal, path)[2][0];
     if (newContent.length == 1 && newContent[0] == ""){ return; }
 
     // Clear content and sidebar
@@ -50,7 +55,7 @@ window.cat = function cat(path){
 
 window.cd = function cd(path){ 
     // Check the new path exists
-    var newPath = commands.cd(terminal, path);
+    var newPath = commands.cd(terminal, path)[2][0];
     if (newPath == ""){ return; }
 
     // Clear navbar and content
@@ -65,7 +70,7 @@ window.cd = function cd(path){
         utilities.generateNavbarDropdown(
             '.navbar-directory',
             currentPath,
-            commands.ls(terminal, currentPath)
+            commands.ls(terminal, currentPath)[2]
         )
     }
 
@@ -73,7 +78,7 @@ window.cd = function cd(path){
     utilities.generateContentDirectory(
         '.content .left',
         currentPath,
-        commands.ls(terminal, currentPath)
+        commands.ls(terminal, currentPath)[2]
     );
 }
 

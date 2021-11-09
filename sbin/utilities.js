@@ -267,7 +267,6 @@ export function onCompletion(terminal){
 
 export function generateNavbarDropdown(elem, path, files){
     if (path != "/"){
-        console.log(path);
         $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
     }
     
@@ -313,5 +312,53 @@ export function generateContentDirectory(elem, path, files){
 
 export function generateContentFile(elem, content, file){
     $(elem).append(`<h2 class="mb-4">` + file['_name'] + `</h2>`);
-    $(elem).append(`<pre><code class="language-python">` + content + `</pre></code>`);
+
+    if (file['_type'] == 'md'){
+        var lines = String(content).split('\n');
+        for (let i = 0; i < lines.length; i++){
+
+            var c = "";
+            var first = lines[i].split(' ')[0];
+            var remain = lines[i].split(' ').slice(1).join(' ');
+            switch (first){
+                case '#': c += "<h1>" + remain + "</h1>"; break;
+                case '##': c += "<h2>" + remain + "</h2>"; break;
+                case '###': c += "<h3>" + remain + "</h3>"; break;
+                case '####': c += "<h4>" + remain + "</h4>"; break;
+                case '#####': c += "<h5>" + remain + "</h5>"; break;
+                default: c += "<p>" + remain + "</p>"; break;
+            }
+
+            $(elem).append(c);
+        }
+    }
+    else{
+        var c = "language-";
+        switch (file['_type']){
+            case 'py': c += "python"; break;
+            case 'js': c += "javascript"; break;
+            case 'html': c += "html"; break;
+            case 'sh': c += "bash"; break;
+            case 'cpp': c += "cpp"; break;
+            case 'cs': c += "csharp"; break;
+            case 'css': c += "css"; break;
+            case 'java': c += "java"; break;
+            case 'json': c += "json"; break;
+            case 'php': c += "php"; break;
+            case 'r': c += "r"; break;
+            case 'sql': c += "sql"; break;
+            case 'yml': c += "yaml"; break;
+            case 'yaml': c += "yaml"; break;
+            default: c += "plaintext"; break;
+        }
+
+        $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+    }
+    
+}
+
+export function generateFooterMessage(terminal, elem){
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
+    $(elem).append(`<br>`);
+    $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
 }

@@ -1,7 +1,7 @@
 import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, relativePath){
-    var message = []
+    var files = []
     var path = getPath(terminal, relativePath);
     
     // If path exists
@@ -14,22 +14,18 @@ export function ls(terminal, relativePath){
                     continue;
                 }
 
-                message.push(path[entry]);
+                files.push(path[entry]);
             }
 
-            terminal.echoFiles(message);
-
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");
-
-            return message;
+            
+            return [files, [], files]
         }
         else{
-            terminal.error("Cannot list files from a non-directory path.");
+            return [[], ["Cannot list files from a non-directory path."], []]
         }
     }
     else{
-        terminal.error("The system cannot find the path '" + relativePath + "'.");
+        return [[], ["The system cannot find the path '" + relativePath + "'."], []]
     }
-
-    return [];
 }
