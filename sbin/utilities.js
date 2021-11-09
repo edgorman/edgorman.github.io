@@ -267,7 +267,6 @@ export function onCompletion(terminal){
 
 export function generateNavbarDropdown(elem, path, files){
     if (path != "/"){
-        console.log(path);
         $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
     }
     

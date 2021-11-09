@@ -20,28 +20,25 @@ export function touch(terminal, relativePath){
                     if (createFile(terminal, getFilePath(path), filename)){
                         console.log("INFO: (touch) Created file " + filename + " at " + getFilePath(path) + ".");
 
-                        return [getFilePath(path) + "/" + filename];
+                        return [[], [], [getFilePath(path) + "/" + filename]];
                     }
                     else{
-                        terminal.error("Error creating file " + filename + " at " + getFilePath(path) + ".");
+                        return [[], ["Error creating file " + filename + " at " + getFilePath(path) + "."], []];
                     }
                 }
                 else{
-                    terminal.error("The file " + filename + " already exists at " + getFilePath(path) + ".");
+                    return [[], ["The file " + filename + " already exists at " + getFilePath(path) + "."], []];
                 }
             }
             else{
-                terminal.error("Cannot create file without a name.");
+                return [[], ["Cannot create file without a name."], []];
             }
-
         }
         else{
-            terminal.error("Cannot create file in non-directory path.");
+            return [[], ["Cannot create file in non-directory path."], []];
         }
     }
     else{
-        terminal.error("The system cannot find the parent directory of '" + relativePath + "'.");
+        return [[], ["The system cannot find the parent directory of '" + relativePath + "'."], []];
     }
-
-    return "";
 }

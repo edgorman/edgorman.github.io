@@ -37,7 +37,7 @@ $( document ).ready(function() {
 
 window.cat = function cat(path){
     // Check the file path exists
-    var newContent = commands.cat(terminal, path);
+    var newContent = commands.cat(terminal, path)[2][0];
     if (newContent.length == 1 && newContent[0] == ""){ return; }
 
     // Clear content and sidebar
@@ -55,7 +55,7 @@ window.cat = function cat(path){
 
 window.cd = function cd(path){ 
     // Check the new path exists
-    var newPath = commands.cd(terminal, path);
+    var newPath = commands.cd(terminal, path)[2][0];
     if (newPath == ""){ return; }
 
     // Clear navbar and content
@@ -70,7 +70,7 @@ window.cd = function cd(path){
         utilities.generateNavbarDropdown(
             '.navbar-directory',
             currentPath,
-            commands.ls(terminal, currentPath)
+            commands.ls(terminal, currentPath)[2]
         )
     }
 
@@ -78,7 +78,7 @@ window.cd = function cd(path){
     utilities.generateContentDirectory(
         '.content .left',
         currentPath,
-        commands.ls(terminal, currentPath)
+        commands.ls(terminal, currentPath)[2]
     );
 }
 
