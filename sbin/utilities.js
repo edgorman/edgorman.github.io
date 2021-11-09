@@ -315,3 +315,9 @@ export function generateContentFile(elem, content, file){
     $(elem).append(`<h2 class="mb-4">` + file['_name'] + `</h2>`);
     $(elem).append(`<pre><code class="language-python">` + content + `</pre></code>`);
 }
+
+export function generateFooterMessage(terminal, elem){
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
+    $(elem).append(`<br>`);
+    $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
+}

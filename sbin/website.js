@@ -27,7 +27,12 @@ $( document ).ready(function() {
     user = new User("guest", "", "/home/guest");
     terminal = new Terminal(user, "edgorman.github.io");
 
-    window.cd("/srv/www/Advent-of-Code/2019/Day 1/");
+    // Update footer copyright and last commit message
+    $('.footer p.mb-0').empty();
+    utilities.generateFooterMessage(terminal, '.footer p.mb-0');
+
+    // To do: navigate to url path before 404 redirect
+    window.cd("/srv/www/");
 });
 
 window.cat = function cat(path){
