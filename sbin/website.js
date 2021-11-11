@@ -28,18 +28,19 @@ $( document ).ready(function() {
     terminal = new Terminal(user, "edgorman.github.io");
 
     // Update footer copyright and last commit message
-    $('.footer p.mb-0').empty();
     utilities.generateFooterMessage(terminal, '.footer p.mb-0');
 
     // To do: navigate to url path before 404 redirect
-    window.cat("/srv/www/Voxel-Engine/pom.xml");
+    window.cat("/srv/www/README.md");
 });
 
 window.cat = function cat(path){
     // Check the file path exists
     var newContent = commands.cat(terminal, path)[2][0];
     if (newContent.length == 1 && newContent[0] == ""){ return; }
+    
     var newPath = utilities.getFilePath(utilities.getParentPath(terminal, path));
+    var file = utilities.getPath(terminal, path);
 
     // Clear navbar
     $('.navbar-directory').empty();
@@ -56,15 +57,17 @@ window.cat = function cat(path){
         )
     }
 
-    // Clear content
-    $('.content .left').empty();
-    $('.content .right').empty();
+    // Generate content for metadata
+    utilities.generateContentMetadata(
+        '.metadata',
+        file
+    )
 
     // Generate content for content
     utilities.generateContentFile(
-        '.content .left',
+        '.content',
         newContent,
-        utilities.getPath(terminal, path)
+        file
     )
 
     // Highlight any code in page
@@ -78,7 +81,7 @@ window.cd = function cd(path){
 
     // Clear navbar and content
     $('.navbar-directory').empty();
-    $('.content .left').empty();
+    $('.content').empty();
 
     // Generate content for navbar
     var currentPath = "";
@@ -92,9 +95,15 @@ window.cd = function cd(path){
         )
     }
 
+    // Generate content for metadata
+    utilities.generateContentMetadata(
+        '.metadata',
+        utilities.getPath(terminal, currentPath)
+    )
+
     // Generate content for content
     utilities.generateContentDirectory(
-        '.content .left',
+        '.content',
         currentPath,
         commands.ls(terminal, currentPath)[2]
     );
