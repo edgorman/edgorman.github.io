@@ -167,6 +167,12 @@ a.disabled{
   margin-right: 15px;
 }
 
+.content plaintext{
+  padding: 1em;
+  overflow: auto;
+  background-color: var(--bg-secondary-color);
+}
+
 .content-info{
   margin: 25px 0px 0px 15px;
   padding: 10px 0 10px 15px;

@@ -32,7 +32,7 @@ $( document ).ready(function() {
     utilities.generateFooterMessage(terminal, '.footer p.mb-0');
 
     // To do: navigate to url path before 404 redirect
-    window.cat("/srv/www/README.md");
+    window.cat("/srv/www/Voxel-Engine/pom.xml");
 });
 
 window.cat = function cat(path){

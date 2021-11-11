@@ -336,7 +336,12 @@ export function generateContentFile(elem, content, file){
             default: c += "plaintext"; break;
         }
 
-        $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+        if (typeof(content) == "string"){
+            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+        }
+        else{
+            $(elem).append(`<plaintext>` + new XMLSerializer().serializeToString(content));
+        }
     }
     
 }
