@@ -19,7 +19,7 @@ window.toggleTheme = function toggleTheme(){
         document.querySelector(`link[title="light"]`).setAttribute("disabled", "disabled");
     }
 }
-        
+
 var user;
 var terminal;
 
@@ -32,15 +32,31 @@ $( document ).ready(function() {
     utilities.generateFooterMessage(terminal, '.footer p.mb-0');
 
     // To do: navigate to url path before 404 redirect
-    window.cd("/srv/www/");
+    window.cat("/srv/www/README.md");
 });
 
 window.cat = function cat(path){
     // Check the file path exists
     var newContent = commands.cat(terminal, path)[2][0];
     if (newContent.length == 1 && newContent[0] == ""){ return; }
+    var newPath = utilities.getFilePath(utilities.getParentPath(terminal, path));
 
-    // Clear content and sidebar
+    // Clear navbar
+    $('.navbar-directory').empty();
+
+    // Generate content for navbar
+    var currentPath = "";
+    for (const path of [currentPath].concat(utilities.splitPath(newPath))){
+        currentPath += path + "/";
+
+        utilities.generateNavbarDropdown(
+            '.navbar-directory',
+            currentPath,
+            commands.ls(terminal, currentPath)[2]
+        )
+    }
+
+    // Clear content
     $('.content .left').empty();
     $('.content .right').empty();
 
@@ -50,6 +66,8 @@ window.cat = function cat(path){
         newContent,
         utilities.getPath(terminal, path)
     )
+
+    // Highlight any code in page
     hljs.highlightAll();
 }
 
