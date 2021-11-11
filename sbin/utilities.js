@@ -314,23 +314,7 @@ export function generateContentFile(elem, content, file){
     $(elem).append(`<h2 class="mb-4">` + file['_name'] + `</h2>`);
 
     if (file['_type'] == 'md'){
-        var lines = String(content).split('\n');
-        for (let i = 0; i < lines.length; i++){
-
-            var c = "";
-            var first = lines[i].split(' ')[0];
-            var remain = lines[i].split(' ').slice(1).join(' ');
-            switch (first){
-                case '#': c += "<h1>" + remain + "</h1>"; break;
-                case '##': c += "<h2>" + remain + "</h2>"; break;
-                case '###': c += "<h3>" + remain + "</h3>"; break;
-                case '####': c += "<h4>" + remain + "</h4>"; break;
-                case '#####': c += "<h5>" + remain + "</h5>"; break;
-                default: c += "<p>" + remain + "</p>"; break;
-            }
-
-            $(elem).append(c);
-        }
+        $(elem).append(marked.parse(content));
     }
     else{
         var c = "language-";
@@ -358,7 +342,7 @@ export function generateContentFile(elem, content, file){
 }
 
 export function generateFooterMessage(terminal, elem){
-    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
-    $(elem).append(`<br>`);
     $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
+    $(elem).append(`<br>`);
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
 }
