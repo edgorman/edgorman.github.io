@@ -19,7 +19,7 @@ window.toggleTheme = function toggleTheme(){
         document.querySelector(`link[title="light"]`).setAttribute("disabled", "disabled");
     }
 }
-        
+
 var user;
 var terminal;
 
@@ -28,39 +28,22 @@ $( document ).ready(function() {
     terminal = new Terminal(user, "edgorman.github.io");
 
     // Update footer copyright and last commit message
-    $('.footer p.mb-0').empty();
     utilities.generateFooterMessage(terminal, '.footer p.mb-0');
 
     // To do: navigate to url path before 404 redirect
-    window.cd("/srv/www/");
+    window.cat("/srv/www/README.md");
 });
 
 window.cat = function cat(path){
     // Check the file path exists
     var newContent = commands.cat(terminal, path)[2][0];
     if (newContent.length == 1 && newContent[0] == ""){ return; }
+    
+    var newPath = utilities.getFilePath(utilities.getParentPath(terminal, path));
+    var file = utilities.getPath(terminal, path);
 
-    // Clear content and sidebar
-    $('.content .left').empty();
-    $('.content .right').empty();
-
-    // Generate content for content
-    utilities.generateContentFile(
-        '.content .left',
-        newContent,
-        utilities.getPath(terminal, path)
-    )
-    hljs.highlightAll();
-}
-
-window.cd = function cd(path){ 
-    // Check the new path exists
-    var newPath = commands.cd(terminal, path)[2][0];
-    if (newPath == ""){ return; }
-
-    // Clear navbar and content
+    // Clear navbar
     $('.navbar-directory').empty();
-    $('.content .left').empty();
 
     // Generate content for navbar
     var currentPath = "";
@@ -74,9 +57,53 @@ window.cd = function cd(path){
         )
     }
 
+    // Generate content for metadata
+    utilities.generateContentMetadata(
+        '.metadata',
+        file
+    )
+
+    // Generate content for content
+    utilities.generateContentFile(
+        '.content',
+        newContent,
+        file
+    )
+
+    // Highlight any code in page
+    hljs.highlightAll();
+}
+
+window.cd = function cd(path){ 
+    // Check the new path exists
+    var newPath = commands.cd(terminal, path)[2][0];
+    if (newPath == ""){ return; }
+
+    // Clear navbar and content
+    $('.navbar-directory').empty();
+    $('.content').empty();
+
+    // Generate content for navbar
+    var currentPath = "";
+    for (const path of [currentPath].concat(utilities.splitPath(newPath))){
+        currentPath += path + "/";
+
+        utilities.generateNavbarDropdown(
+            '.navbar-directory',
+            currentPath,
+            commands.ls(terminal, currentPath)[2]
+        )
+    }
+
+    // Generate content for metadata
+    utilities.generateContentMetadata(
+        '.metadata',
+        utilities.getPath(terminal, currentPath)
+    )
+
     // Generate content for content
     utilities.generateContentDirectory(
-        '.content .left',
+        '.content',
         currentPath,
         commands.ls(terminal, currentPath)[2]
     );

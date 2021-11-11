@@ -287,9 +287,22 @@ export function generateNavbarDropdown(elem, path, files){
     }
 }
 
-export function generateContentDirectory(elem, path, files){
-    $(elem).append(`<div class="list-group"></div>`);
+export function generateContentMetadata(elem, file){
+    $(elem + ' p').empty();
+    $(elem + ' p').append(file["_name"]);
 
+    if (file["_type"] == "dir"){
+        $(elem + ' .align-items-left a').attr('onclick', 'window.cd("../");');
+    }
+    else{
+        $(elem + ' .align-items-left a').attr('onclick', 'window.cd(".");');
+    }
+}
+
+export function generateContentDirectory(elem, path, files){
+    $(elem).empty();
+
+    $(elem).append(`<div class="col-xl-8"><div class="list-group"></div></div>`);
     if (path != "/"){
         $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);
         $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');"><i class="far fa-folder"></i> . .</a>`);
@@ -311,26 +324,10 @@ export function generateContentDirectory(elem, path, files){
 }
 
 export function generateContentFile(elem, content, file){
-    $(elem).append(`<h2 class="mb-4">` + file['_name'] + `</h2>`);
+    $(elem).empty();
 
     if (file['_type'] == 'md'){
-        var lines = String(content).split('\n');
-        for (let i = 0; i < lines.length; i++){
-
-            var c = "";
-            var first = lines[i].split(' ')[0];
-            var remain = lines[i].split(' ').slice(1).join(' ');
-            switch (first){
-                case '#': c += "<h1>" + remain + "</h1>"; break;
-                case '##': c += "<h2>" + remain + "</h2>"; break;
-                case '###': c += "<h3>" + remain + "</h3>"; break;
-                case '####': c += "<h4>" + remain + "</h4>"; break;
-                case '#####': c += "<h5>" + remain + "</h5>"; break;
-                default: c += "<p>" + remain + "</p>"; break;
-            }
-
-            $(elem).append(c);
-        }
+        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + "</div>");
     }
     else{
         var c = "language-";
@@ -352,13 +349,20 @@ export function generateContentFile(elem, content, file){
             default: c += "plaintext"; break;
         }
 
-        $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+        if (typeof(content) == "string"){
+            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+        }
+        else{
+            $(elem).append(`<plaintext>` + new XMLSerializer().serializeToString(content));
+        }
     }
     
 }
 
 export function generateFooterMessage(terminal, elem){
-    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
-    $(elem).append(`<br>`);
+    $(elem).empty();
+
     $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
+    $(elem).append(`<br>`);
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
 }
