@@ -18,7 +18,6 @@ export function generatePromptMessage(terminal, directory){
         directory = String(directory).replace(terminal.user.homeDirectory, "~");
     }
 
-    document.title = directory;
     return "[[;#7bd833;]" + terminal.user.name + "@" + terminal.hostname + "]:[[;#5b88df;]" + directory + "]$ ";
 }
 
@@ -327,7 +326,10 @@ export function generateContentFile(elem, content, file){
     $(elem).empty();
 
     if (file['_type'] == 'md'){
-        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + "</div>");
+        $(elem).append(`<div class="col-xl-8 markdown">` + marked.parse(content) + `</div>`);
+    }
+    else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
+        $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
     }
     else{
         var c = "language-";

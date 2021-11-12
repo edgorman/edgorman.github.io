@@ -11,21 +11,30 @@ export class Terminal
 {
     terminal;
 
-    constructor(user, hostname){
+    constructor(user, hostname, startDir="~"){
         this.user = user;
         this.hostname = hostname;
+        this.environment = {
+            "LANG": "en_UK",
+            "USER": user.name,
+            "PWD": user.homeDirectory,
+            "HOME": user.homeDirectory,
+            "SSH_CLIENT": this.hostname + " 22",
+            "SHELL": "/bin/terminal.js",
+            "PATH": "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin/:/usr/local/sbin"
+        }
 
-        this.fileSystem = utilities.loadFileSystem("../etc/fileSystem.json");
+        this.fileSystem = utilities.loadFileSystem("/etc/fileSystem.json");
         this.currentDirectory = this.fileSystem["/"];
 
-        this.gitHistory = utilities.loadGitHistory("../etc/gitHistory.json");
+        this.gitHistory = utilities.loadGitHistory("/etc/gitHistory.json");
         this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
         
         this.echo($("<br><span>To start, enter the command \"<span class='file-link' onclick='window.terminal.terminal.exec(\"help\");'>help</span>\" (or click the help text)</span>"));
         this.echo("");
-        commands.cd(this, "~");
+        commands.cd(this, startDir);
     }
 
     // Create terminal object

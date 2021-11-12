@@ -12,6 +12,7 @@
 :root.light-theme{
   --text-primary-color: #1b1b1e;
   --text-link-color: #094ebd;
+  --text-footer-color: #8a9096;
   --bg-primary-color: #e1e1e1;
   --bg-secondary-color: #f1f1f1;
 }
@@ -146,7 +147,7 @@ a.disabled{
 /* Metadata */
 .metadata{
   color: var(--text-primary-color);
-  background-color: #2a2a3070;
+  background-color: #2a2a3036;
   font-weight: bold;
   font-size: 14px;
   padding-top: 5px;
@@ -166,14 +167,14 @@ a.disabled{
 .content{
   position: relative;
   min-height: 80vh;
-  padding: 15px 0 5rem 0;
+  padding: 1rem 0 3rem 0;
 }
 
 .separator{
   border-top: 2px inset var(--text-footer-color);;
 }
 
-.content plaintext{
+.content plaintext, .content .markdown{
   padding: 1em;
   overflow: auto;
   background-color: var(--bg-secondary-color);
@@ -181,17 +182,6 @@ a.disabled{
 
 .content pre{
   width: 100%;
-}
-
-.content-info{
-  margin: 25px 0px 0px 15px;
-  padding: 10px 0 10px 15px;
-  border-left: 1px inset var(--text-footer-color);;
-}
-
-.content-info .badge{
-  padding: 5px 10px 5px 10px;
-  cursor: pointer;
 }
 
 /* Content - Directory */
