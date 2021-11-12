@@ -18,7 +18,6 @@ export function generatePromptMessage(terminal, directory){
         directory = String(directory).replace(terminal.user.homeDirectory, "~");
     }
 
-    document.title = directory;
     return "[[;#7bd833;]" + terminal.user.name + "@" + terminal.hostname + "]:[[;#5b88df;]" + directory + "]$ ";
 }
 

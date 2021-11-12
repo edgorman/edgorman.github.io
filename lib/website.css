@@ -12,6 +12,7 @@
 :root.light-theme{
   --text-primary-color: #1b1b1e;
   --text-link-color: #094ebd;
+  --text-footer-color: #8a9096;
   --bg-primary-color: #e1e1e1;
   --bg-secondary-color: #f1f1f1;
 }
