@@ -327,7 +327,10 @@ export function generateContentFile(elem, content, file){
     $(elem).empty();
 
     if (file['_type'] == 'md'){
-        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + "</div>");
+        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + `</div>`);
+    }
+    else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
+        $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
     }
     else{
         var c = "language-";
