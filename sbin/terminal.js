@@ -24,10 +24,10 @@ export class Terminal
             "PATH": "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin/:/usr/local/sbin"
         }
 
-        this.fileSystem = utilities.loadFileSystem("../etc/fileSystem.json");
+        this.fileSystem = utilities.loadFileSystem("/etc/fileSystem.json");
         this.currentDirectory = this.fileSystem["/"];
 
-        this.gitHistory = utilities.loadGitHistory("../etc/gitHistory.json");
+        this.gitHistory = utilities.loadGitHistory("/etc/gitHistory.json");
         this.commitMessage = utilities.generateCommitMessage(this.gitHistory['commits'][0]);
 
         this.create();
