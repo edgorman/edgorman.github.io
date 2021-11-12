@@ -11,7 +11,7 @@ export class Terminal
 {
     terminal;
 
-    constructor(user, hostname){
+    constructor(user, hostname, startDir="~"){
         this.user = user;
         this.hostname = hostname;
         this.environment = {
@@ -34,7 +34,7 @@ export class Terminal
         
         this.echo($("<br><span>To start, enter the command \"<span class='file-link' onclick='window.terminal.terminal.exec(\"help\");'>help</span>\" (or click the help text)</span>"));
         this.echo("");
-        commands.cd(this, "~");
+        commands.cd(this, startDir);
     }
 
     // Create terminal object
