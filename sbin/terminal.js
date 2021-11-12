@@ -14,6 +14,15 @@ export class Terminal
     constructor(user, hostname){
         this.user = user;
         this.hostname = hostname;
+        this.environment = {
+            "LANG": "en_UK",
+            "USER": user.name,
+            "PWD": user.homeDirectory,
+            "HOME": user.homeDirectory,
+            "SSH_CLIENT": this.hostname + " 22",
+            "SHELL": "/bin/terminal.js",
+            "PATH": "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin/:/usr/local/sbin"
+        }
 
         this.fileSystem = utilities.loadFileSystem("../etc/fileSystem.json");
         this.currentDirectory = this.fileSystem["/"];
