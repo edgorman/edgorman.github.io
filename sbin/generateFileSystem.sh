@@ -19,7 +19,7 @@ addFile() {
 generateFileSystem() { 
   # Args: dir_name
   for e in *; do
-    if [[ $e = "*" ]] || [[ $e = ".git"* ]] || [[ $e = "node_modules" ]] || [[ $e = "index.html" ]]; then
+    if [[ $e = "*" ]] || [[ $e = ".git"* ]] || [[ $e = "node_modules" ]] || [[ $e = "404.html" ]]; then
       continue
     fi
 
