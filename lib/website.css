@@ -3,16 +3,15 @@
   --text-primary-color: #e1e1e1;
   --text-link-color: #8ab4f8;
   --text-navbar-color: #e1e1e1;
-  --text-footer-color: #8a9096;
   --bg-navbar-color: #2a2a30;
   --bg-primary-color: #1b1b1e;
   --bg-secondary-color: var(--bg-navbar-color);
+  --bg-tertiary-color: #8a9096;
 }
 
 :root.light-theme{
   --text-primary-color: #1b1b1e;
   --text-link-color: #094ebd;
-  --text-footer-color: #8a9096;
   --bg-primary-color: #e1e1e1;
   --bg-secondary-color: #f1f1f1;
 }
@@ -163,6 +162,28 @@ a.disabled{
   font-size: 14px;
 }
 
+#shareMenuCollapse{
+  position: absolute;
+  top: 44px;
+  right: 0px;
+  z-index: 1001;
+  padding: 4px 10px 4px 10px;
+  background-color: var(--bg-secondary-color);
+  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+#shareMenuCollapse textarea{
+  height: 30px;
+  width: 250px;
+  border: none;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-primary-color);
+  font-weight: bold;
+  resize: none;
+  outline: none;
+  overflow: auto;
+}
+
 /* Content */
 .content{
   position: relative;
@@ -171,7 +192,7 @@ a.disabled{
 }
 
 .separator{
-  border-top: 2px inset var(--text-footer-color);;
+  border-top: 2px inset var(--bg-tertiary-color);;
 }
 
 .content plaintext, .content .markdown{
@@ -202,12 +223,12 @@ a.disabled{
 /* Footer */
 .footer{
   padding: 1rem 15px 2rem 15px ;
-  border-top: 1px inset var(--text-footer-color);;
+  border-top: 1px inset var(--bg-tertiary-color);
   font-size: 12px;
 }
 
 .footer a{
-  color: var(--text-footer-color);
+  color: var(--text-primary-color);
   text-decoration: none;
   font-weight: bold;
 }
