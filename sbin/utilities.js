@@ -326,7 +326,7 @@ export function generateContentFile(elem, content, file){
     $(elem).empty();
 
     if (file['_type'] == 'md'){
-        $(elem).append(`<div class="col-xl-8 markdown">` + marked.parse(content) + `</div>`);
+        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + `</div>`);
     }
     else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
         $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
@@ -336,7 +336,7 @@ export function generateContentFile(elem, content, file){
         switch (file['_type']){
             case 'py': c += "python"; break;
             case 'js': c += "javascript"; break;
-            case 'html': c += "html"; break;
+            case 'html': c += "xml"; break;
             case 'sh': c += "bash"; break;
             case 'cpp': c += "cpp"; break;
             case 'cs': c += "csharp"; break;
@@ -346,16 +346,27 @@ export function generateContentFile(elem, content, file){
             case 'php': c += "php"; break;
             case 'r': c += "r"; break;
             case 'sql': c += "sql"; break;
+            case 'xml': c += "xml"; break;
             case 'yml': c += "yaml"; break;
             case 'yaml': c += "yaml"; break;
             default: c += "plaintext"; break;
         }
 
-        if (typeof(content) == "string"){
+        if (file['_type'] == "json"){
+            $(elem).append(`<pre><code class="` + c + `">` + JSON.stringify(content) + `</pre></code>`);
+        }
+        else if (c == "language-xml"){
+            content = new XMLSerializer().serializeToString(content)
+            content = content.replaceAll('<', '&lt;');
+            content = content.replaceAll('>', '&gt;');
+            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+        }
+        else if (typeof(content) == "string"){
             $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
         }
         else{
-            $(elem).append(`<plaintext>` + new XMLSerializer().serializeToString(content));
+            $(elem).append(`<plaintext>`);
+            $(elem + ' plaintext').append(content);
         }
     }
     
