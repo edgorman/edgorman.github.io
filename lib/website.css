@@ -205,6 +205,24 @@ a.disabled{
   width: 100%;
 }
 
+.content .scrollspy{
+  border-radius: 0px;
+  color: var(--text-link-color);
+  background-color: var(--bg-secondary-color);
+}
+
+.content .scrollspy li{
+  display: list-item;
+  list-style-type: "-";
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.content .scrollspy li a{
+  color: var(--text-link-color);
+  text-decoration: none;
+}
+
 /* Content - Directory */
 .content .list-group{
   width: 100%;

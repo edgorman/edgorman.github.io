@@ -326,7 +326,13 @@ export function generateContentFile(elem, content, file){
     $(elem).empty();
 
     if (file['_type'] == 'md'){
-        $(elem).append(`<div class="col-xl-8">` + marked.parse(content) + `</div>`);
+        $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
+        $(elem).append(`<div class="col-xl-8 order-xl-1">` + marked.parse(content) + `</div>`);
+        
+        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
+        $(elem + ' .col-xl-8 [id]').each(function(i, el){
+            $(elem + ' .scrollspy').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
+        })
     }
     else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
         $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
