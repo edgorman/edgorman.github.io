@@ -332,6 +332,7 @@ export function generateContentFile(elem, content, file){
         $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .col-xl-8 [id]').each(function(i, el){
             $(elem + ' .scrollspy').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
+            $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
         })
     }
     else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
