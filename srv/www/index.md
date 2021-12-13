@@ -6,9 +6,7 @@ __Pretty neat right ;)__
 
 Feel free to explore the website to see what you can find, and perhaps along the way learn about Linux based systems as I did whilst creating this website. For those who prefer a terminal inteface, click the terminal icon in the navbar for a *(not so surprising)* surpise.
 
-<br>
-
-### How This Works
+### How This Site Works
 
 This website has a *Linux inspired* folder structure that and allows a user to navigate the file system using a GUI or terminal interface. All the functions required to perform these commands can be found in the ```/bin/``` directory. 
 
@@ -20,9 +18,7 @@ The terminal interface makes use of a library called [Jquery Terminal](https://t
 
 The *traditional* side of the website is built upon the [Bootstrap Framework](https://getbootstrap.com/) and [JQuery Library](https://jquery.com/). The repository also makes use of the [Node Package Manager](https://www.npmjs.com/) to deploy a local http server for testing and development on your local system. 
 
-<br>
-
-### Background
+### My Background
 
 I'm a Computer Scientist from the [University of Southampton](https://www.ecs.soton.ac.uk/) who graduated in 2020 with First Class Honours. My dissertation involved investigating whether machine learning models could be used to detect malicious websites based on their URL, server data and webpage content.
 
@@ -34,8 +30,6 @@ I had another internship during my degree in 2019 at [Roke Manor Research](https
 
 After completing my degree, I was offered a position at [Roke Manor Research](https://www.roke.co.uk) as a Data Scientist / Machine Learning engineer where I have had first-hand experience in projects across the Defence and National Security domains.
 
-<br>
-
 ### My Interests
 
 I'm a big fan of space exploration and the latest range of commerical rocket companies like SpaceX, Rocket Lab, and Astra. Reusable rockets are impressive and inpsiring feats, and I believe they're key to humanity's future among the stars.
@@ -43,8 +37,6 @@ I'm a big fan of space exploration and the latest range of commerical rocket com
 One hobby I picked up during the first coronavirus lockdown in 2020 was sourdough. Since then I have maintained my own sourdough starter (lovingly named *Dough-lin*) and make my own bread on a weekly basis, as well as the occasional pizza and cookie.
 
 If the scale of this website wasn't evidence enough, I also enjoy programming in my spare time. I have successfully deployed a game on the Android app store, created a 3D rendering engine from scratch in Java, and competed in coding competitions including Advent of Code. 
-
-<br>
 
 ###  Contact Me
 

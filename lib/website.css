@@ -195,7 +195,7 @@ a.disabled{
   border-top: 2px inset var(--bg-tertiary-color);;
 }
 
-.content plaintext, .content .markdown{
+.content plaintext{
   padding: 1em;
   overflow: auto;
   background-color: var(--bg-secondary-color);
@@ -203,6 +203,47 @@ a.disabled{
 
 .content pre{
   width: 100%;
+}
+
+.content .markdown h1, 
+.content .markdown h2, 
+.content .markdown h3, 
+.content .markdown h4, 
+.content .markdown h5{
+  position: relative;
+}
+
+.content .markdown h2, 
+.content .markdown h3, 
+.content .markdown h4, 
+.content .markdown h5{
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.content .markdown .anchor{
+  position: absolute;
+  left: -35px;
+  top: 10px;
+  font-size: 50%;
+  display: none;
+  padding: 5px 10px 5px 10px;
+}
+
+.content .markdown h2 .anchor, 
+.content .markdown h3 .anchor, 
+.content .markdown h4 .anchor, 
+.content .markdown h5 .anchor{
+  top: 20px !important;
+  left: -32px !important;
+}
+
+.content .markdown h1:hover .anchor, 
+.content .markdown h2:hover .anchor, 
+.content .markdown h3:hover .anchor, 
+.content .markdown h4:hover .anchor, 
+.content .markdown h5:hover .anchor{
+  display: block;
 }
 
 .content .scrollspy{
