@@ -195,7 +195,7 @@ a.disabled{
   border-top: 2px inset var(--bg-tertiary-color);;
 }
 
-.content plaintext, .content .markdown{
+.content plaintext{
   padding: 1em;
   overflow: auto;
   background-color: var(--bg-secondary-color);
@@ -203,6 +203,11 @@ a.disabled{
 
 .content pre{
   width: 100%;
+}
+
+.content .markdown h2, .content .markdown h3, .content .markdown h4, .content .markdown h5{
+  padding-top: 15px;
+  margin-top: 20px;
 }
 
 .content .scrollspy{
