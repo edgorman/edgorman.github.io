@@ -301,7 +301,15 @@ export function generateContentMetadata(elem, file){
 export function generateContentDirectory(elem, path, files){
     $(elem).empty();
 
-    $(elem).append(`<div class="col-xl-8"><div class="list-group"></div></div>`);
+    $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
+    $(elem).append(`<div class="col-xl-8 order-xl-1"></div>`);
+
+    $(elem + ' .col-xl-4').append(`<div class="nav-bg mb-3 pt-3 pb-3 pl-2 pr-2"></div>`);
+    $(elem + ' .nav-bg').append(`<form class="form-inline d-flex justify-content-center"></form>`);
+    $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">`);
+    $(elem + ' .nav-bg form').append(`<button class="btn btn-dark btn-sm" type="submit"><i class="fas fa-search"></i></button>`);
+
+    $(elem + ' .col-xl-8').append(`<div class="list-group"></div>`);
     if (path != "/"){
         $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);
         $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');"><i class="far fa-folder"></i> . .</a>`);
@@ -329,9 +337,9 @@ export function generateContentFile(elem, content, file){
         $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
         $(elem).append(`<div class="col-xl-8 order-xl-1 markdown">` + marked.parse(content) + `</div>`);
         
-        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
+        $(elem + ' .col-xl-4').append(`<ul class="nav-bg p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
-            $(elem + ' .scrollspy').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
+            $(elem + ' .nav-bg').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
             $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
         })
 
