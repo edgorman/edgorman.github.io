@@ -270,13 +270,19 @@ a.disabled{
   width: 100%;
 }
 
-.content .nav-bg input{
+.content .nav-bg .form-control{
   width: 85%;
   height: 30px;
   background-color: transparent;
   border: none;
   border-bottom: 1px inset rgba(0,0,0,.125);
   border-radius: 0px;
+}
+
+.content .nav-bg .form-check{
+  width: 100%;
+  justify-content: left;
+  font-size: 14px;
 }
 
 .content .list-group{
