@@ -308,8 +308,9 @@ export function generateContentDirectory(elem, path, files){
     $(elem + ' .nav-bg').append(`<form class="form-inline d-flex justify-content-center"></form>`);
     $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search ..." aria-label="Search">`);
     $(elem + ' .nav-bg form').append(`<button class="btn btn-dark btn-sm" type="submit"><i class="fas fa-search"></i></button>`);
-    $(elem + ' .nav-bg form').append(`<div class="form-check mt-4 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="flexCheckDefault"><label class="form-check-label" for="flexCheckDefault">Show Files</label></div>`);
-    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="flexCheckDefault"><label class="form-check-label" for="flexCheckDefault">Show Directories</label></div>`);
+    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="showFilesCheck"><label class="form-check-label" for="showFilesCheck">Hide Files</label></div>`);
+    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="showFoldersCheck"><label class="form-check-label" for="showFoldersCheck">Hide Folders</label></div>`);
+    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><label class="form-check-label" for="selectOrderDropdown">Order by</label><select class="ml-1" id="selectOrderDropdown"><option>Alphabetical</option><option>Date Asc.</option><option>Date Desc.</option></select></div>`);
 
     $(elem + ' .col-xl-8').append(`<div class="list-group"></div>`);
     if (path != "/"){

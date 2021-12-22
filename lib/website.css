@@ -285,6 +285,13 @@ a.disabled{
   font-size: 14px;
 }
 
+.content .nav-bg select{
+  background-color: transparent;
+  border: none;
+  color: var(--text-link-color);
+  font-size: 13.5px;
+}
+
 .content .list-group{
   width: 100%;
 }
