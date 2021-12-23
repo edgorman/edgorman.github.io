@@ -13,5 +13,8 @@ for r in $repos; do
   git submodule add $url
 done
 
-# Update submodules
+# Init submodules
 git submodule update --init --remote
+
+# Update submodules
+git submodule update --remote
