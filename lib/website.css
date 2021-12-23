@@ -254,6 +254,10 @@ a.disabled{
   display: block;
 }
 
+.content .markdown img{
+  max-width: 100%;
+}
+
 .content .scrollspy{
   border-radius: 0px;
   color: var(--text-link-color);
