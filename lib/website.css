@@ -12,7 +12,7 @@
 :root.light-theme{
   --text-primary-color: #1b1b1e;
   --text-link-color: #094ebd;
-  --bg-primary-color: #e1e1e1;
+  --bg-primary-color: #fcfcfc;
   --bg-secondary-color: #f1f1f1;
 }
 
@@ -210,6 +210,7 @@ a.disabled{
 .content .markdown h3, 
 .content .markdown h4, 
 .content .markdown h5{
+  padding-top: 15px;
   position: relative;
 }
 
@@ -217,7 +218,6 @@ a.disabled{
 .content .markdown h3, 
 .content .markdown h4, 
 .content .markdown h5{
-  padding-top: 15px;
   margin-top: 20px;
 }
 
@@ -228,6 +228,10 @@ a.disabled{
   font-size: 50%;
   display: none;
   padding: 5px 10px 5px 10px;
+}
+
+.content .markdown h1 .anchor{
+  top: 25px !important;
 }
 
 .content .markdown h2 .anchor, 
@@ -249,7 +253,7 @@ a.disabled{
 .content .scrollspy{
   border-radius: 0px;
   color: var(--text-link-color);
-  background-color: var(--bg-secondary-color);
+  border-left: 1px inset #2a2a3036;
 }
 
 .content .scrollspy li{

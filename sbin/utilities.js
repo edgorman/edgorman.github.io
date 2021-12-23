@@ -329,7 +329,7 @@ export function generateContentFile(elem, content, file){
         $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
         $(elem).append(`<div class="col-xl-8 order-xl-1 markdown">` + marked.parse(content) + `</div>`);
         
-        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
+        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3 mt-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
             $(elem + ' .scrollspy').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
             $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
@@ -392,7 +392,7 @@ export function generateFooterMessage(terminal, elem){
 
     $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
     $(elem).append(`<br>`);
-    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank" title="` + terminal.commitMessage + `">Last Commit (` + terminal.gitHistory['commits'][0]['id'] + `)</a>`);
 }
 
 export function setCookie(cname, cvalue, exdays) {
