@@ -336,10 +336,9 @@ export function generateContentFile(elem, content, file){
         })
 
         $(elem + ' .markdown img').each(function(i, el){
-            if (el.src.includes(window.top.location.origin)){
-                var path = el.src.substring(window.top.location.origin.length + 1, el.src.length);
-                el.src = file["_parent"] + path;
-                el.style.width = "100%";
+            if (!el.attributes['src']['value'].startsWith("http") && 
+                !el.attributes['src']['value'].startsWith("/")){
+                el.src = file["_parent"] + el.attributes['src']['value'];
             }
         })
     }
