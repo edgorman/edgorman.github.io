@@ -205,6 +205,10 @@ a.disabled{
   width: 100%;
 }
 
+.content code.hljs{
+  border: 1px inset #2a2a3036;
+}
+
 .content .markdown h1, 
 .content .markdown h2, 
 .content .markdown h3, 
