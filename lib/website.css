@@ -290,6 +290,7 @@ a.disabled{
   border: none;
   color: var(--text-link-color);
   font-size: 13.5px;
+  cursor: pointer;
 }
 
 .content .list-group{

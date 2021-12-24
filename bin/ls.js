@@ -19,7 +19,7 @@ export function ls(terminal, relativePath){
 
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");
             
-            return [files, [], files]
+            return [files, [], getFilePath(path)]
         }
         else{
             return [[], ["Cannot list files from a non-directory path."], []]
