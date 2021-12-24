@@ -14,7 +14,7 @@ export function cat(terminal, relativePath){
             
             // If file is a picture
             if (['jpg', 'png'].includes(path['_type'])){
-                file = "<img src='" + getFilePath(path) + "' style='width: 50%; max-width: 320px;'/>";
+                file = "<img src='" + getFilePath(path) + "'/>";
                 return [[$(file)], [], [file]];
             }
             

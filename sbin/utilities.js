@@ -342,8 +342,8 @@ export function generateContentFile(elem, content, file){
             }
         })
     }
-    else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
-        $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
+    else if (file['_type'] == 'jpg' || file['_type'] == 'jpeg' || file['_type'] == 'png'){
+        $(elem).append(`<div class="col-xl-8 markdown">` + content + `</div>`);
     }
     else{
         var c = "language-";

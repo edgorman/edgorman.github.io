@@ -258,6 +258,11 @@ a.disabled{
   max-width: 100%;
 }
 
+.content .markdown blockquote{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .content .scrollspy{
   border-radius: 0px;
   color: var(--text-link-color);
