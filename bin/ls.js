@@ -2,7 +2,7 @@ import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, args){
     // Default arguments
-    var options = {'_': "."};
+    var options = {'_': ".", 's': false};
 
     // Check if any arguments passed
     if (args.length > 0)
@@ -26,6 +26,7 @@ export function ls(terminal, args){
     // Get path
     var files = []
     var relativePath = options["_"][0];
+    var entryFilter = options["s"];
     var path = getPath(terminal, relativePath);
     
     // If path exists
@@ -39,7 +40,17 @@ export function ls(terminal, args){
                     continue;
                 }
 
-                files.push(path[entry]);
+                // Filter entries by string
+                if (typeof(entryFilter) == "string"){
+                    if (path[entry]['_name'].toLowerCase().includes(entryFilter.toLowerCase())){
+                        files.push(path[entry]);
+                    }
+                }
+                // Else just add all entries
+                else{
+                    files.push(path[entry]);
+                }
+
             }
 
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");

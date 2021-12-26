@@ -307,7 +307,7 @@ export function generateContentDirectory(elem, path, files, keepSearch=false){
         
         $(elem + ' .col-xl-4').append(`<div class="nav-bg mb-3 pt-3 pb-3 pl-2 pr-2"></div>`);
         $(elem + ' .nav-bg').append(`<form class="form-inline d-flex justify-content-center" id="directory-search"></form>`);
-        $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search ..." aria-label="Search" onkeydown="window.ls_search(); this.focus;">`);
+        $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search ..." aria-label="Search" id="filterEntriesInput" onkeyup="window.ls_search();">`);
         // $(elem + ' .nav-bg form').append(`<button class="btn btn-dark btn-sm" type="button" onclick="window.ls_search();"><i class="fas fa-search"></i></button>`);
         $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" id="hideFilesCheck" onchange="window.ls_search()"><label class="form-check-label" for="showFilesCheck">Hide Files</label></div>`);
         $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" id="hideFoldersCheck" onchange="window.ls_search()"><label class="form-check-label" for="showFoldersCheck">Hide Folders</label></div>`);
