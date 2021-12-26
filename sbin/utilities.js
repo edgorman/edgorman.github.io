@@ -298,20 +298,23 @@ export function generateContentMetadata(elem, file){
     }
 }
 
-export function generateContentDirectory(elem, path, files){
-    $(elem).empty();
+export function generateContentDirectory(elem, path, files, keepSearch=false){
+    if (!keepSearch){
+        $(elem).empty();
 
-    $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
-    $(elem).append(`<div class="col-xl-8 order-xl-1"></div>`);
-
-    $(elem + ' .col-xl-4').append(`<div class="nav-bg mb-3 pt-3 pb-3 pl-2 pr-2"></div>`);
-    $(elem + ' .nav-bg').append(`<form class="form-inline d-flex justify-content-center"></form>`);
-    $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search ..." aria-label="Search">`);
-    $(elem + ' .nav-bg form').append(`<button class="btn btn-dark btn-sm" type="submit"><i class="fas fa-search"></i></button>`);
-    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="showFilesCheck"><label class="form-check-label" for="showFilesCheck">Hide Files</label></div>`);
-    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" value="" id="showFoldersCheck"><label class="form-check-label" for="showFoldersCheck">Hide Folders</label></div>`);
-    $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><label class="form-check-label" for="selectOrderDropdown">Order by</label><select class="ml-1" id="selectOrderDropdown"><option>Alphabetical</option><option>Date Asc.</option><option>Date Desc.</option></select></div>`);
-
+        $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
+        $(elem).append(`<div class="col-xl-8 order-xl-1" style="min-height: 50vh;"></div>`);
+        
+        $(elem + ' .col-xl-4').append(`<div class="nav-bg mb-3 pt-3 pb-3 pl-2 pr-2"></div>`);
+        $(elem + ' .nav-bg').append(`<form class="form-inline d-flex justify-content-center" id="directory-search"></form>`);
+        $(elem + ' .nav-bg form').append(`<input class="form-control mr-2" type="search" placeholder="Search ..." aria-label="Search" onkeydown="window.ls_search(); this.focus;">`);
+        // $(elem + ' .nav-bg form').append(`<button class="btn btn-dark btn-sm" type="button" onclick="window.ls_search();"><i class="fas fa-search"></i></button>`);
+        $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" id="hideFilesCheck" onchange="window.ls_search()"><label class="form-check-label" for="showFilesCheck">Hide Files</label></div>`);
+        $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><input class="form-check-input mr-3" type="checkbox" id="hideFoldersCheck" onchange="window.ls_search()"><label class="form-check-label" for="showFoldersCheck">Hide Folders</label></div>`);
+        $(elem + ' .nav-bg form').append(`<div class="form-check mt-3 ml-3"><label class="form-check-label" for="selectOrderDropdown">Order by</label><select class="ml-1" id="selectOrderDropdown" onchange="window.ls_search()"><option>Alphabetical</option><option>Date Asc.</option><option>Date Desc.</option></select></div>`);
+    }
+    
+    $(elem + ' .col-xl-8').empty();
     $(elem + ' .col-xl-8').append(`<div class="list-group"></div>`);
     if (path != "/"){
         $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);

@@ -2,13 +2,13 @@ import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, args){
     // Default arguments
-    var options = {'_': ".", 'd': false, 'f': false};
+    var options = {'_': "."};
 
     // Check if any arguments passed
     if (args.length > 0)
     {
         // Parse arguments
-        var pOptions = $.terminal.parse_options(args, { boolean: ['d', 'f']});
+        var pOptions = $.terminal.parse_options(args, { boolean: []});
 
         // Check arguments received are expected
         var pKeys = Object.keys(pOptions);
@@ -20,19 +20,7 @@ export function ls(terminal, args){
             }
         }
 
-        options = pOptions;
-    }
-
-    // Handle ls options
-    if (options.d == options.f){
-        options.d = true;
-        options.f = true;
-    }
-    else if(options.d){
-        options.f = false;
-    }
-    else if(options.f){
-        options.d = false;
+        options = pOptions
     }
 
     // Get path
@@ -51,11 +39,7 @@ export function ls(terminal, args){
                     continue;
                 }
 
-                // If files should be shown or if directories should be shown
-                if (options.d && path[entry]['_type'] == "dir" ||
-                    options.f && path[entry]['_type'] != "dir"){
-                    files.push(path[entry]);
-                }
+                files.push(path[entry]);
             }
 
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");

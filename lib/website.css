@@ -271,7 +271,7 @@ a.disabled{
 }
 
 .content .nav-bg .form-control{
-  width: 85%;
+  width: 100%;
   height: 30px;
   background-color: transparent;
   border: none;
