@@ -254,10 +254,20 @@ a.disabled{
   display: block;
 }
 
+.content .markdown img{
+  max-width: 100%;
+}
+
+.content .markdown blockquote{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .content .nav-bg{
   border-radius: 0px;
   color: var(--text-link-color);
-  border-left: 1px inset #2a2a3036;
+  background-color: var(--bg-secondary-color);
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 .content .nav-bg li{

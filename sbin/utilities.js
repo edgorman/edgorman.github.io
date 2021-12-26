@@ -352,7 +352,7 @@ export function generateContentFile(elem, content, file){
         $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
         $(elem).append(`<div class="col-xl-8 order-xl-1 markdown">` + marked.parse(content) + `</div>`);
         
-        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3 mt-3"><h3 class="mb-4">Page Contents</h3></ul>`);
+        $(elem + ' .col-xl-4').append(`<ul class="nav-bg p-3 mt-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
             $(elem + ' .nav-bg').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
             $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
@@ -365,8 +365,8 @@ export function generateContentFile(elem, content, file){
             }
         })
     }
-    else if (file['_type'] == 'jpeg' || file['_type'] == 'png'){
-        $(elem).append(`<div class="col-xl-8">` + content + `</div>`);
+    else if (file['_type'] == 'jpg' || file['_type'] == 'jpeg' || file['_type'] == 'png'){
+        $(elem).append(`<div class="col-xl-8 markdown">` + content + `</div>`);
     }
     else{
         var c = "language-";
