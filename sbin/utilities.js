@@ -352,17 +352,16 @@ export function generateContentFile(elem, content, file){
         $(elem).append(`<div class="col-xl-4 order-xl-12"></div>`);
         $(elem).append(`<div class="col-xl-8 order-xl-1 markdown">` + marked.parse(content) + `</div>`);
         
-        $(elem + ' .col-xl-4').append(`<ul class="nav-bg p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
+        $(elem + ' .col-xl-4').append(`<ul class="scrollspy p-3 mt-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
             $(elem + ' .nav-bg').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
             $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
         })
 
         $(elem + ' .markdown img').each(function(i, el){
-            if (el.src.includes(window.top.location.origin)){
-                var path = el.src.substring(window.top.location.origin.length + 1, el.src.length);
-                el.src = file["_parent"] + path;
-                el.style.width = "100%";
+            if (!el.attributes['src']['value'].startsWith("http") && 
+                !el.attributes['src']['value'].startsWith("/")){
+                el.src = file["_parent"] + el.attributes['src']['value'];
             }
         })
     }
@@ -415,5 +414,28 @@ export function generateFooterMessage(terminal, elem){
 
     $(elem).append(`<a href="https://github.com/edgorman">edgorman.github.io <i class="far fa-copyright"></i> ` + new Date().getFullYear() + `</a>`);
     $(elem).append(`<br>`);
-    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank">` + terminal.commitMessage + `</a>`);
+    $(elem).append(`<a href="https://github.com/edgorman/edgorman.github.io/commit/` + terminal.gitHistory['commits'][0]['id'] + `" target="_blank" title="` + terminal.commitMessage + `">Last Commit (` + terminal.gitHistory['commits'][0]['id'] + `)</a>`);
+}
+
+export function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
 }
