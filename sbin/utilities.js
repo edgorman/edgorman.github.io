@@ -316,22 +316,31 @@ export function generateContentDirectory(elem, path, files, keepSearch=false){
     
     $(elem + ' .col-xl-8').empty();
     $(elem + ' .col-xl-8').append(`<div class="list-group"></div>`);
-    if (path != "/"){
-        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);
-        $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');"><i class="far fa-folder"></i> . .</a>`);
-    }
+    // if (path != "/" && $('#hideFoldersCheck').is(":checked")){
+    //     $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `');"><i class="far fa-folder"></i> .</a>`);
+    //     $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="window.cd('` + path + `/../');"><i class="far fa-folder"></i> . .</a>`);
+    // }
 
-    for (const file of files){
-        if (!String(file["_name"]).startsWith(".")) {
-            let onclick = `window.cat('` + getFilePath(file) + `');`;
-            let innerhtml = `<i class="far fa-file"></i>` + file["_name"];
+    // Iterate across files twice, showing folders first then files after
+    for (let i = 0; i < 2; i++){
+        for (const file of files){
+            if (!String(file["_name"]).startsWith(".")) {
+                let onclick = "";
+                let innerhtml = "";
 
-            if (file["_type"] == "dir"){
-                onclick = `window.cd('` + getFilePath(file) + `');`;
-                innerhtml = `<i class="far fa-folder"></i>` + file["_name"];
+                if (file["_type"] == "dir"){
+                    if (i == 1) { continue; }
+                    onclick = `window.cd('` + getFilePath(file) + `');`;
+                    innerhtml = `<i class="fas fa-folder"></i>` + file["_name"];
+                }
+                else{
+                    if (i == 0) { continue; }
+                    onclick = `window.cat('` + getFilePath(file) + `');`;
+                    innerhtml = `<i class="far fa-file"></i>` + file["_name"];
+                }
+
+                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="` + onclick + `">` + innerhtml + `</a>`);
             }
-
-            $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="` + onclick + `">` + innerhtml + `</a>`);
         }
     }
 }
