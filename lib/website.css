@@ -254,25 +254,52 @@ a.disabled{
   display: block;
 }
 
-.content .scrollspy{
+.content .nav-bg{
   border-radius: 0px;
   color: var(--text-link-color);
   border-left: 1px inset #2a2a3036;
 }
 
-.content .scrollspy li{
+.content .nav-bg li{
   display: list-item;
   list-style-type: "-";
   padding-left: 10px;
   margin-left: 10px;
 }
 
-.content .scrollspy li a{
+.content .nav-bg li a{
   color: var(--text-link-color);
   text-decoration: none;
 }
 
 /* Content - Directory */
+.content .nav-bg form{
+  width: 100%;
+}
+
+.content .nav-bg .form-control{
+  width: 100%;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px inset rgba(0,0,0,.125);
+  border-radius: 0px;
+}
+
+.content .nav-bg .form-check{
+  width: 100%;
+  justify-content: left;
+  font-size: 14px;
+}
+
+.content .nav-bg select{
+  background-color: transparent;
+  border: none;
+  color: var(--text-link-color);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
 .content .list-group{
   width: 100%;
 }

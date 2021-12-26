@@ -51,7 +51,7 @@ export class Terminal
                 exit: function() { t.onFunctionReturnHandler(commands.exit(t)); },
                 history: function() { t.onFunctionReturnHandler(commands.history(t)); },
                 help : function() { t.onFunctionReturnHandler(commands.help(t)); },
-                ls : function(path) { t.onFunctionReturnHandler(commands.ls(t, path), true); },
+                ls : function(...args) { t.onFunctionReturnHandler(commands.ls(t, args), true); },
                 pwd : function() { t.onFunctionReturnHandler(commands.pwd(t)); },
                 touch : function(path) { t.onFunctionReturnHandler(commands.touch(t, path)); },
                 uname : function() { t.onFunctionReturnHandler(commands.uname(t)); },
