@@ -401,22 +401,20 @@ export function generateContentFile(elem, content, file){
             default: c += "plaintext"; break;
         }
 
+        $(elem).append(`<div class="col"><pre></pre></div>`);
+
+        // Special cases for content
         if (file['_type'] == "json"){
-            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + JSON.stringify(content) + `</pre></code></div>`);
+            content = JSON.stringify(content);
         }
         else if (c == "language-xml"){
             content = new XMLSerializer().serializeToString(content)
             content = content.replaceAll('<', '&lt;');
             content = content.replaceAll('>', '&gt;');
-            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + content + `</pre></code></div>`);
         }
-        else if (typeof(content) == "string"){
-            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + content + `</pre></code></div>`);
-        }
-        else{
-            $(elem).append(`<div class="col"><plaintext>`);
-            $(elem + ' plaintext').append(content);
-        }
+
+        $(elem + ' pre').append(`<code class="` + c + `">` + content + `</code>`);
+        // $(elem + ' pre').append("<div class='copybutton' title='Copy content to clipboard' onclick='navigator.clipboard.writeText(`" + content + "`)'>Copy</div>");
     }
     
 }

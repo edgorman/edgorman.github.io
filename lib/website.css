@@ -182,6 +182,23 @@ a.disabled{
 
 .content pre{
   width: 100%;
+  position: relative;
+}
+
+.content pre:hover .copybutton{
+  display: block;
+}
+
+.content pre .copybutton{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px 10px 3px 10px;
+  border: 1px inset #2a2a3036;
+  color: var(--text-primary-color);
+  background-color: var(--bg-primary-color);
+  cursor: pointer;
 }
 
 .content code.hljs{
