@@ -343,15 +343,15 @@ export function generateContentDirectory(elem, path, files, keepSearch=false){
                 if (file["_type"] == "dir"){
                     if (i == 1) { continue; }
                     onclick = `window.cd('` + getFilePath(file) + `');`;
-                    innerhtml = `<i class="fas fa-folder"></i>` + file["_name"];
+                    innerhtml = `<i class="fas fa-folder"></i>`;
                 }
                 else{
                     if (i == 0) { continue; }
                     onclick = `window.cat('` + getFilePath(file) + `');`;
-                    innerhtml = `<i class="far fa-file"></i>` + file["_name"];
+                    innerhtml = `<i class="far fa-file"></i>`;
                 }
 
-                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="` + onclick + `">` + innerhtml + `</a>`);
+                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark d-flex justify-content-between" href="javascript:;" onclick="` + onclick + `"><span>` + innerhtml + file["_name"] + `</span><span class="text-secondary"><sub>` + file["_date"] + `</sub></span></a>`);
             }
         }
     }
@@ -367,15 +367,20 @@ export function generateContentFile(elem, content, file){
         $(elem + ' .col-xl-4').append(`<ul class="nav-bg p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
             $(elem + ' .nav-bg').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
-            $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
-        })
+            $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`);
+        });
 
         $(elem + ' .markdown img').each(function(i, el){
             if (!el.attributes['src']['value'].startsWith("http") && 
                 !el.attributes['src']['value'].startsWith("/")){
                 el.src = file["_parent"] + el.attributes['src']['value'];
             }
-        })
+        });
+
+        // $(elem + ' .markdown code').each(function(i, el){
+        //     console.log(el);
+        // });
+        // .append("<div class='copybutton' title='Copy content to clipboard' onclick='navigator.clipboard.writeText(`" + content + "`)'>Copy</div>");
     }
     else if (file['_type'] == 'jpg' || file['_type'] == 'jpeg' || file['_type'] == 'png'){
         $(elem).append(`<div class="col-xl-8 markdown">` + content + `</div>`);
@@ -401,22 +406,20 @@ export function generateContentFile(elem, content, file){
             default: c += "plaintext"; break;
         }
 
+        $(elem).append(`<div class="col"><pre></pre></div>`);
+
+        // Special cases for content
         if (file['_type'] == "json"){
-            $(elem).append(`<pre><code class="` + c + `">` + JSON.stringify(content) + `</pre></code>`);
+            content = JSON.stringify(content);
         }
         else if (c == "language-xml"){
             content = new XMLSerializer().serializeToString(content)
             content = content.replaceAll('<', '&lt;');
             content = content.replaceAll('>', '&gt;');
-            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
         }
-        else if (typeof(content) == "string"){
-            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
-        }
-        else{
-            $(elem).append(`<plaintext>`);
-            $(elem + ' plaintext').append(content);
-        }
+
+        $(elem + ' pre').append(`<code class="` + c + `">` + content + `</code>`);
+        // $(elem + ' pre').append("<div class='copybutton' title='Copy content to clipboard' onclick='navigator.clipboard.writeText(`" + content + "`)'>Copy</div>");
     }
     
 }
