@@ -343,15 +343,15 @@ export function generateContentDirectory(elem, path, files, keepSearch=false){
                 if (file["_type"] == "dir"){
                     if (i == 1) { continue; }
                     onclick = `window.cd('` + getFilePath(file) + `');`;
-                    innerhtml = `<i class="fas fa-folder"></i>` + file["_name"];
+                    innerhtml = `<i class="fas fa-folder"></i>`;
                 }
                 else{
                     if (i == 0) { continue; }
                     onclick = `window.cat('` + getFilePath(file) + `');`;
-                    innerhtml = `<i class="far fa-file"></i>` + file["_name"];
+                    innerhtml = `<i class="far fa-file"></i>`;
                 }
 
-                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark" href="javascript:;" onclick="` + onclick + `">` + innerhtml + `</a>`);
+                $(elem + ' .list-group').append(`<a class="list-group-item list-group-item-action list-group-item-dark d-flex justify-content-between" href="javascript:;" onclick="` + onclick + `"><span>` + innerhtml + file["_name"] + `</span><span class="text-secondary"><sub>` + file["_date"] + `</sub></span></a>`);
             }
         }
     }
@@ -402,19 +402,19 @@ export function generateContentFile(elem, content, file){
         }
 
         if (file['_type'] == "json"){
-            $(elem).append(`<pre><code class="` + c + `">` + JSON.stringify(content) + `</pre></code>`);
+            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + JSON.stringify(content) + `</pre></code></div>`);
         }
         else if (c == "language-xml"){
             content = new XMLSerializer().serializeToString(content)
             content = content.replaceAll('<', '&lt;');
             content = content.replaceAll('>', '&gt;');
-            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + content + `</pre></code></div>`);
         }
         else if (typeof(content) == "string"){
-            $(elem).append(`<pre><code class="` + c + `">` + content + `</pre></code>`);
+            $(elem).append(`<div class="col"><pre><code class="` + c + `">` + content + `</pre></code></div>`);
         }
         else{
-            $(elem).append(`<plaintext>`);
+            $(elem).append(`<div class="col"><plaintext>`);
             $(elem + ' plaintext').append(content);
         }
     }
