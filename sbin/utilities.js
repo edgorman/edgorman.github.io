@@ -264,6 +264,18 @@ export function onCompletion(terminal){
     return ['test'];
 }
 
+export function extractGetParameters(parameterName) {
+    var parameters = window.top.location.search.substring(1).split("&");
+    
+    for (var index in parameters)
+    {
+        var keyValue = parameters[index].split("=");
+        if (keyValue[0] == parameterName) return keyValue[1];
+    }
+
+    return null;
+}
+
 export function generateNavbarDropdown(elem, path, files){
     if (path != "/"){
         $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
