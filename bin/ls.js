@@ -2,13 +2,13 @@ import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, args){
     // Default arguments
-    var options = {'_': ".", 's': false};
+    var options = {'_': ".", 's': false, 'd': false, 'D': false};
 
     // Check if any arguments passed
     if (args.length > 0)
     {
         // Parse arguments
-        var pOptions = $.terminal.parse_options(args, { boolean: []});
+        var pOptions = $.terminal.parse_options(args, { boolean: ['d', 'D']});
 
         // Check arguments received are expected
         var pKeys = Object.keys(pOptions);
@@ -28,29 +28,44 @@ export function ls(terminal, args){
     var relativePath = options["_"][0];
     var entryFilter = options["s"];
     var path = getPath(terminal, relativePath);
-    
+
     // If path exists
     if (path){
         // If path is directory
         if (path['_type'] == "dir"){
-            // List all files in path
+            // Create a sorted version of path, default is alphabetical
+            var sPath = []
             for (var entry in path){
-                // Ignore entrys that start with _
-                if (String(entry).startsWith("_")){
+                if (entry.startsWith("_"))
                     continue;
-                }
+                sPath.push(path[entry]);
+            }
 
+            // Sort by date ascending
+            if (options["d"]){
+                sPath.sort(function(first, second) {
+                    return second["_date"] >= first["_date"];
+                });
+            }
+            // Sort By date descending
+            else if (options["D"]){
+                sPath.sort(function(first, second) {
+                    return second["_date"] < first["_date"];
+                });
+            }
+
+            // List all files in path
+            for (var entry in sPath){
                 // Filter entries by string
                 if (typeof(entryFilter) == "string"){
-                    if (path[entry]['_name'].toLowerCase().includes(entryFilter.toLowerCase())){
-                        files.push(path[entry]);
+                    if (sPath[entry]['_name'].toLowerCase().includes(entryFilter.toLowerCase())){
+                        files.push(sPath[entry]);
                     }
                 }
                 // Else just add all entries
                 else{
-                    files.push(path[entry]);
+                    files.push(sPath[entry]);
                 }
-
             }
 
             console.log("INFO: (ls) Listed files in directory " + getFilePath(path) + ".");
