@@ -367,15 +367,20 @@ export function generateContentFile(elem, content, file){
         $(elem + ' .col-xl-4').append(`<ul class="nav-bg p-3"><h3 class="mb-4">Page Contents</h3></ul>`);
         $(elem + ' .markdown [id]').each(function(i, el){
             $(elem + ' .nav-bg').append(`<li><a href="#` + el.id + `">` + el.innerHTML + `</a></li>`);
-            $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`)
-        })
+            $('#' + el.id).append(`<a href="#` + el.id + `" class="anchor"><i class="fas fa-link"></i></a>`);
+        });
 
         $(elem + ' .markdown img').each(function(i, el){
             if (!el.attributes['src']['value'].startsWith("http") && 
                 !el.attributes['src']['value'].startsWith("/")){
                 el.src = file["_parent"] + el.attributes['src']['value'];
             }
-        })
+        });
+
+        // $(elem + ' .markdown code').each(function(i, el){
+        //     console.log(el);
+        // });
+        // .append("<div class='copybutton' title='Copy content to clipboard' onclick='navigator.clipboard.writeText(`" + content + "`)'>Copy</div>");
     }
     else if (file['_type'] == 'jpg' || file['_type'] == 'jpeg' || file['_type'] == 'png'){
         $(elem).append(`<div class="col-xl-8 markdown">` + content + `</div>`);
