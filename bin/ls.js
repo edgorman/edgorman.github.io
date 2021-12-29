@@ -2,13 +2,13 @@ import { getPath, getFilePath } from "../sbin/utilities.js";
 
 export function ls(terminal, args){
     // Default arguments
-    var options = {'_': ".", 's': false, 'd': false, 'D': false};
+    var options = {'_': ".", 's': false, 'a': false, 'd': false, 'D': false};
 
     // Check if any arguments passed
     if (args.length > 0)
     {
         // Parse arguments
-        var pOptions = $.terminal.parse_options(args, { boolean: ['d', 'D']});
+        var pOptions = $.terminal.parse_options(args, { boolean: ['a', 'd', 'D']});
 
         // Check arguments received are expected
         var pKeys = Object.keys(pOptions);
@@ -33,7 +33,7 @@ export function ls(terminal, args){
     if (path){
         // If path is directory
         if (path['_type'] == "dir"){
-            // Create a sorted version of path, default is alphabetical
+            // Create a sorted version of path
             var sPath = []
             for (var entry in path){
                 if (entry.startsWith("_"))
@@ -41,16 +41,17 @@ export function ls(terminal, args){
                 sPath.push(path[entry]);
             }
 
+            // Sort by alphabetical (default)
             // Sort by date ascending
             if (options["d"]){
-                sPath.sort(function(first, second) {
-                    return second["_date"] >= first["_date"];
+                sPath.sort(function(a, b) {
+                    return new Date(a["_date"]) - new Date(b["_date"]);
                 });
             }
             // Sort By date descending
             else if (options["D"]){
-                sPath.sort(function(first, second) {
-                    return second["_date"] < first["_date"];
+                sPath.sort(function(a, b) {
+                    return new Date(b["_date"]) - new Date(a["_date"]);
                 });
             }
 

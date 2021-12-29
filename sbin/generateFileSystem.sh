@@ -23,8 +23,9 @@ generateFileSystem() {
       continue
     fi
 
-    d=$(date -r "$e" "+%d/%m/%Y")
-    t=$(date -r "$e" "+%H:%M")
+    dt=($(stat -c '%.16y' "$e"))
+    d=${dt[0]}
+    t=${dt[1]}
     p="$1$e/"
 
     if [ -d "$e" ]; then
