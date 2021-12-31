@@ -23,7 +23,7 @@ generateFileSystem() {
       continue
     fi
 
-    dt=($(stat -c '%.16y' "$e"))
+    dt=($(git log -1 --pretty=format:%ci "$e"))
     d=${dt[0]}
     t=${dt[1]}
     p="$1$e/"
