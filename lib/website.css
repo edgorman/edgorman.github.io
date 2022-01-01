@@ -40,7 +40,7 @@
 .terminal-container, .terminal{
   transform: rotateX(180deg);
   min-height: 33vh;
-  max-height: 93vh;
+  max-height: 100vh;
 }
 
 .terminal{

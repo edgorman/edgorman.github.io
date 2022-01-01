@@ -277,22 +277,25 @@ export function extractGetParameters(parameterName) {
 }
 
 export function generateNavbarDropdown(elem, path, files){
-    if (path != "/"){
-        $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
+    if (path == "/"){
+        $(elem).append(`<a href="javascript:;" onclick="window.cd('/');">/</a>`);
     }
-    
-    let dropdownId = path + "Dropdown";
-    $(elem).append(`<div class="btn-group"></div>`);
-    $(elem + ' .btn-group').last().append(`<button id="` + dropdownId + `" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">/</button>`);
-    $(elem + ' .btn-group').last().append(`<div class="dropdown-menu" aria-labelledby="` + dropdownId + `"></div>`);
-    
-    for (const file of files){
-        if (!String(file["_name"]).startsWith(".")) {
-            if (file["_type"] == "dir"){
-                $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cd('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
-            }
-            else{
-                $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cat('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+    else{
+        $(elem).append(`<a href="javascript:;" onclick="window.cd('` + path + `');">` + splitPath(path).pop() + `</a>`);
+        
+        let dropdownId = path + "Dropdown";
+        $(elem).append(`<div class="btn-group"></div>`);
+        $(elem + ' .btn-group').last().append(`<button id="` + dropdownId + `" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">/</button>`);
+        $(elem + ' .btn-group').last().append(`<div class="dropdown-menu" aria-labelledby="` + dropdownId + `"></div>`);
+        
+        for (const file of files){
+            if (!String(file["_name"]).startsWith(".")) {
+                if (file["_type"] == "dir"){
+                    $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cd('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+                }
+                else{
+                    $(elem + ' .dropdown-menu').last().append(`<a class="dropdown-item" href="javascript:;" onclick="window.cat('` + getFilePath(file) + `');">` + file["_name"] + `</a>`);
+                }
             }
         }
     }
