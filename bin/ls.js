@@ -55,17 +55,25 @@ export function ls(terminal, args){
                 });
             }
 
+            // Add . and .. entries if not root
+            if (path["_parent"] != ""){
+                files.push({"_name": ".", "_date": path["_date"], "_time": path["_time"], "_type": "dir", "_parent": path["_parent"]});
+                files.push({"_name": "..", "_date": path["_date"], "_time": path["_time"], "_type": "dir", "_parent": path["_parent"]});
+            }
+
             // List all files in path
             for (var entry in sPath){
+                var value = sPath[entry];
+
                 // Filter entries by string
                 if (typeof(entryFilter) == "string"){
-                    if (sPath[entry]['_name'].toLowerCase().includes(entryFilter.toLowerCase())){
-                        files.push(sPath[entry]);
+                    if (value['_name'].toLowerCase().includes(entryFilter.toLowerCase())){
+                        files.push(value);
                     }
                 }
                 // Else just add all entries
                 else{
-                    files.push(sPath[entry]);
+                    files.push(value);
                 }
             }
 

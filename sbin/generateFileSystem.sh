@@ -4,9 +4,7 @@
 # Outputs directory as string
 addDirectory() {
   # Args: dir_name, date, time, parent_dir_name
-  echo "\"$1\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\",
-        \".\":{\"_name\": \".\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},
-        \"..\":{\"_name\": \"..\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\"},"
+  echo "\"$1\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\","
 }
 
 # Outputs file as string
