@@ -17,33 +17,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Step 1 - Checkout main branch
+    - name: Step 1 - Update repo with changes
       run: |
         git clone https://github.com/edgorman/edgorman.github.io
         cd edgorman.github.io
-        git log -1 --pretty=format:%ci README.md
-        ls sbin
         ./sbin/generateSubmodules.sh
-    
-    - name: Step 3 - Update submodules
-      run: ./sbin/generateSubmodules.sh
-      shell: bash
-    
-    - name: Step 4 - Update file system
-      run: ./sbin/generateFileSystem.sh
-      shell: bash
-    
-    - name: Step 5 - Update git history
-      run: ./sbin/generateGitHistory.sh
-      shell: bash
+        ./sbin/generateFileSystem.sh
+        ./sbin/generateGitHistory.sh
 
-    - name: Step 6 - Add and commit changes
+    - name: Step 2 - Add and commit changes
       uses: EndBug/add-and-commit@v7
       with:
         message: 'Automatic update (via workflow)'
         add: '*'
     
-    - name: Step 7 - Push commit
+    - name: Step 3 - Push commit
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
