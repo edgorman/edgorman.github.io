@@ -18,13 +18,8 @@ jobs:
 
     steps:
     - name: Step 1 - Checkout main branch
-      uses: GuillaumeFalourd/clone-github-repo-action@main
-      with:
-        owner: 'edgorman'
-        repository: 'edgorman.github.io'
-    
-    - name: Step 2 - CD into repository
       run: |
+        git clone https://github.com/edgorman/edgorman.github.io
         cd edgorman.github.io
         git log -1 --pretty=format:%ci README.md
         ls sbin
