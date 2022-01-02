@@ -24,17 +24,6 @@ jobs:
         ./sbin/generateSubmodules.sh
         ./sbin/generateFileSystem.sh
         ./sbin/generateGitHistory.sh
-
-    - name: Step 2 - Add and commit changes
-      uses: EndBug/add-and-commit@v7
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        cwd: 'edgorman.github.io'
-        message: 'Automatic update (via workflow)'
-        add: '*'
-    
-    - name: Step 3 - Push commit
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+        git add .
+        git commit -m "Automatic update (via workflow)
+        git push"
