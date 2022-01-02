@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - name: Step 1 - Update repo with changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions"
@@ -28,4 +30,5 @@ jobs:
         ./sbin/generateGitHistory.sh
         git add .
         git commit -m "Automatic update (via workflow)"
+        git remote set-url --push origin https://edgorman:$GITHUB_TOKEN@github.com/edgorman/edgorman.github.io
         git push
