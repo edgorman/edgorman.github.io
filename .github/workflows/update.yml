@@ -27,5 +27,5 @@ jobs:
         ./sbin/generateFileSystem.sh
         ./sbin/generateGitHistory.sh
         git add .
-        git commit -m "Automatic update (via workflow)
-        git push"
+        git commit -m "Automatic update (via workflow)"
+        git push
