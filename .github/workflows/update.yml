@@ -19,6 +19,8 @@ jobs:
     steps:
     - name: Step 1 - Update repo with changes
       run: |
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions"
         git clone https://github.com/edgorman/edgorman.github.io
         cd edgorman.github.io
         ./sbin/generateSubmodules.sh
