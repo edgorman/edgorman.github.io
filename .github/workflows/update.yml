@@ -18,27 +18,35 @@ jobs:
 
     steps:
     - name: Step 1 - Checkout main branch
-      uses: actions/checkout@v2
+      uses: GuillaumeFalourd/clone-github-repo-action@main
+      with:
+        owner: 'edgorman'
+        repository: 'edgorman.github.io'
     
-    - name: Step 2 - Update submodules
+    - name: Step 2 - CD into repository
+      run: |
+        cd edgorman.github.io
+        git log -1 --pretty=format:%ci README.md
+    
+    - name: Step 3 - Update submodules
       run: ./sbin/generateSubmodules.sh
       shell: bash
     
-    - name: Step 3 - Update file system
+    - name: Step 4 - Update file system
       run: ./sbin/generateFileSystem.sh
       shell: bash
     
-    - name: Step 4 - Update git history
+    - name: Step 5 - Update git history
       run: ./sbin/generateGitHistory.sh
       shell: bash
 
-    - name: Step 5 - Add and commit changes
+    - name: Step 6 - Add and commit changes
       uses: EndBug/add-and-commit@v7
       with:
         message: 'Automatic update (via workflow)'
         add: '*'
     
-    - name: Step 6 - Push commit
+    - name: Step 7 - Push commit
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
