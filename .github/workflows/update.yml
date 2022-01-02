@@ -28,6 +28,7 @@ jobs:
     - name: Step 2 - Add and commit changes
       uses: EndBug/add-and-commit@v7
       with:
+        cwd: 'edgorman.github.io'
         message: 'Automatic update (via workflow)'
         add: '*'
     
