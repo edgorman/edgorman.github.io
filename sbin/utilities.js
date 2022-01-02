@@ -344,12 +344,12 @@ export function generateContentDirectory(elem, path, files, keepSearch=false){
                 let innerhtml = "";
 
                 if (file["_type"] == "dir"){
-                    if (i == 1) { continue; }
+                    if (i == 0) { continue; }
                     onclick = `window.cd('` + getFilePath(file) + `');`;
                     innerhtml = `<i class="fas fa-folder"></i>`;
                 }
                 else{
-                    if (i == 0) { continue; }
+                    if (i == 1) { continue; }
                     onclick = `window.cat('` + getFilePath(file) + `');`;
                     innerhtml = `<i class="far fa-file"></i>`;
                 }
