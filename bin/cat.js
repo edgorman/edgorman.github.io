@@ -15,10 +15,10 @@ export function cat(terminal, relativePath){
             // If file is a picture
             if (['jpg', 'png'].includes(path['_type'])){
                 file = "<img src='" + getFilePath(path) + "'/>";
-                return [[$(file)], [], [file]];
+                return [[$(file)], [], file];
             }
             
-            return [String(file).split('\n'), [], [file]];
+            return [String(file).split('\n'), [], file];
         }
         else{
             return [[], ["Can only display text or pictures."], []];

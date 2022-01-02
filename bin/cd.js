@@ -15,7 +15,7 @@ export function cd(terminal, relativePath){
     
             console.log("INFO: (cd) Changed directory to " + getFilePath(path) + ".");
 
-            return [[], [], [getFilePath(path)]];
+            return [[], [], getFilePath(path)];
         }
         else{
             return [[], ["Cannot change to non-directory path."], []];
