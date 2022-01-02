@@ -28,6 +28,7 @@ jobs:
         cd edgorman.github.io
         git log -1 --pretty=format:%ci README.md
         ls sbin
+        ./sbin/generateSubmodules.sh
     
     - name: Step 3 - Update submodules
       run: ./sbin/generateSubmodules.sh
