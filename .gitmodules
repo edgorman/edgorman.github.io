@@ -4,9 +4,6 @@
 [submodule "srv/www/edgorman.github.io"]
 	path = srv/www/edgorman.github.io
 	url = https://github.com/edgorman/edgorman.github.io
-[submodule "srv/www/One-More-Neuron"]
-	path = srv/www/One-More-Neuron
-	url = https://github.com/edgorman/One-More-Neuron
 [submodule "srv/www/Pencil-Landing-Simulator"]
 	path = srv/www/Pencil-Landing-Simulator
 	url = https://github.com/edgorman/Pencil-Landing-Simulator
@@ -28,6 +25,3 @@
 [submodule "srv/www/Voxel-Engine"]
 	path = srv/www/Voxel-Engine
 	url = https://github.com/edgorman/Voxel-Engine
-[submodule "srv/www/Voxel-Terrain"]
-	path = srv/www/Voxel-Terrain
-	url = https://github.com/edgorman/Voxel-Terrain
