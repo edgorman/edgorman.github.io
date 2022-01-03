@@ -6,7 +6,7 @@ This website is a bit unique in the fact that the entire filesystem that makes u
 
 * [/srv/www](/srv/www/): This is where you are now! In this folder you'll find all of my public repositories from Github, freely accessible in all their *(hopefully)* glory.
 
-After you've had an explore of those feel free to look further, and even give the terminal version of this website a go by clicking on the terminal icon in the top right of your screen (not advised for mobile users). If you get stuck at any time just click the home button in the top right.
+After you've had an explore of those feel free to look further, and even give the terminal version of this website a go by clicking on the terminal icon in the top right of your screen (not advised for mobile users). If you get stuck at any time just click the user button in the top right and click a shortcut link.
 
 ### Quick Links
 
