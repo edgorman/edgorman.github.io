@@ -1,4 +1,4 @@
-import { loadFile, getPath, getFilePath } from "../sbin/utilities.js";
+import { loadFile, getPath, getFilePath } from "../lib/utilities.js";
 
 export function cat(terminal, relativePath){
     var path = getPath(terminal, relativePath);

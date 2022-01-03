@@ -1,4 +1,4 @@
-import { splitPath, getFilePath, getParentPath, createFile } from "../sbin/utilities.js";
+import { splitPath, getFilePath, getParentPath, createFile } from "../lib/utilities.js";
 
 export function touch(terminal, relativePath){
     var path = getParentPath(terminal, relativePath);

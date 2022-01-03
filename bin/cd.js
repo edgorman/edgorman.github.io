@@ -1,4 +1,4 @@
-import { getPath, getFilePath, generatePromptMessage} from "../sbin/utilities.js";
+import { getPath, getFilePath, generatePromptMessage} from "../lib/utilities.js";
 
 export function cd(terminal, relativePath){
     var path = getPath(terminal, relativePath);
