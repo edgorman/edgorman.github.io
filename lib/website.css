@@ -326,12 +326,12 @@ a.disabled{
   padding: 1rem 15px 2rem 15px ;
   border-top: 1px inset var(--bg-tertiary-color);
   font-size: 12px;
+  font-weight: bold;
 }
 
 .footer a{
-  color: var(--text-primary-color);
+  color: var(--text-link-color);
   text-decoration: none;
-  font-weight: bold;
 }
 
 .footer button{
