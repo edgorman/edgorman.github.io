@@ -1,4 +1,4 @@
-import { getFilePath } from "../sbin/utilities.js";
+import { getFilePath } from "../lib/utilities.js";
 
 export function pwd(terminal){
     var pwd = getFilePath(terminal.currentDirectory);

@@ -9,8 +9,8 @@
 	</head>
 	<body>
 		<script type="module">
-			import { User } from '../sbin/user.js';
-			import { Terminal } from '../sbin/terminal.js';
+			import { User } from '../lib/user.js';
+			import { Terminal } from '../lib/terminal.js';
 			
 			window.user = new User("guest", "", "/home/guest");
 			window.terminal = new Terminal(window.user, "edgorman.github.io");

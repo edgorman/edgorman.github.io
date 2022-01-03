@@ -1,4 +1,4 @@
-import { getPath, getFilePath } from "../sbin/utilities.js";
+import { getPath, getFilePath } from "../lib/utilities.js";
 
 export function ls(terminal, args){
     // Default arguments
