@@ -1,9 +1,6 @@
 [submodule "srv/www/Advent-of-Code"]
 	path = srv/www/Advent-of-Code
 	url = https://github.com/edgorman/Advent-of-Code
-[submodule "srv/www/edgorman.github.io"]
-	path = srv/www/edgorman.github.io
-	url = https://github.com/edgorman/edgorman.github.io
 [submodule "srv/www/Pencil-Landing-Simulator"]
 	path = srv/www/Pencil-Landing-Simulator
 	url = https://github.com/edgorman/Pencil-Landing-Simulator
