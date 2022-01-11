@@ -1,43 +1,18 @@
-# edgorman.github.io
+# Hello World
 
-This repository is for my personal website [https://edgorman.github.io](https://edgorman.github.io) that is hosted using Github Pages. It emulates a CLI by using the [JQuery Terminal Library](https://terminal.jcubic.pl) which provides the terminal styling and framework, on which I have written javascript and bash scripts to automatically import my public repositories and allow users to navigate the file structure. 
+This website is a bit unique in the fact that the entire filesystem that makes up the site is fully navigable, allowing you to see and read all the code that goes into making it. The folders are modelled after a Linux style system, and so in the [root](/) folder you'll find some of the following:
 
-## Installation
-Use the following command to clone the repository:
-```
-cd your/repo/directory
-git clone https://github.com/edgorman/edgorman.github.io
-```
+* [/home](/home): The storage area for user files in this system. This includes the subfolder [eg](/home/eg) which contains my personal blog for projects, ramblings or things that interests me.
 
-Change into the boot directory:
-```
-cd boot
-```
+* [/srv/www](/srv/www/): This is where you are now! In this folder you'll find all of my public repositories from Github, freely accessible in all their *(hopefully)* glory.
 
-To run this site locally requires installing the local npm package:
-```
-npm install --prefix ../proc/
-```
+After you've had an explore of those feel free to look further, and even give the terminal version of this website a go by clicking on the terminal icon in the top right of your screen (not advised for mobile users). If you get stuck at any time just click the user button in the top right and click a shortcut link.
 
-## Usage
-Change into the boot directory:
-```
-cd boot
-```
+### Quick Links
 
-And then running the start command:
-```
-npm start
-```
+* [Blog post: Hello World](/home/eg/hello-world)
+* [Blog post: How it's Made](/home/eg/how-its-made)
 
-Open your favourite internet browser and navigate to the following path:
-
-[http://127.0.0.1:8080](http://127.0.0.1:8080)
-
-
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+* [Repository: Advent of Code](/srv/www/Advent-of-Code)
+* [Repository: Quadris](/srv/www/Quadris)
+* [Repository: Voxel Engine](/srv/www/Voxel-Engine)
