@@ -9,8 +9,10 @@ repos=$(echo $json | grep -Eo '"full_name"[^,]*' | grep -Eo '[^:]*$')
 
 # Add submodules (does nothing if exists)
 for r in $repos; do
-  url=$(echo "https://github.com/$r" | tr -d '"')
-  git submodule add $url
+  if [[ $r != *"edgorman/edgorman.github.io"* ]]; then
+    url=$(echo "https://github.com/$r" | tr -d '"')
+    git submodule add $url
+  fi
 done
 
 # Init submodules
