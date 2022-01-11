@@ -17,15 +17,25 @@ addFile() {
 generateFileSystem() { 
   # Args: dir_name
   for e in *; do
+    # Ignore these entries
     if [[ $e = "*" ]] || [[ $e = ".git"* ]] || [[ $e = "node_modules" ]] || [[ $e = "404.html" ]]; then
       continue
     fi
-
+    
+    # Get date and time of last edit
     dt=($(git log -1 --pretty=format:%ci -- "$e"))
-    d=${dt[0]}
-    t=${dt[1]}
+    if [ -z "$dt" ]; then
+      d=$(date "+%Y-%m-%d")
+      t=$(date "+%H:%M:%S")
+    else
+      d=${dt[0]}
+      t=${dt[1]}
+    fi
+    
+    # Get parent
     p="$1$e/"
-
+    
+    # If entry is a directory
     if [ -d "$e" ]; then
       result=$(addDirectory "$e" $d $t "$1")
       
@@ -33,6 +43,7 @@ generateFileSystem() {
       result="$result$(generateFileSystem "$p")"
       echo "${result::-1}},"
       cd ".."
+    # Else entry is a file
     else
       n="${e##*.}"
       echo $(addFile "$e" $d $t $n "$1")
