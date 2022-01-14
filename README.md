@@ -1,22 +1,43 @@
-# Welcome
+# edgorman.github.io
 
-This site acts like a filesystem, allowing you to traverse every directory and display every file that goes into rendering this and every other page you see. The folders are modelled after a Linux style system, and so in the [root](/) folder you'll find some of the following:
+This repository is for my personal website [https://edgorman.github.io](https://edgorman.github.io) that is hosted using Github Pages. It emulates a CLI by using the [JQuery Terminal Library](https://terminal.jcubic.pl) which provides the terminal styling and framework, on which I have written javascript and bash scripts to automatically import my public repositories and allow users to navigate the file structure. 
 
-* [/home](/home): The storage area for user files in this system. This includes the subfolder [/home/eg](/home/eg) which contains my personal blog for projects, ramblings or things that interests me.
+## Installation
+Use the following command to clone the repository:
+```
+cd your/repo/directory
+git clone https://github.com/edgorman/edgorman.github.io
+```
 
-* [/srv/www](/srv/www/): In this folder you'll find all of my public repositories from Github (except for this one) including every file they host.
+Change into the boot directory:
+```
+cd boot
+```
 
-After you've had an explore of those feel free to look further, and even give the terminal version of this website a go by clicking on the terminal button in the user settings in the top right of your screen (not advised for mobile users). 
+To run this site locally requires installing the local npm package:
+```
+npm install --prefix ../proc/
+```
 
-__If you get stuck at any time just click the user button in the top right and click a shortcut link.__
+## Usage
+Change into the boot directory:
+```
+cd boot
+```
 
-### Quick Links
+And then running the start command:
+```
+npm start
+```
 
-<br>
+Open your favourite internet browser and navigate to the following path:
 
-* [Blog post: Hello World](/home/eg/hello-world)
-* [Blog post: How it's Made](/home/eg/how-its-made)
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-* [Repository: Advent of Code](/srv/www/Advent-of-Code)
-* [Repository: Quadris](/srv/www/Quadris)
-* [Repository: Voxel Engine](/srv/www/Voxel-Engine)
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
