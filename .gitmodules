@@ -22,3 +22,6 @@
 [submodule "srv/www/Voxel-Engine"]
 	path = srv/www/Voxel-Engine
 	url = https://github.com/edgorman/Voxel-Engine
+[submodule "srv/www/Leetcode"]
+	path = srv/www/Leetcode
+	url = https://github.com/edgorman/Leetcode
