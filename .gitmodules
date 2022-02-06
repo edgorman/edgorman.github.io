@@ -25,3 +25,6 @@
 [submodule "srv/www/Leetcode"]
 	path = srv/www/Leetcode
 	url = https://github.com/edgorman/Leetcode
+[submodule "srv/www/Fake-News-Detector"]
+	path = srv/www/Fake-News-Detector
+	url = https://github.com/edgorman/Fake-News-Detector
