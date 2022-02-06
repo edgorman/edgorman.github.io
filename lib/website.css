@@ -284,6 +284,10 @@ a.disabled{
 }
 
 /* Content - Directory */
+.content .nav-bg .collapse, .content .nav-bg .collapsing{
+  font-size: 14px;
+}
+
 .content .nav-bg form{
   width: 100%;
 }
@@ -308,7 +312,7 @@ a.disabled{
   background-color: transparent;
   border: none;
   color: var(--text-link-color);
-  font-size: 13.5px;
+  font-size: 14px;
   cursor: pointer;
 }
 
