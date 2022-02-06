@@ -276,16 +276,20 @@ a.disabled{
   list-style-type: "-";
   padding-left: 10px;
   margin-left: 10px;
+  padding-top: 5px;
 }
 
 .content .nav-bg li a{
-  color: var(--text-link-color);
   text-decoration: none;
 }
 
 /* Content - Directory */
 .content .nav-bg .collapse, .content .nav-bg .collapsing{
   font-size: 14px;
+}
+
+.content .nav-bg a{
+  font-weight: bold;
 }
 
 .content .nav-bg form{
