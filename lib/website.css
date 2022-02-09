@@ -129,8 +129,8 @@ a.disabled{
   outline: none;
 }
 
-.navbar .navbar-menu{
-  padding: 10px 0px 10px 0px;
+.navbar .navbar-directory{
+  max-width: 75vw;
 }
 
 .navbar .navbar-menu button{
@@ -140,12 +140,6 @@ a.disabled{
 .navbar .navbar-menu .dropdown-menu-right{
   left: auto;
   right: 0;
-}
-
-@media screen and (max-width: 750px) {
-  .navbar .navbar-directory, .navbar .navbar-menu {
-    width: 100%;
-  }
 }
 
 /* Metadata */
