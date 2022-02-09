@@ -130,7 +130,11 @@ a.disabled{
 }
 
 .navbar .navbar-directory{
-  max-width: 75vw;
+  max-width: 85%;
+}
+
+.navbar .navbar-menu{
+  padding: 10px 0px;
 }
 
 .navbar .navbar-menu button{
@@ -322,10 +326,22 @@ a.disabled{
   border-radius: 0;
   color: var(--text-link-color);
   background-color: var(--bg-secondary-color);
+  white-space: nowrap;
+  overflow: none;
 }
 
 .content .list-group-item i{
   margin-right: 15px;
+}
+
+.content .list-group-item span:not(.text-secondary)
+{
+  max-width: 75%;
+  overflow: hidden;
+}
+
+.content .list-group-item .text-secondary{
+  margin-top: -2px;
 }
 
 /* Footer */
