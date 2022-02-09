@@ -279,6 +279,7 @@ a.disabled{
 
 .content .nav-bg li a{
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* Content - Directory */
