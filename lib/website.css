@@ -282,6 +282,10 @@ a.disabled{
   text-transform: uppercase;
 }
 
+.content .col iframe{
+  border: 1px inset #2a2a3036;
+}
+
 /* Content - Directory */
 .content .nav-bg .collapse, .content .nav-bg .collapsing{
   font-size: 14px;
