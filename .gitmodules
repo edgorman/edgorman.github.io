@@ -4,9 +4,6 @@
 [submodule "srv/www/Pencil-Landing-Simulator"]
 	path = srv/www/Pencil-Landing-Simulator
 	url = https://github.com/edgorman/Pencil-Landing-Simulator
-[submodule "srv/www/phgorman.com"]
-	path = srv/www/phgorman.com
-	url = https://github.com/edgorman/phgorman.com
 [submodule "srv/www/Plex-Photo-Extractor"]
 	path = srv/www/Plex-Photo-Extractor
 	url = https://github.com/edgorman/Plex-Photo-Extractor
