@@ -25,3 +25,6 @@
 [submodule "srv/www/Fake-News-Detector"]
 	path = srv/www/Fake-News-Detector
 	url = https://github.com/edgorman/Fake-News-Detector
+[submodule "srv/www/CodeJam"]
+	path = srv/www/CodeJam
+	url = https://github.com/edgorman/CodeJam
