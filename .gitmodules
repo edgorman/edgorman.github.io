@@ -28,6 +28,3 @@
 [submodule "srv/www/CodeJam"]
 	path = srv/www/CodeJam
 	url = https://github.com/edgorman/CodeJam
-[submodule "srv/www/Rocket-Landing-Simulator"]
-	path = srv/www/Rocket-Landing-Simulator
-	url = https://github.com/edgorman/Rocket-Landing-Simulator
