@@ -2,14 +2,40 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link href="/lib/bootstrap.min.css" rel="stylesheet">
+        <link href="/lib/jquery.terminal.min.css" rel="stylesheet"/>
+        <link href="/lib/custom-terminal.css" rel="stylesheet"/>
     </head>
     <body>
         
 
+         <!-- Terminal -->
+         <div class="terminal-container active">
+            <div id="terminal"></div>
+            <div class="terminal-buttons">
+                <button class="btn btn-sm btn-danger" onclick="$('.terminal-container').toggleClass('active');">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="btn btn-sm btn-warning" onclick="$('.terminal-container').height('100vh');">
+                    <i class="fas fa-angle-double-down"></i>
+                </button>
+                <button class="btn btn-sm btn-info" style="cursor: default;">
+                    <i class="fas fa-arrows-alt-v"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Terminal -->
+
         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/hash-wasm"></script>
         <script src="/lib/jquery-3.3.1.min.js"></script>
+        <script src="/lib/bootstrap.min.js"></script>
+        <script src="/lib/jquery.terminal.min.js"></script>
+        <script src="/lib/echo_newline.js"></script>
+
         <script src="/boot/kernel.js" type="module"></script>
     </body>
 </html>

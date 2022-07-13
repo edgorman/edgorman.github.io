@@ -1,5 +1,7 @@
 // kernel.js - Responsible for initalizing and controlling the system.
 
+import { Terminal } from "../usr/bin/terminal.js";
+
 function loadFile(path){
     // Load a file from an absolute path and return the result or null if request failed.
     var file = "";
@@ -160,6 +162,12 @@ $( document ).ready(function() {
     }
 
     // Create terminal process
+    try{
+        window.terminal = new Terminal(this, window.fileSystem, window.user);
+    } catch (e) {
+        alert(e);
+        alert("Unable to create terminal, stopping window.");
+    }
 
     // Create gui process
 
