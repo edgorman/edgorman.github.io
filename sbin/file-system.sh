@@ -3,18 +3,18 @@
 
 # Outputs directory as string
 addDirectory() {
-  # Args: dir_name, date, time, parent_dir_name
-  echo "\"$1\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"dir\", \"_parent\": \"$4\","
+  # Args: dir_name, date, time
+  echo "\"$1\":{\"date\": \"$2\", \"time\": \"$3\", \"type\": \"dir\", \"children\": { "
 }
 
 # Outputs file as string
 addFile() { 
-  # Args: file_name, date, time, file_type, parent_dir_name
-  echo "\"$1\":{\"_name\": \"$1\", \"_date\": \"$2\", \"_time\": \"$3\", \"_type\": \"$4\", \"_parent\": \"$5\"},"
+  # Args: file_name, date, time, file_type
+  echo "\"$1\":{\"date\": \"$2\", \"time\": \"$3\", \"type\": \"$4\"},"
 }
 
 # Outputs file system as json formatted string
-generateFileSystem() { 
+generate() { 
   # Args: dir_name
   for e in *; do
     # Ignore these entries
@@ -40,8 +40,8 @@ generateFileSystem() {
       result=$(addDirectory "$e" $d $t "$1")
       
       cd "$e"
-      result="$result$(generateFileSystem "$p")"
-      echo "${result::-1}},"
+      result="$result$(generate "$p")"
+      echo "${result::-1}}},"
       cd ".."
     # Else entry is a file
     else
@@ -53,11 +53,11 @@ generateFileSystem() {
 
 # Generate json string
 output="{$(addDirectory '/' '' '' '')"
-output="$output $(generateFileSystem '/')"
-output="${output::-1}}}"
+output="$output $(generate '/')"
+output="${output::-1}}}}"
 
 # For testing:
 # echo $output
 
 # For writing to file:
-echo $output > etc/fileSystem.json
+echo $output > proc/filesystem
