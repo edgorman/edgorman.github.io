@@ -1,5 +1,4 @@
 
-
 export class Terminal{
     // Terminal is an object that stores an instantiation of the terminal CLI.
     // The bulk of processing and visuals has been implemented by JQuery Terminal.
@@ -8,11 +7,10 @@ export class Terminal{
         this.fileSystem = fileSystem;
         this.user = user;
         
-        this.cwd = this.kernel.cwd;
-
+        var t = this;
         this.terminal = $("#terminal").terminal(
             {
-                echo: function(...args) { this.echo(args); }
+                echo: function(...args) { this.echo(t.user.name); }
             },
             {
                 name: "terminal",

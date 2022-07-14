@@ -1,8 +1,9 @@
 // kernel.js - Responsible for initalizing and controlling the system.
 
 import { Terminal } from "../usr/bin/terminal.js";
+import { cat } from '../bin/cat.js';
 
-function loadFile(path){
+export function loadFile(path){
     // Load a file from an absolute path and return the result or null if request failed.
     var file = "";
     $.ajax({
@@ -19,26 +20,69 @@ function loadFile(path){
     return file;
 }
 
+export function checkPath(path){
+    // Navigate to a given path, throwing errors if the move is not possible.
+    var tmpCwd = window.cwd.clone();
+
+    // If path starts with root
+    if (path.startsWith("/")){ 
+        tmpCwd = window.rootDirectory.clone();
+        path = path.substring(1, path.length);
+    }
+
+    // If path starts with home directory
+    if (path.startsWith("~")) {
+        tmpCwd = window.rootDirectory.clone();
+        tmpCwd = tmpCwd.children['home'];
+        tmpCwd = tmpCwd.children[window.user.name];
+        path = path.substring(1, path.length);
+    }
+
+    // If path is empty or itself, return cwd
+    if (path == undefined || path == "" || path == ".") {
+        return tmpCwd;
+    }
+
+    // Iterate through path checking to see if jump is valid
+    var segments = path.split("/");
+    for (const segment of segments) {
+        if (segment == "." || segment == "") {
+            continue
+        }
+        else if (segment == ".."){
+            tmpCwd = tmpCwd.parent;
+        }
+        else if (segment in tmpCwd.children) {
+            tmpCwd = tmpCwd.children[segment];
+        }
+        else{
+            return null;
+        }
+    }
+    return tmpCwd;
+}
+
 class FileSystem {
     // File is an object that stores files and directories in an object focused manner.
     // The name parameter decides which entry to recursively create file objects from next,
     // And the parent paramter gives access to this file objects parent for easy file traversal.
-    constructor(name = '', parent = null, object = null) {
+    constructor(name = '', parent = null, data = null) {
         if (parent == null){
             name = '/';
-            parent = JSON.parse(loadFile('/proc/filesystem'));
-            object = parent[name];
+            parent = this;
+            data = JSON.parse(loadFile('/proc/filesystem'))[name];
         }
 
         this.name = name;
         this.parent = parent;
-        this.date = object["date"];
-        this.time = object["time"];
-        this.type = object["type"];
+        this.data = data;
+        this.date = data["date"];
+        this.time = data["time"];
+        this.type = data["type"];
 
         this.children = {};
-        if ("children" in object){
-            for(const [n, o] of Object.entries(object["children"])){
+        if ("children" in data){
+            for(const [n, o] of Object.entries(data["children"])){
                 this.children[n] = new FileSystem(n, this, o);
             }
         }
@@ -53,6 +97,11 @@ class FileSystem {
             return this.parent.getAbsolutePath() + "/" + this.name;
         }
     }
+
+    clone(){
+        // Clone a filesystem object by pass by value rather than reference
+        return new FileSystem(this.name, this.parent, this.data);
+    }
 }
 
 class User{
@@ -61,9 +110,6 @@ class User{
         this.name = name;
         var publicEntry = this.getPublicEntry();
         var privateEntry = this.getPrivateEntry();
-
-        console.log(publicEntry);
-        console.log(privateEntry);
 
         // Validate login
         if (this.validateLogin(password, privateEntry["encType"], privateEntry["password"])){
@@ -145,7 +191,7 @@ $( document ).ready(function() {
     // Load the file system
     try {
         window.fileSystem = new FileSystem();
-        window.cwd = window.fileSystem;
+        window.rootDirectory = window.fileSystem.clone();
     } catch (e) {
         alert(e);
         alert("Unable to load the filesystem, stopping window.");
@@ -161,16 +207,25 @@ $( document ).ready(function() {
         window.stop();
     }
 
+    // Create kernel commands
+    try {
+        window.cat = cat;
+    } catch (e) {
+        alert(e);
+        alert("Unable to assign commands to kernel, stopping window.");
+    }
+
     // Create terminal process
-    try{
+    try {
         window.terminal = new Terminal(this, window.fileSystem, window.user);
     } catch (e) {
         alert(e);
         alert("Unable to create terminal, stopping window.");
     }
 
-    // Create gui process
+    // Create browser process
 
-    // Load path from browser URL
+    // Load path from window URL
+    window.cwd = window.rootDirectory.clone();
 
 });
