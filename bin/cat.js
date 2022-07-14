@@ -4,8 +4,7 @@ export function cat(path){
 
     if (file != null) {
         if (file['type'] != 'dir') {
-            var data = window.fileSystem.loadFile(file.getAbsolutePath());
-            console.log(data);
+            return window.fileSystem.loadFile(file.getAbsolutePath());
         }
         else {
             throw 'Error, cannot output a directory, must be a file.'

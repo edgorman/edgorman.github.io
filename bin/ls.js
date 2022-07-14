@@ -1,14 +1,13 @@
 
-export function cd(path){
+export function ls(path){
     var directory = window.cwd.loadPath(path);
 
     if (directory != null) {
         if (directory['type'] == 'dir') {
-            window.cwd = directory.clone();
-            return window.cwd;
+            return directory.children;
         }
         else {
-            throw 'Error, cannot change cwd to a file, must be a directory.'
+            throw 'Error, cannot list children of a file, must be a directory.'
         }
     }
     else {
