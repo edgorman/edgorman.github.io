@@ -2,65 +2,7 @@
 
 import { Terminal } from "../usr/bin/terminal.js";
 import { cat } from '../bin/cat.js';
-
-export function loadFile(path){
-    // Load a file from an absolute path and return the result or null if request failed.
-    var file = "";
-    $.ajax({
-        url: path,
-        cache: false,
-        async: false,
-        success: function(data) {
-            file = data;
-        }
-        }).fail(function() {
-            throw 'Could not load file "' + path + '" from the local file system.';
-        }
-    );
-    return file;
-}
-
-export function checkPath(path){
-    // Navigate to a given path, throwing errors if the move is not possible.
-    var tmpCwd = window.cwd.clone();
-
-    // If path starts with root
-    if (path.startsWith("/")){ 
-        tmpCwd = window.rootDirectory.clone();
-        path = path.substring(1, path.length);
-    }
-
-    // If path starts with home directory
-    if (path.startsWith("~")) {
-        tmpCwd = window.rootDirectory.clone();
-        tmpCwd = tmpCwd.children['home'];
-        tmpCwd = tmpCwd.children[window.user.name];
-        path = path.substring(1, path.length);
-    }
-
-    // If path is empty or itself, return cwd
-    if (path == undefined || path == "" || path == ".") {
-        return tmpCwd;
-    }
-
-    // Iterate through path checking to see if jump is valid
-    var segments = path.split("/");
-    for (const segment of segments) {
-        if (segment == "." || segment == "") {
-            continue
-        }
-        else if (segment == ".."){
-            tmpCwd = tmpCwd.parent;
-        }
-        else if (segment in tmpCwd.children) {
-            tmpCwd = tmpCwd.children[segment];
-        }
-        else{
-            return null;
-        }
-    }
-    return tmpCwd;
-}
+import { cd } from '../bin/cd.js';
 
 class FileSystem {
     // File is an object that stores files and directories in an object focused manner.
@@ -68,9 +10,11 @@ class FileSystem {
     // And the parent paramter gives access to this file objects parent for easy file traversal.
     constructor(name = '', parent = null, data = null) {
         if (parent == null){
+            var file = this.loadFile('/proc/filesystem')
+
             name = '/';
             parent = this;
-            data = JSON.parse(loadFile('/proc/filesystem'))[name];
+            data = JSON.parse(file)[name];
         }
 
         this.name = name;
@@ -91,16 +35,78 @@ class FileSystem {
     getAbsolutePath(){
         // Recurse up parent chain and add name to the path until reach root
         if (this.name == '/'){
-            return "";
+            return "/";
+        }
+        else if (this.type == "dir"){
+            return this.parent.getAbsolutePath() + this.name + "/";
         }
         else{
-            return this.parent.getAbsolutePath() + "/" + this.name;
+            return this.parent.getAbsolutePath() + this.name;
         }
     }
 
     clone(){
         // Clone a filesystem object by pass by value rather than reference
         return new FileSystem(this.name, this.parent, this.data);
+    }
+
+    loadFile(path){
+        // Load a file from the current path and return the result or null if request failed.
+        var file = "";
+        $.ajax({
+            url: path,
+            cache: false,
+            async: false,
+            success: function(data) {
+                file = data;
+            }
+            }).fail(function() {
+                throw 'Could not load file "' + path + '" from the local file system.';
+            }
+        );
+        return file;
+    }
+
+    loadPath(path){
+        // Navigate to a given path, throwing errors if the move is not possible.
+        var tmpCwd = this.clone();
+    
+        // If path starts with root
+        if (path.startsWith("/")){ 
+            tmpCwd = window.rootDirectory.clone();
+            path = path.substring(1, path.length);
+        }
+    
+        // If path starts with home directory
+        if (path.startsWith("~")) {
+            tmpCwd = window.rootDirectory.clone();
+            tmpCwd = tmpCwd.children['home'];
+            tmpCwd = tmpCwd.children[window.user.name];
+            path = path.substring(1, path.length);
+        }
+    
+        // If path is empty or itself, return cwd
+        if (path == undefined || path == "" || path == ".") {
+            return tmpCwd;
+        }
+    
+        // Iterate through path checking to see if jump is valid
+        var segments = path.split("/");
+        for (const segment of segments) {
+            if (segment == "." || segment == "") {
+                continue
+            }
+            else if (segment == ".."){
+                tmpCwd = tmpCwd.parent;
+            }
+            else if (segment in tmpCwd.children) {
+                tmpCwd = tmpCwd.children[segment];
+            }
+            else{
+                return null;
+            }
+        }
+        return tmpCwd;
     }
 }
 
@@ -126,7 +132,7 @@ class User{
     }
 
     getPublicEntry() {
-        var file = loadFile('/etc/passwd');
+        var file = window.fileSystem.loadFile('/etc/passwd');
         var lines = file.split(/\r?\n/);
 
         for (const line of lines){
@@ -149,7 +155,7 @@ class User{
     }
 
     getPrivateEntry() {
-        var file = loadFile('/etc/shadow');
+        var file = window.fileSystem.loadFile('/etc/shadow');
         var lines = file.split(/\r?\n/);
 
         for (const line of lines){
@@ -210,6 +216,7 @@ $( document ).ready(function() {
     // Create kernel commands
     try {
         window.cat = cat;
+        window.cd = cd;
     } catch (e) {
         alert(e);
         alert("Unable to assign commands to kernel, stopping window.");
