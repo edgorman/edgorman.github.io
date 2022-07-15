@@ -5,7 +5,8 @@ export function help(){
         "cmd,and a description alongside it",
         "cmd,and a description alongside it",
         "cmd,and a description alongside it",
-        "cmd,and a description alongside it"
+        "cmd,and a description alongside it",
+        ""
     ]
 
     return message;

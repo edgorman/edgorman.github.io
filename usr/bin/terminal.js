@@ -51,13 +51,24 @@ export class Terminal{
                 },
                 ls: function(path) { 
                     try { 
-                        var output = "";
                         var children = window.ls(path);
                         for (const [name, entry] of Object.entries(children)) {
-                            // TODO: Add colouring to text
-                            output += name + "\n";
+                            var cmd;
+                            var class_;
+                            switch (entry.type) {
+                                case "dir":
+                                    cmd = "cd " + entry.getAbsolutePath();
+                                    class_ = 'txt-directory'
+                                    break;
+                                default: 
+                                    cmd = "cat " + entry.getAbsolutePath();
+                                    class_ = "txt-command";
+                                    break;
+                            }
+
+                            this.echo($(`<span class='` + class_ + `' onclick='window.terminal.terminal.exec(\"` + cmd + `\");'>` + name + `</span>`));
                         }
-                        this.echo(output); 
+                        this.echo(); 
                     } catch (e) {
                         t.error(e);
                     }
@@ -83,17 +94,60 @@ export class Terminal{
                 checkArity : false,
                 doubleTab : function(){},
                 keymap : [],
-                completion : function(){},
+                completion : function() { return t.completion(); },
                 onCommandNotFound : function(command){ t.error("could not find command '" + command + "'.")},
                 prompt : t.prompt(),
-                greetings : ""
+                greetings : t.greetings()
             }
         )
+
+        this.terminal.echo($(
+            `<br><p>To start, enter the command `
+            + `<span class='txt-command' onclick='window.terminal.terminal.exec(\"help\");'>\"help\"</span>`
+            + ` (or click the help text)</p>`
+        ));
     }
 
     error(message) {
-        // TODO: Add colouring to text
         this.terminal.echo("[[;red;]Error: " + message + "]\n");
+    }
+
+    completion() {
+        try{
+            var cmd = $.terminal.parse_command(this.terminal.before_cursor()).name;
+            var value = $.terminal.parse_command(this.terminal.before_cursor()).rest;
+
+            // If value is empty, autocomplete command
+            if (value.length == 0) {
+                return ["cat", "cd", "date", "echo", "help", "history", "ls", "pwd", "uname"];
+            }
+            // Else value is not empty, autocomplete value
+            else{
+                if (window.fileSystem.loadPath(value) != null) {
+                    return [];
+                }
+
+                var tmpCwd = window.cwd.clone();
+                
+                // Get parent directory of incomplete path if it exists
+                var path = value.split("/").slice(0, -1).join("/");
+                var directory = window.fileSystem.loadPath(path);
+                if (directory != null) {
+                    tmpCwd = directory.clone();
+                }
+                
+                // Return each file in the tmp cwd as a possible completion
+                var results = [];
+                if (path != "") { path += "/"; }
+                for (const name of Object.keys(tmpCwd.children)) {
+                    results.push(path + name);
+                }
+
+                return results;
+            }
+        } catch (e){ console.log(e); }
+
+        return [];
     }
 
     prompt() {
@@ -105,5 +159,13 @@ export class Terminal{
         }
 
         return "[[;#7bd833;]" + window.user.name + "@" + window.uname() + "]:[[;#5b88df;]" + cwd + "]$ ";
+    }
+
+    greetings() {
+        return `Copyright (c) `
+        + (1900 + new Date().getYear())
+        + ` Edward Gorman <https://github.com/edgorman>`
+        + `\nLast login: `
+        + window.date();
     }
 }

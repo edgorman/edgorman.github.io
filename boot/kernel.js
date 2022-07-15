@@ -83,7 +83,8 @@ class FileSystem {
         if (path == undefined) {
             return tmpCwd;
         }
-    
+        path = String(path);
+        
         // If path starts with root
         if (path.startsWith("/")){ 
             tmpCwd = window.fileSystem.clone();
