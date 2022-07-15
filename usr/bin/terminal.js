@@ -114,7 +114,6 @@ export class Terminal{
 
     completion() {
         try{
-            var cmd = $.terminal.parse_command(this.terminal.before_cursor()).name;
             var value = $.terminal.parse_command(this.terminal.before_cursor()).rest;
 
             // If value is empty, autocomplete command
@@ -131,7 +130,7 @@ export class Terminal{
                 
                 // Get parent directory of incomplete path if it exists
                 var path = value.split("/").slice(0, -1).join("/");
-                var directory = window.fileSystem.loadPath(path);
+                var directory = tmpCwd.loadPath(path);
                 if (directory != null) {
                     tmpCwd = directory.clone();
                 }
@@ -142,7 +141,7 @@ export class Terminal{
                 for (const name of Object.keys(tmpCwd.children)) {
                     results.push(path + name);
                 }
-
+                
                 return results;
             }
         } catch (e){ console.log(e); }
@@ -151,14 +150,13 @@ export class Terminal{
     }
 
     prompt() {
-        var cwd = window.cwd.getAbsolutePath();
+        var path = window.cwd.getAbsolutePath();
         var home = window.user.homeDirectory;
-
-        if (String(cwd).startsWith(home)) {
-            cwd = "~/" + cwd.substring(0, len(home));
+        if (String(path).startsWith(home)) {
+            path = "~" + path.substring(home.length, path.length);
         }
 
-        return "[[;#7bd833;]" + window.user.name + "@" + window.uname() + "]:[[;#5b88df;]" + cwd + "]$ ";
+        return "[[;#7bd833;]" + window.user.name + "@" + window.uname() + "]:[[;#5b88df;]" + path + "]$ ";
     }
 
     greetings() {
