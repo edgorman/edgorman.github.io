@@ -5,13 +5,16 @@ export function cd(path){
     if (directory != null) {
         if (directory['type'] == 'dir') {
             window.cwd = directory.clone();
+
+            window.terminal.terminal.set_prompt(window.terminal.prompt());
+
             return window.cwd;
         }
         else {
-            throw 'Error, cannot change cwd to a file, must be a directory.'
+            throw 'cannot change cwd to a file, must be a directory.'
         }
     }
     else {
-        throw 'Error, the given path could not be found.'
+        throw 'the given path could not be found.'
     }
 }

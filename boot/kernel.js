@@ -86,13 +86,13 @@ class FileSystem {
     
         // If path starts with root
         if (path.startsWith("/")){ 
-            tmpCwd = window.rootDirectory.clone();
+            tmpCwd = window.fileSystem.clone();
             path = path.substring(1, path.length);
         }
     
         // If path starts with home directory
         if (path.startsWith("~")) {
-            tmpCwd = window.rootDirectory.clone();
+            tmpCwd = window.fileSystem.clone();
             tmpCwd = tmpCwd.children['home'];
             tmpCwd = tmpCwd.children[window.user.name];
             path = path.substring(1, path.length);
@@ -212,7 +212,7 @@ $( document ).ready(function() {
     // Load the file system
     try {
         window.fileSystem = new FileSystem();
-        window.rootDirectory = window.fileSystem.clone();
+        window.cwd = window.fileSystem.clone();
     } catch (e) {
         alert(e);
         alert("Unable to load the filesystem, stopping window.");
@@ -257,6 +257,5 @@ $( document ).ready(function() {
     // Create browser process
 
     // Load path from window URL
-    window.cwd = window.rootDirectory.clone();
 
 });

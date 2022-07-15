@@ -7,10 +7,10 @@ export function ls(path){
             return directory.children;
         }
         else {
-            throw 'Error, cannot list children of a file, must be a directory.'
+            throw 'cannot list children of a file, must be a directory.'
         }
     }
     else {
-        throw 'Error, the given path could not be found.'
+        throw 'the given path could not be found.'
     }
 }
