@@ -78,6 +78,11 @@ class FileSystem {
     loadPath(path){
         // Navigate to a given path, throwing errors if the move is not possible.
         var tmpCwd = this.clone();
+
+        // If path is undefined, return current cwd
+        if (path == undefined) {
+            return tmpCwd;
+        }
     
         // If path starts with root
         if (path.startsWith("/")){ 
@@ -94,7 +99,7 @@ class FileSystem {
         }
     
         // If path is empty or itself, return cwd
-        if (path == undefined || path == "" || path == ".") {
+        if (path == "" || path == ".") {
             return tmpCwd;
         }
     
