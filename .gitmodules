@@ -1,6 +1,15 @@
 [submodule "srv/www/Advent-of-Code"]
 	path = srv/www/Advent-of-Code
 	url = https://github.com/edgorman/Advent-of-Code
+[submodule "srv/www/CodeJam"]
+	path = srv/www/CodeJam
+	url = https://github.com/edgorman/CodeJam
+[submodule "srv/www/Fake-News-Detector"]
+	path = srv/www/Fake-News-Detector
+	url = https://github.com/edgorman/Fake-News-Detector
+[submodule "srv/www/Leetcode"]
+	path = srv/www/Leetcode
+	url = https://github.com/edgorman/Leetcode
 [submodule "srv/www/Pencil-Landing-Simulator"]
 	path = srv/www/Pencil-Landing-Simulator
 	url = https://github.com/edgorman/Pencil-Landing-Simulator
@@ -19,12 +28,3 @@
 [submodule "srv/www/Voxel-Engine"]
 	path = srv/www/Voxel-Engine
 	url = https://github.com/edgorman/Voxel-Engine
-[submodule "srv/www/Leetcode"]
-	path = srv/www/Leetcode
-	url = https://github.com/edgorman/Leetcode
-[submodule "srv/www/Fake-News-Detector"]
-	path = srv/www/Fake-News-Detector
-	url = https://github.com/edgorman/Fake-News-Detector
-[submodule "srv/www/CodeJam"]
-	path = srv/www/CodeJam
-	url = https://github.com/edgorman/CodeJam
