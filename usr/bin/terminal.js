@@ -150,7 +150,7 @@ export class Terminal{
     }
 
     prompt() {
-        var path = window.cwd.getAbsolutePath();
+        var path = window.pwd();
         var home = window.user.homeDirectory;
         if (String(path).startsWith(home)) {
             path = "~" + path.substring(home.length, path.length);
