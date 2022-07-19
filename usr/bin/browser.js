@@ -1,4 +1,3 @@
-'use strict';
 
 const e = React.createElement;
 
@@ -10,20 +9,18 @@ export class Browser extends React.Component {
     }
 
     render() {
-        // Navbar
+        const navbar = e('div', {id: "navbar"}, "navbar");
+        const metadata = e('div', {id: "metadata"}, "metadata");
+        const container = e('div', {id: "container"}, "container");
+        const footer = e('div', {id: "footer"}, "footer");
 
-        // Metadata
-
-        // Container
-
-        // Footer
-
-        // Return each section in a container together
-        return e(
-            'span',
-            [],
-            Date()
-        )
+        return e('div', {}, [
+                navbar,
+                metadata,
+                container,
+                footer
+            ]
+        );
     }
 }
 

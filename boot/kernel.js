@@ -26,16 +26,16 @@ $( document ).ready(function() {
     } catch (e) {
         alert(e);
         alert("Unable to load the filesystem, stopping window.");
-        window.stop();
+        return;
     }
 
     // Load user settings
     try {
-        window.user = new User('guest', '1234')
+        window.user = new User('guest', '');
     } catch (e) {
         alert(e);
         alert("Unable to login the user, stopping window.");
-        window.stop();
+        return;
     }
 
     // Create kernel commands
@@ -52,7 +52,7 @@ $( document ).ready(function() {
     } catch (e) {
         alert(e);
         alert("Unable to assign commands to kernel, stopping window.");
-        window.stop();
+        return;
     }
 
     // Create terminal process
@@ -61,7 +61,7 @@ $( document ).ready(function() {
     } catch (e) {
         alert(e);
         alert("Unable to create terminal, stopping window.");
-        window.stop();
+        return;
     }
 
     // Create browser process
@@ -70,7 +70,7 @@ $( document ).ready(function() {
     } catch (e) {
         alert(e);
         alert("Unable to create browser, stopping window.");
-        window.stop();
+        return;
     }
 
     // Load path from window URL

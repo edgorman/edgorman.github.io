@@ -20,6 +20,9 @@
   "dependencies": {
     "crypto-js": "^4.1.1",
     "ecstatic": "^4.1.4",
-    "http-server": "^0.12.3"
+    "http-server": "^14.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-jsx": "^1.0.0"
   }
 }
