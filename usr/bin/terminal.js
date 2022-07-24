@@ -1,5 +1,5 @@
 
-export class Terminal{
+class Terminal{
     // Terminal is an object that stores an instantiation of the terminal CLI.
     // The bulk of processing and visuals has been implemented by JQuery Terminal.
     constructor() {
@@ -150,7 +150,7 @@ export class Terminal{
     }
 
     prompt() {
-        var path = window.pwd();
+        var path = window.cwd.getAbsolutePath();
         var home = window.user.homeDirectory;
         if (String(path).startsWith(home)) {
             path = "~" + path.substring(home.length, path.length);
@@ -167,3 +167,5 @@ export class Terminal{
         + window.date();
     }
 }
+
+window.terminal = new Terminal();

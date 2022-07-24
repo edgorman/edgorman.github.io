@@ -8,13 +8,9 @@
         <link href="/usr/lib/terminal.css" rel="stylesheet"/>
     </head>
     <body>
-        <!-- Browser -->
-        <div id="browser">
+        <div class="browser-container">
             
         </div>
-        <!-- Browser -->
-
-        <!-- Terminal -->
         <div class="terminal-container active">
             <div id="terminal"></div>
             <div class="terminal-buttons">
@@ -29,17 +25,20 @@
                 </button>
             </div>
         </div>
-        <!-- Terminal -->
 
-        <script src="/boot/node_modules/react/umd/react.development.js" crossorigin></script>
-        <script src="/boot/node_modules/react-dom/umd/react-dom.development.js" crossorigin></script>
-        <script src="/boot/node_modules/crypto-js/crypto-js.js" crossorigin></script>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="https://unpkg.com/crypto-js@4.1.1/crypto-js.js" crossorigin></script>
         <script src="https://kit.fontawesome.com/8344083c6b.js" crossorigin="anonymous"></script>
+        
         <script src="/lib/jquery-3.3.1.min.js"></script>
         <script src="/usr/lib/bootstrap.min.js"></script>
         <script src="/usr/lib/jquery.terminal.min.js"></script>
         <script src="/usr/lib/echo_newline.js"></script>
-
+        
         <script src="/boot/kernel.js" type="module"></script>
+        <script src="/usr/bin/terminal.js" type="module"></script>
+        <script src="/usr/bin/browser.js" data-type="module" type="text/babel"></script>
     </body>
 </html>
